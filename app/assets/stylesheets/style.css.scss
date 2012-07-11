@@ -1,13 +1,16 @@
 $lightGray: #CCC;
+$fontColor: #0C0831;
 
 body {
   background-image: url('bg.png');
+  color:$fontColor;
 
   #content-container{
     min-height: 680px;
-    background: #FFFFFF;
+    background: #FFFFF9;
     border-radius: 5px;
     margin-top: 80px;
+
   }
   #content-start{
     padding-top: 120px;
@@ -20,10 +23,13 @@ body {
     margin-top: 10px;
     font-size: 3em;
   }
+  h1{
+    color:$fontColor;
+  }
 }
 .center {
   width:80%;
-  margin:100px auto;
+  margin:0px auto;
 }
 input {
   font-size:2em;
