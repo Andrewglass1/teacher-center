@@ -1,0 +1,19 @@
+body {
+  background-image: url('bg.png') ;
+}
+
+#content-container{
+  height: 680px;
+  background: #FFFFFF;
+  border-radius: 5px;
+  margin-top: 125px;
+}
+
+.logo{
+  -webkit-transform: rotate(-32deg);
+  -moz-transform: rotate(-32deg);
+  position: absolute;
+  margin-left: -80px;
+  margin-top: 10px;
+  font-size: 3em;
+}
