@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.5'
 gem 'heroku'
 gem 'faraday'
+gem 'donors_choose', github: "verdi327/donors_choose_gem"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

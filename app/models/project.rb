@@ -13,15 +13,13 @@ class Project < ActiveRecord::Base
   private
 
   def self.get_project(project_id)
-    conn = Faraday.new(:url => DONORS_CHOOSE_BASE_URL)
-    response = JSON.parse(conn.get("?id=#{project_id}&key=#{API_KEY}").body)
-    response['proposals'].first
+    raise DonorsChooseAPI::Project.find_by_id(project_id).inspect
   end
 
   def self.build_project(response)
     {
-      :city => response['city'],
-      :cost_to_complete_cents => response['costToComplete'] * 100,
+      :city => response.city,
+      :cost_to_complete_cents => response.cost_to_complete * 100,
       :dc_id => response['id'],
       :dc_url => response['proposalURL'],
       :description => response['shortDescription'],
