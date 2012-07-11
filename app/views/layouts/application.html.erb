@@ -9,14 +9,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="row">
-    <div class="nav">
-    </div>
-  </div>
   <div class="container">
-    <div class="row " id="content-container">
-      <h1 class="logo">teacher center</h1>
-      <%= yield %>
+    <div class="row" id="content-container">
+      <h1 id="logo">TeacherCenter</h1>
+      <div id="content-start">
+        <%= yield %>
+      </div>
   </div>
   </div>
 </body>

@@ -1,19 +1,33 @@
+$lightGray: #CCC;
+
 body {
-  background-image: url('bg.png') ;
-}
+  background-image: url('bg.png');
 
-#content-container{
-  height: 680px;
-  background: #FFFFFF;
+  #content-container{
+    min-height: 680px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin-top: 80px;
+  }
+  #content-start{
+    padding-top: 120px;
+  }
+  #logo{
+    -webkit-transform: rotate(-32deg);
+    -moz-transform: rotate(-32deg);
+    position: absolute;
+    margin-left: -80px;
+    margin-top: 10px;
+    font-size: 3em;
+  }
+}
+.center {
+  width:80%;
+  margin:100px auto;
+}
+input {
+  font-size:2em;
+  border:2px solid $lightGray;
   border-radius: 5px;
-  margin-top: 125px;
-}
-
-.logo{
-  -webkit-transform: rotate(-32deg);
-  -moz-transform: rotate(-32deg);
-  position: absolute;
-  margin-left: -80px;
-  margin-top: 10px;
-  font-size: 3em;
+  width:100%;
 }

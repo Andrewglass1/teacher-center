@@ -1,0 +1,16 @@
+$projectURLRotation: -20deg;
+#projectURL{
+  position:absolute;
+  margin-top:-140px;
+  -webkit-transform: rotate($projectURLRotation);
+  -moz-transform: rotate($projectURLRotation);
+  text-align: center;
+  font-size:2em;
+  border:1px dashed black;
+  padding:5px;
+}
+.arrow {
+  background-image: url("arrow.png");
+  height:181px;
+  width:165px;
+}
