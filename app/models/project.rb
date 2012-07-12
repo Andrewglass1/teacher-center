@@ -12,10 +12,6 @@ class Project < ActiveRecord::Base
 
   private
 
-  def self.get_project(project_id)
-    DonorsChooseApi::Project.find_by_id(project_id)
-  end
-
   def self.dollars_into_cents(dollars)
     (BigDecimal.new(dollars.to_s) * 100).to_i
   end
