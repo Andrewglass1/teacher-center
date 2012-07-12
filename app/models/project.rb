@@ -18,7 +18,7 @@ class Project < ActiveRecord::Base
 
   def projected_fund_date
     if Date.today < expiration_date
-      Date.parse((start_date + (percentage_to_completion_date/(percent_funded.to_f/100) * length_of_project)).to_s)
+      Date.parse((start_date + projected_days_of_funding_needed).to_s)
     else
       expiration_date
     end
@@ -63,6 +63,10 @@ class Project < ActiveRecord::Base
 
   def length_of_project
     expiration_date - start_date
+  end
+
+  def projected_days_of_funding_needed
+    percentage_to_completion_date/(percent_funded.to_f/100) * length_of_project
   end
 
 end
