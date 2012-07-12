@@ -26,8 +26,10 @@ describe Project do
 
     context "when given a valid project url" do
       let(:valid_url){ 'http://www.donorschoose.org/project/biotechnology-applications/816888/'}
+      let(:completed_valid_url){ 'http://www.donorschoose.org/donors/proposal.html?id=88850'}
       it "creates a project with all valid attributes" do
         expect { Project.create_by_project_url(valid_url) }.to change{Project.count}.by(1)
+        expect { Project.create_by_project_url(completed_valid_url) }.to change{Project.count}.by(1)
       end
 
       context "that project is already in the database" do
