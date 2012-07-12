@@ -16,6 +16,14 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def projected_fund_date
+    if Date.today < expiration_date
+      Date.parse((start_date + (percentage_to_completion_date/(percent_funded.to_f/100) * length_of_project)).to_s)
+    else
+      expiration_date
+    end
+  end
+
   private
 
   def self.dollars_into_cents(dollars)
@@ -47,6 +55,14 @@ class Project < ActiveRecord::Base
   def self.get_start_date(dc_url)
     page = Nokogiri::HTML(open(dc_url))
     Date.parse(page.css('.subtitle').text.strip().match(/([A-Z][a-z]{2}\s\d*,\s\d*)/)[1])
+  end
+
+  def percentage_to_completion_date
+    (Date.today - start_date)/length_of_project
+  end
+
+  def length_of_project
+    expiration_date - start_date
   end
 
 end
