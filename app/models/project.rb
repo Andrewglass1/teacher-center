@@ -6,34 +6,38 @@ class Project < ActiveRecord::Base
   has_many :tasks, :through => :project_tasks
 
   def self.create_by_project_url(project_url)
-    project_id = project_url.match(/\/(\d+)/)[1]
-    Project.create(build_project(get_project(project_id)))
+    project = DonorsChooseApi::Project.find_by_url(project_url)
+    Project.create(build_project(project))
   end
 
   private
 
   def self.get_project(project_id)
-    raise DonorsChooseAPI::Project.find_by_id(project_id).inspect
+    DonorsChooseApi::Project.find_by_id(project_id)
+  end
+
+  def self.dollars_into_cents(dollars)
+    (BigDecimal.new(dollars.to_s) * 100).to_i
   end
 
   def self.build_project(response)
     {
       :city => response.city,
-      :cost_to_complete_cents => response.cost_to_complete * 100,
-      :dc_id => response['id'],
-      :dc_url => response['proposalURL'],
-      :description => response['shortDescription'],
-      :expiration_date => Date.parse(response['expirationDate']),
-      :fund_url => response['fundURL'],
-      :goal_cents => response['totalPrice'] * 100,
-      :image_url => response['imageURL'],
+      :cost_to_complete_cents => dollars_into_cents(response.cost_to_complete),
+      :dc_id => response.donors_choose_id,
+      :dc_url => response.proposal_url,
+      :description => response.short_description,
+      :expiration_date => Date.parse(response.expiration_date),
+      :fund_url => response.fund_url,
+      :goal_cents => dollars_into_cents(response.total_price),
+      :image_url => response.image_url,
       :on_track => true,
-      :percent_funded => response['percentFunded'],
-      :school => response['schoolName'],
+      :percent_funded => response.percent_funded,
+      :school => response.school_name,
       :stage => 'initial',
-      :state => response['state'],
-      :teacher_name => response['teacherName'],
-      :title => response['title']
+      :state => response.state,
+      :teacher_name => response.teacher_name,
+      :title => response.title
     }
   end
 
