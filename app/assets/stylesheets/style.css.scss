@@ -1,9 +1,11 @@
 $lightGray: #CCC;
 $fontColor: #0C0831;
+$fontFamily: "ff-enzo-web", Helvetica, sans-serif;
 
 body {
   background-image: url('bg.png');
   color:$fontColor;
+  font-family:$fontFamily;
 
   #content-container{
     min-height: 680px;
