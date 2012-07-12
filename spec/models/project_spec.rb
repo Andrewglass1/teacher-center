@@ -22,7 +22,10 @@ describe Project do
       title: Faker::Lorem.words(1).join(' ')
     )}
 
-    before { DonorsChooseApi::Project.stub(:find_by_url).and_return(project_response) }
+    before do
+      DonorsChooseApi::Project.stub(:find_by_url).and_return(project_response)
+      Project.stub(:get_start_date).and_return(Date.today)
+    end
 
     context "when given a valid project url" do
       let(:valid_url){ 'http://www.donorschoose.org/project/biotechnology-applications/816888/'}
@@ -45,6 +48,15 @@ describe Project do
       it "does not create a project" do
         expect { Project.create_by_project_url(invalid_url) }.to change{Project.count}.by(0)
       end
+    end
+  end
+
+  context ".get_start_date" do
+    let(:dc_url){ 'http://www.donorschoose.org/project/biotechnology-applications/816888/'}
+    let!(:dc_page) { Nokogiri::HTML(open(Rails.root + 'spec/support/donors_choose.html')) }
+    it "retrieves the start date of the project when given the id" do
+      Nokogiri.stub(:HTML).and_return(dc_page)
+      Project.get_start_date(dc_url).should == Date.parse("26 Jun 2012")
     end
   end
 

@@ -1,7 +1,9 @@
 class Project < ActiveRecord::Base
+  require 'open-uri'
+
   attr_accessible :city, :cost_to_complete_cents, :dc_id, :dc_url, :description,
     :expiration_date, :fund_url, :goal_cents, :image_url, :on_track,
-    :percent_funded, :school, :stage, :state, :teacher_name, :title
+    :percent_funded, :school, :stage, :state, :teacher_name, :title, :start_date
 
   has_many :tasks, :through => :project_tasks
 
@@ -37,8 +39,14 @@ class Project < ActiveRecord::Base
       :stage => 'initial',
       :state => response.state,
       :teacher_name => response.teacher_name,
-      :title => response.title
+      :title => response.title,
+      :start_date => get_start_date(response.proposal_url)
     }
+  end
+
+  def self.get_start_date(dc_url)
+    page = Nokogiri::HTML(open(dc_url))
+    Date.parse(page.css('.subtitle').text.strip().match(/([A-Z][a-z]{2}\s\d*,\s\d*)/)[1])
   end
 
 end
