@@ -54,7 +54,9 @@ class Project < ActiveRecord::Base
 
   def self.get_start_date(dc_url)
     page = Nokogiri::HTML(open(dc_url))
-    Date.parse(page.css('.subtitle').text.strip().match(/([A-Z][a-z]{2}\s\d*,\s\d*)/)[1])
+    Date.parse(
+      page.css('.subtitle').text.strip().match(/([A-Z][a-z]{2}\s\d*,\s\d*)/)[1]
+    )
   end
 
   def percentage_to_completion_date
