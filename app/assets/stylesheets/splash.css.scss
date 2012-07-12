@@ -1,13 +1,19 @@
 $projectURLRotation: -20deg;
+$paperScrap: url('crumpled-paper.jpg');
+
 #projectURL{
+  background-image: $paperScrap;
   position:absolute;
   margin-top:0px;
   -webkit-transform: rotate($projectURLRotation);
   -moz-transform: rotate($projectURLRotation);
   text-align: center;
   font-size:2em;
-  border:1px dashed black;
   padding:5px;
+  height: 100px;
+  width: 325px;
+  overflow-y: visible;
+  overflow-x: visible;
 }
 .arrow {
   background-image: url("arrow.png");
@@ -21,6 +27,30 @@ $projectURLRotation: -20deg;
   float:right;
   width:240px;
 }
+
 #infoBoxes{
   margin-top:50px;
+}
+
+h2 .pitch-text{ 
+
+}
+
+#info-1{ 
+  background-image: $paperScrap;
+  height: 250px;
+  width: 250px;
+  
+} 
+
+#info-2{ 
+  background-image: $paperScrap;
+  height: 250px;
+  width: 250px;
+}
+
+#info-3{ 
+  background-image: $paperScrap;
+  height: 250px;
+  width: 250px;
 }
