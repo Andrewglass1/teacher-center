@@ -21,6 +21,10 @@ body {
   #content-start{
     padding-top: 120px;
   }
+  h1{
+    color:$fontColor;
+  }
+
   #logo{
     background: $mediumblue;
     -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
@@ -29,6 +33,7 @@ body {
     -moz-border-radius: 3px;
     -webkit-transform: rotate(-20deg);
     -moz-transform: rotate(-20deg);
+    box-shadow: -2px 0px #1A1A1A;
     position: absolute;
     margin-left: -40px;
     margin-top: 10px;
@@ -44,25 +49,22 @@ body {
     border-width: 5px 10px;  
     border-style: solid;  
     border-color: $darkblue $darkblue transparent transparent;  
-  }  
+  } 
 
   #logo:before  
   {  
       content: ' ';  
       position: absolute;  
-      width: 30px;  
+      width: 2px;  
       height: 0;  
       left: -30px;  
       top: 27px;  
-      border-width: 20px 10px;  
-      border-style: solid;  
+      border-width: 20px 24px;  
+      border-style: solid; 
       border-collapse: collapse;
       border-color: $mediumblue $mediumblue $mediumblue transparent;  
       z-index: -5;
   }  
-    h1{
-    color:$fontColor;
-  }
 }
 .center {
   width:80%;
