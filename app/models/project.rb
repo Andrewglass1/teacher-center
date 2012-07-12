@@ -6,8 +6,12 @@ class Project < ActiveRecord::Base
   has_many :tasks, :through => :project_tasks
 
   def self.create_by_project_url(project_url)
-    project = DonorsChooseApi::Project.find_by_url(project_url)
-    Project.create(build_project(project))
+    if project_match = project_url.match(/\/(\d+)/)
+      project_id = project_match[1]
+      if project = DonorsChooseApi::Project.find_by_id(project_id)
+        Project.create(build_project(project))
+      end
+    end
   end
 
   private
