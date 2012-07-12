@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
     if project_match = project_url.match(/\/(\d+)/)
       project_id = project_match[1]
       if project = DonorsChooseApi::Project.find_by_id(project_id)
-        Project.create(build_project(project))
+        Project.find_or_create_by_dc_id(build_project(project))
       end
     end
   end

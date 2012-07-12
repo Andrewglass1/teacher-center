@@ -29,6 +29,13 @@ describe Project do
       it "creates a project with all valid attributes" do
         expect { Project.create_by_project_url(valid_url) }.to change{Project.count}.by(1)
       end
+
+      context "that project is already in the database" do
+        it "does not create a new project" do
+          Project.create_by_project_url(valid_url)
+          expect { Project.create_by_project_url(valid_url) }.to change{Project.count}.by(0)
+        end
+      end
     end
 
     context "when given an invalid url" do
