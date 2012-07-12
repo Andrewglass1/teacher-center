@@ -20,6 +20,7 @@ group :development, :test do
   gem 'cane'
   gem 'reek'
   gem 'capybara'
+  gem 'simplecov'
 end
 
 group :production do
