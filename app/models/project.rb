@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   has_many :tasks, :through => :project_tasks
 
   def self.create_by_project_url(project_url)
-    if project_match = project_url.match(/[\/|\?id=](\d+)/)
+    if project_match = project_url.match(/(\d{5,6})/)
       project_id = project_match[1]
       if project = DonorsChooseApi::Project.find_by_id(project_id)
         Project.find_or_create_by_dc_id(build_project(project))
