@@ -22,7 +22,7 @@
       <h2> To Be Completed </h2>
       <% Task.all.each do |t| %>
       <ul>
-        <li><%= t.type %><%= t.stage %></li>
+        <li><%= t.medium %><%= t.stage %></li>
       <ul>
         <li id= "<%t.id %>">
           <%= t.medium %><%= link_to "Do", "#", :class=> "tiny-button" %>
