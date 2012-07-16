@@ -1,18 +1,18 @@
 $darkblue: #32455e;
 $mediumblue: #5581d9;
 
-#project_info{ 
+#project_info{
   background-image: url('crumpled-paper.jpg');
   margin-top: -45px;
   margin-left: 25px;
 }
 
-#classroom_image{ 
+#classroom_image{
   margin-top: 15px;
   margin-left: 15px;
   margin-bottom: 15px;
 
-  img{ 
+  img{
     height: 210px;
     width: 210px;
     border-radius: 5px;
@@ -22,7 +22,7 @@ $mediumblue: #5581d9;
   }
 }
 
-.title{ 
+.title{
   margin-top: 15px;
   font-family: "skippy-sharp";
   font-weight: 300;
@@ -30,7 +30,7 @@ $mediumblue: #5581d9;
   text-align: center;
 }
 
-#project-description{ 
+#project-description{
   margin-left: 15px;
   margin-bottom: 15px;
   width: 200px;
@@ -41,4 +41,7 @@ $mediumblue: #5581d9;
   border: 3px transparent;
   border-radius: 4px;
   padding: 5px;
+}
+.ui-progressbar .ui-progressbar-value {
+  background-image: url("status-bar.png");
 }
