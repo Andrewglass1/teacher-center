@@ -42,15 +42,19 @@ $mediumblue: #5581d9;
   border-radius: 4px;
   padding: 5px;
 }
+
+#countdown{ 
+  margin-top: -50px;
+  margin-bottom: 25px;
+}
 .ui-progressbar .ui-progressbar-value {
   background-image: url("status-bar.png");
 }
 
 #tasks{ 
-  margin-top: 55px;
-  min-height: 400px;
+  margin-top: 25px;
+  height: 565px;
   background-image: url('crumpled-paper.jpg');
-  border-radius: 5px
 }
 
 .task_lists{ 
@@ -59,9 +63,18 @@ $mediumblue: #5581d9;
 }
 
 #new_tasks{ 
+  margin-bottom: 10px;
+  border-bottom: 2px dashed;
+  
   ul { 
        list-style-type: none;
+       padding-bottom: 10px;
     }
+
+  li { 
+    font-family: "skippy-sharp";
+    font-size: 32px;
+  }
 }
 
 #completed_tasks{
