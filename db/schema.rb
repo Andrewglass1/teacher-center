@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716204316) do
+ActiveRecord::Schema.define(:version => 20120716220218) do
 
   create_table "project_tasks", :force => true do |t|
     t.integer  "task_id"
@@ -48,8 +48,9 @@ ActiveRecord::Schema.define(:version => 20120716204316) do
   create_table "tasks", :force => true do |t|
     t.string   "medium"
     t.string   "stage"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "description"
   end
 
 end
