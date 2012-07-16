@@ -70,7 +70,6 @@ class Project < ActiveRecord::Base
   end
 
   def percentage_to_completion_date
-    # Woo
     (Date.today - start_date)/length_of_project
   end
 
