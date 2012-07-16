@@ -53,6 +53,11 @@ $mediumblue: #5581d9;
   border-radius: 5px
 }
 
+.task_lists{ 
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
 #new_tasks{ 
   ul { 
        list-style-type: none;
@@ -60,7 +65,11 @@ $mediumblue: #5581d9;
 }
 
 #completed_tasks{
-  ul { 
+  li {
+  text-decoration: line-through;
+  } 
+
+  ul{ 
     list-style-type: none;
   }
 }
