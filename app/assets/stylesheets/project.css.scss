@@ -43,7 +43,7 @@ $mediumblue: #5581d9;
   padding: 5px;
 }
 
-#countdown{ 
+#countdown{
   margin-top: -50px;
   margin-bottom: 25px;
 }
@@ -51,27 +51,28 @@ $mediumblue: #5581d9;
   background-image: url("status-bar.png");
 }
 
-#tasks{ 
+#tasks{
   margin-top: 25px;
   height: 565px;
   background-image: url('crumpled-paper.jpg');
 }
 
-.task_lists{ 
+.task_lists{
   margin-top: 25px;
   margin-left: 25px;
 }
 
-#new_tasks{ 
+#new_tasks{
+  margin-left:20px;
   margin-bottom: 10px;
   border-bottom: 2px dashed;
-  
-  ul { 
+
+  ul {
        list-style-type: none;
        padding-bottom: 10px;
     }
 
-  li { 
+  li {
     font-family: "skippy-sharp";
     font-size: 32px;
   }
@@ -80,9 +81,9 @@ $mediumblue: #5581d9;
 #completed_tasks{
   li {
   text-decoration: line-through;
-  } 
+  }
 
-  ul{ 
+  ul{
     list-style-type: none;
   }
 }
