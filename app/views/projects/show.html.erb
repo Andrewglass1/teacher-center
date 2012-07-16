@@ -13,7 +13,7 @@
 
 <div class="eightcol" id="project-status-bar">
   <div id="countdown">
-    <h2> There are <%= (@project.expiration_date - Date.today).to_i %> days left to fund your project.<h2>
+    <h2> There are <%= distance_of_time_in_words_to_now(@project.expiration_date) %> left to fund your project.<h2>
   </div> 
   <div id="progressbar"></div>
   <div class="twelvecol" id="tasks">
@@ -22,7 +22,9 @@
       <h2> To Be Completed </h2>
       <% Task.all.each do |t| %>
       <ul> 
-        <li id= "<%t.id %>"><%= t.medium %><%= link_to "Do", "#", :class=> "tiny-button" %></li>
+        <li id= "<%t.id %>">
+          <%= t.medium %><%= link_to "Do", "#", :class=> "tiny-button" %>
+        </li>
       </ul>
       <% end %>
     </div>
