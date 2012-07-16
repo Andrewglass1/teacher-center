@@ -21,6 +21,8 @@ group :development, :test do
   gem 'reek'
   gem 'capybara'
   gem 'simplecov'
+  gem 'fabrication'
+  gem 'faker'
 end
 
 group :production do
