@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Project do
-let(:project_response) { 
+  let(:project_response) {
     Hashie::Mash.new(
     city: "blah",
     expiration_date: Date.parse("August 2 2012").to_s,
@@ -65,8 +65,7 @@ let(:project_response) {
   context "#projected_fund_date" do
     let(:project) { Project.create_by_project_url('816888') }
     before do
-     Project.stub(:get_start_date).and_return(Date.today)
-     Project.any_instance.stub(:start_date).and_return(Date.parse('July 1 2012'))
+     Project.stub(:get_start_date).and_return(Date.parse('July 1 2012'))
      Date.stub(:today).and_return(Date.parse('July 12 2012'))
     end
 
@@ -95,8 +94,6 @@ let(:project_response) {
   context "#update_information" do
     before do
      Project.stub(:get_start_date).and_return(Date.today)
-     Project.any_instance.stub(:start_date).and_return(Date.parse('July 1 2012'))
-     Date.stub(:today).and_return(Date.parse('July 12 2012'))
     end
     let!(:project) { Project.create_by_project_url('816888') }
     it "updates the cost to complete and percent funded for a project, but not any other attributes" do
