@@ -1,0 +1,77 @@
+$lightGray: #CCC;
+$fontColor: #021C3B;
+$fontFamily: "ff-enzo-web", Helvetica, sans-serif;
+$mediumblue: #5581d9;
+$darkblue: #32455e;
+
+
+body {
+  background-image: url('chris_gardnermed.png');
+  color:$fontColor;
+  font-family:$fontFamily;
+
+  #content-container{
+    min-height: 680px;
+    background: #FFFFFA;
+    border-radius: 5px;
+    margin-top: 80px;
+    padding-bottom: 25px;
+
+  }
+  #content-start{
+    padding-top: 120px;
+  }
+  h1{
+    color:$fontColor;
+  }
+
+  #logo{
+    background: $mediumblue;
+    -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transform: rotate(-15deg);
+    -moz-transform: rotate(-15deg);
+    position: absolute;
+    margin-left: -30px;
+    margin-top: -9px;
+    font-size: 3em;
+  }
+  #logo:after{  
+    content: ' ';  
+    position: absolute;  
+    width: 0;  
+    height: 0;  
+    left: 0px;  
+    top: 100%;  
+    border-width: 5px 10px;  
+    border-style: solid;  
+    border-color: $darkblue $darkblue transparent transparent;  
+  } 
+
+  #logo:before  
+  {  
+      content: ' ';  
+      position: absolute;  
+      width: 2px;  
+      height: 0;  
+      left: -30px;  
+      top: 27px;  
+      border-width: 20px 24px;  
+      border-style: solid; 
+      border-collapse: collapse;
+      border-color: $mediumblue $mediumblue $mediumblue transparent;  
+      z-index: -5;
+  }  
+}
+.center {
+  width:80%;
+  margin:0px auto;
+}
+input {
+  font-size:2em;
+  border:2px solid $lightGray;
+  border-radius: 5px;
+  width:100%;
+}

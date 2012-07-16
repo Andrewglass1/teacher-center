@@ -1,0 +1,35 @@
+<div class="threecol" id="project_info">
+
+  <h2 class="title"><%= @project.title %></h2>
+
+  <div id="classroom_image">
+    <%=image_tag @project.image_url %>
+  </div>
+
+  <div id="project-description">
+    <%= @project.description %>
+  </div>
+</div>
+
+<div class="eightcol" id="project-status-bar">
+  <div id="progressbar"></div>
+  <div class="twelvecol" id="tasks">
+  <div class = "task_lists">
+    <div id="new_tasks">
+      <h2> To Be Completed </h2>
+      <% Task.all.each do |t| %>
+      <ul> 
+        <li><%= t.type %><%= t.stage %></li>
+      </ul>
+      <% end %>
+    </div>
+    <div id="completed_tasks"> 
+      <h2> Successfully Completed </h2> 
+      <ul> 
+        <li>Finished Task</li> 
+        <li>Finished Task</li> 
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>

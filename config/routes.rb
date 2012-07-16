@@ -1,3 +1,4 @@
 Teachercenter::Application.routes.draw do
-  # root :to => 'welcome#index'
+  resources :projects 
+  root :to => "pages#welcome"
 end

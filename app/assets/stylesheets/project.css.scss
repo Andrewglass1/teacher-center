@@ -1,0 +1,75 @@
+$darkblue: #32455e;
+$mediumblue: #5581d9;
+
+#project_info{
+  background-image: url('crumpled-paper.jpg');
+  margin-top: -45px;
+  margin-left: 25px;
+}
+
+#classroom_image{
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+
+  img{
+    height: 210px;
+    width: 210px;
+    border-radius: 5px;
+    border: 3px solid $darkblue;
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+
+  }
+}
+
+.title{
+  margin-top: 15px;
+  font-family: "skippy-sharp";
+  font-weight: 300;
+  font-size: 36px;
+  text-align: center;
+}
+
+#project-description{
+  margin-left: 15px;
+  margin-bottom: 15px;
+  width: 200px;
+  font-family: "skippy-sharp";
+  font-weight: 600;
+  font-size: 24px;
+  color: $darkblue;
+  border: 3px transparent;
+  border-radius: 4px;
+  padding: 5px;
+}
+.ui-progressbar .ui-progressbar-value {
+  background-image: url("status-bar.png");
+}
+
+#tasks{ 
+  margin-top: 55px;
+  min-height: 400px;
+  background-image: url('crumpled-paper.jpg');
+  border-radius: 5px
+}
+
+.task_lists{ 
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+#new_tasks{ 
+  ul { 
+       list-style-type: none;
+    }
+}
+
+#completed_tasks{
+  li {
+  text-decoration: line-through;
+  } 
+
+  ul{ 
+    list-style-type: none;
+  }
+}
