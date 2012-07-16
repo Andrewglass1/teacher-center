@@ -16,6 +16,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def self.dollars_into_cents(dollars)
+    (BigDecimal.new(dollars.to_s) * 100).to_i
+  end
+
   def projected_fund_date
     if Date.today < expiration_date
       Date.parse((start_date + projected_days_of_funding_needed).to_s)
@@ -24,11 +28,16 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def update_information
+    project_info = DonorsChooseApi::Project.find_by_id(dc_id)
+    update_attributes({
+      :cost_to_complete_cents => Project.dollars_into_cents(project_info.cost_to_complete),
+      :percent_funded => project_info.percent_funded
+    })
+  end
+
   private
 
-  def self.dollars_into_cents(dollars)
-    (BigDecimal.new(dollars.to_s) * 100).to_i
-  end
 
   def self.build_project(response)
     {

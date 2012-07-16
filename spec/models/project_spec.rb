@@ -91,4 +91,26 @@ let(:project_response) {
     end
 
   end
+
+  context "#update_information" do
+    before do
+     Project.stub(:get_start_date).and_return(Date.today)
+     Project.any_instance.stub(:start_date).and_return(Date.parse('July 1 2012'))
+     Date.stub(:today).and_return(Date.parse('July 12 2012'))
+    end
+    let!(:project) { Project.create_by_project_url('816888') }
+    it "updates the cost to complete and percent funded for a project, but not any other attributes" do
+      original_project_response         = project_response.clone
+      project_response.percent_funded   = 90
+      project_response.cost_to_complete = 10
+      project_response.title            = 'new title'
+
+      project.update_information
+      project = Project.last
+
+      project.percent_funded.should         == project_response.percent_funded
+      project.cost_to_complete_cents.should == project_response.cost_to_complete * 100
+      project.title.should                  == original_project_response.title
+    end
+  end
 end
