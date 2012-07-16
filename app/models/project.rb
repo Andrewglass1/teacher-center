@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   has_many :project_tasks
   has_many :tasks, :through => :project_tasks
   after_create :generate_print_and_share
+  after_create :seed_initial_project_tasks
 
   def self.create_by_project_url(project_url)
     if project_match = project_url.match(/(\d{5,6})/)
@@ -47,6 +48,12 @@ class Project < ActiveRecord::Base
 
   def print_and_share_pdf_url
     "http://printandshare.org/proposals/pdf/#{dc_id}"
+  end
+
+  def seed_initial_project_tasks
+    Task.all.each do |task|
+      project_tasks.create(:task_id => task.id)
+    end
   end
 
 private
