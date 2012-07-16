@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120716204316) do
-=======
-ActiveRecord::Schema.define(:version => 20120712185325) do
->>>>>>> d297cfe1fdfad70ebe312f81911bf5e2aa09b0a3
 
   create_table "project_tasks", :force => true do |t|
     t.integer  "task_id"
