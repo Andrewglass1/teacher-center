@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
 
   has_many :project_tasks
   has_many :tasks, :through => :project_tasks
+  after_create :generate_print_and_share
 
   def self.create_by_project_url(project_url)
     if project_match = project_url.match(/(\d{5,6})/)
@@ -37,8 +38,18 @@ class Project < ActiveRecord::Base
     })
   end
 
-  private
+  ## First you have to visit the URL.
+  def generate_print_and_share
+    Thread.new do
+      Faraday.get("http://printandshare.org/proposals/view/#{dc_id}")
+    end
+  end
 
+  def print_and_share_pdf_url
+    "http://printandshare.org/proposals/pdf/#{dc_id}"
+  end
+
+private
 
   def self.build_project(response)
     {
@@ -80,5 +91,7 @@ class Project < ActiveRecord::Base
   def projected_days_of_funding_needed
     percentage_to_completion_date/(percent_funded.to_f/100) * length_of_project
   end
+
+
 
 end
