@@ -28,17 +28,25 @@ describe ProjectTask do
     Nokogiri.stub(:HTML).and_return(dc_page)
     ProjectTask.any_instance.stub(:bitly_client).and_return(fake_client)
     fake_client.stub(:shorten).and_return(Hashie::Mash.new(short_url: 'http://bit.ly/li2je4'))
+    fake_client.stub(:clicks).and_return(Hashie::Mash.new(user_clicks: 5))
+    Project.stub(:get_start_date).and_return(Date.today)
   end
 
-  context '#create_short_link' do
-    before do
-     Project.stub(:get_start_date).and_return(Date.today)
-    end
-    let!(:project) { Project.create_by_project_url('816888') }
+  let!(:project) { Project.create_by_project_url('816888') }
 
+  context '#create_short_link' do
     it "creates a bitly url linking to the project's donors choose url after create" do
       project_task = ProjectTask.create(:project_id => project.id)
       project_task.short_url.should include 'bit.ly'
     end
   end
+
+  context '#update_clicks' do
+    it "updates the clicks on a project task's short url" do
+      project_task = ProjectTask.create(:project_id => project.id)
+      project_task.update_clicks
+      project_task.clicks.should == 5
+    end
+  end
+
 end

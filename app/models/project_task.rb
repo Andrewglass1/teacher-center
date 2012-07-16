@@ -9,6 +9,10 @@ class ProjectTask < ActiveRecord::Base
     update_attribute(:short_url, bitly_client.shorten(project.dc_url).short_url)
   end
 
+  def update_clicks
+    update_attribute(:clicks, bitly_client.clicks(short_url).user_clicks)
+  end
+
   private
 
   def bitly_client
