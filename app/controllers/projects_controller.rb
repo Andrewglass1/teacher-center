@@ -11,5 +11,6 @@ class ProjectsController < ApplicationController
     else
       redirect_to root_path, :notice => "Please input a valid project url"
     end
+  end
 
 end
