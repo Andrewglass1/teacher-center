@@ -13,14 +13,17 @@
 
 <div class="eightcol" id="project-status-bar">
   <div id="countdown">
-    <h2> There are
-      <%= distance_of_time_in_words_to_now(@project.expiration_date) %>
-      left to fund your project.
-    <h2>
+    <% if @project.expiration_date > Date.today %>
+      <h2> There are
+        <%= distance_of_time_in_words_to_now(@project.expiration_date) %>
+        left to fund your project</h2>
+    <% else %>
+      <h2>Your project ended on <%= @project.expiration_date.strftime("%B %d, %Y" ) %></h2>
+    <% end %>
   </div>
   <div id="progressbar"></div>
   <div style="float:right;">
-    <h3><%= 100 - @project.percent_funded %>% to completion</h3>
+    <h3><%= @project.percent_funded %>% funded</h3>
   </div>
   <div class="twelvecol" id="tasks">
   <div class = "task_lists">
