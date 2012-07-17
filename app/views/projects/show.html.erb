@@ -39,7 +39,6 @@
       <ul>
         <li><%= pt.task.medium %><%= pt.task.stage %></li>
         <li><%= render :partial => pt.task.medium.downcase, :locals => { :short_url => pt.short_url, :description => pt.task.description, :dc_id => @project.dc_id } %>
-        <%= t.medium %><%= link_to "Do", "#", :class=> "tiny-button" %>
       </ul>
       <% end %>
     </div>

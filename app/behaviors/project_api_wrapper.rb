@@ -34,7 +34,6 @@ module ProjectApiWrapper
         :fund_url => response.fund_url,
         :goal_cents => dollars_into_cents(response.total_price),
         :image_url => response.image_url,
-        :on_track => true,
         :percent_funded => response.percent_funded,
         :school => response.school_name,
         :stage => 'initial',
