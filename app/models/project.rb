@@ -42,6 +42,14 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def tasks_to_do
+    project_tasks.where(:completed => false)
+  end
+
+  def tasks_completed
+    project_tasks.where(:completed => true)
+  end
+
 private
 
   def percentage_to_completion_date
