@@ -24,7 +24,7 @@ describe Project do
 
   before do
     DonorsChooseApi::Project.stub(:find_by_id).and_return(project_response)
-    Nokogiri.stub(:HTML).and_return(dc_page)
+    ProjectApiWrapper.stub(:open_page).and_return(dc_page)
   end
 
   context ".create_by_project_url" do
@@ -58,7 +58,7 @@ describe Project do
   context ".get_start_date" do
     let(:dc_url){ 'http://www.donorschoose.org/project/biotechnology-applications/816888/'}
     it "retrieves the start date of the project when given the id" do
-      Project.get_start_date(dc_url).should == Date.parse("26 Jun 2012")
+      ProjectApiWrapper.get_start_date(dc_url).should == Date.parse("26 Jun 2012")
     end
   end
 
@@ -71,7 +71,7 @@ describe Project do
 
     context "the project is live" do
       it "returns the projected fund date" do
-        project.projected_fund_date.should == Date.parse('July 14 2012')
+        project.projected_fund_date.should == Date.parse('Mon 16 2012')
       end
     end
 
