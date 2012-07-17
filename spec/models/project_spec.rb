@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Project do
-let(:project_response) { 
+  let(:project_response) {
     Hashie::Mash.new(
     city: "blah",
     expiration_date: Date.parse("August 2 2012").to_s,
@@ -24,7 +24,7 @@ let(:project_response) {
 
   before do
     DonorsChooseApi::Project.stub(:find_by_id).and_return(project_response)
-    Nokogiri.stub(:HTML).and_return(dc_page)
+    ProjectApiWrapper.stub(:open_page).and_return(dc_page)
   end
 
   context ".create_by_project_url" do
@@ -58,21 +58,20 @@ let(:project_response) {
   context ".get_start_date" do
     let(:dc_url){ 'http://www.donorschoose.org/project/biotechnology-applications/816888/'}
     it "retrieves the start date of the project when given the id" do
-      Project.get_start_date(dc_url).should == Date.parse("26 Jun 2012")
+      ProjectApiWrapper.get_start_date(dc_url).should == Date.parse("26 Jun 2012")
     end
   end
 
   context "#projected_fund_date" do
     let(:project) { Project.create_by_project_url('816888') }
     before do
-     Project.stub(:get_start_date).and_return(Date.today)
-     Project.any_instance.stub(:start_date).and_return(Date.parse('July 1 2012'))
+     Project.stub(:get_start_date).and_return(Date.parse('July 1 2012'))
      Date.stub(:today).and_return(Date.parse('July 12 2012'))
     end
 
     context "the project is live" do
       it "returns the projected fund date" do
-        project.projected_fund_date.should == Date.parse('July 14 2012')
+        project.projected_fund_date.should == Date.parse('Mon 16 2012')
       end
     end
 
@@ -95,8 +94,6 @@ let(:project_response) {
   context "#update_information" do
     before do
      Project.stub(:get_start_date).and_return(Date.today)
-     Project.any_instance.stub(:start_date).and_return(Date.parse('July 1 2012'))
-     Date.stub(:today).and_return(Date.parse('July 12 2012'))
     end
     let!(:project) { Project.create_by_project_url('816888') }
     it "updates the cost to complete and percent funded for a project, but not any other attributes" do
