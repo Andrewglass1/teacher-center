@@ -4,10 +4,15 @@
     <p>URL TO GET STARTED!</p>
   </div>
   <div class="arrow"></div>
-  <form>
-    <input type="text" name="donors_url" placeholder="http://">
-    <input type="submit" name'submit' value="Get Started!" id="getStarted" class="button">
-  </form>
+  <% if flash[:notice] %>
+    <div class="alert alert-error">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <%= form_tag projects_path, :method=>'post' do %>
+    <%= text_field_tag "project_url" %>
+    <%= submit_tag 'Submit', :value => "Get Started!", :id => "getStarted", :class => "button"%>
+  <% end %>
 
   <div class="row">
     <h2 class="pitch-text">Get your project funded faster here!</h2>

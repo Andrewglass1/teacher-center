@@ -146,12 +146,16 @@ $mediumblue: #5581d9;
   li {
     font-family: "skippy-sharp";
     font-size: 32px;
+    display: inline-block;
   }
 }
 
 #completed_tasks{
   li {
-  text-decoration: line-through;
+    .task-medium {
+      display: inline-block;
+      text-decoration: line-through;
+    }
   }
 
   ul{
