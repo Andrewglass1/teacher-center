@@ -12,20 +12,39 @@
 </div>
 
 <div class="eightcol" id="project-status-bar">
+  <div id="countdown">
+    <% if @project.expiration_date > Date.today %>
+      <% if @project.off_track? %>
+        <div class="alert alert-danger">Your project is not projected to be fully funded, try completing some tasks</div>
+      <% end %>
+      <h2> There are
+        <%= distance_of_time_in_words_to_now(@project.expiration_date) %>
+        left to fund your project</h2>
+
+    <% else %>
+      <h2>Your project ended on <%= @project.expiration_date.strftime("%B %d, %Y" ) %></h2>
+    <% end %>
+  </div>
+
   <div id="progressbar"></div>
+  <div style="float:right;">
+    <h3><%= @project.percent_funded %>% funded
+    <%= "(projected #{@project.projected_fund_date.strftime("%m/%d/%y")})" if @project.projected_fund_date %></h3>
+  </div>
   <div class="twelvecol" id="tasks">
   <div class = "task_lists">
     <div id="new_tasks">
-      <h2> To Be Completed </h2>
+      <h2> Tasks To Be Completed </h2>
       <% @project.project_tasks.each do |pt| %>
       <ul>
         <li><%= pt.task.medium %><%= pt.task.stage %></li>
         <li><%= render :partial => pt.task.medium.downcase, :locals => { :short_url => pt.short_url, :description => pt.task.description, :dc_id => @project.dc_id } %>
+        <%= t.medium %><%= link_to "Do", "#", :class=> "tiny-button" %>
       </ul>
       <% end %>
     </div>
     <div id="completed_tasks">
-      <h2> Successfully Completed </h2>
+      <h2>Tasks Successfully Completed </h2>
       <ul>
         <li>Finished Task</li>
         <li>Finished Task</li>
@@ -34,3 +53,11 @@
   </div>
   </div>
 </div>
+
+<script>
+  jQuery(function() {
+    return $("#progressbar").progressbar({
+      value: <%= @project.percent_funded %>
+    });
+  });
+</script>
