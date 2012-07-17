@@ -39,6 +39,9 @@ $mediumblue: #5581d9;
   font-family: "skippy-sharp";
   font-size: 36px;
   color: $mediumblue;
+  h3, p {
+  color: $darkblue;
+  }
 }
 
 h2 #infoBoxes{ 
