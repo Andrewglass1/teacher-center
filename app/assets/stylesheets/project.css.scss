@@ -57,7 +57,7 @@ $mediumblue: #5581d9;
   }
 }
 
-.tape{ 
+.tape{
   background-image: url('tape.png');
   height: 50px;
   width: 155px;
@@ -117,14 +117,6 @@ $mediumblue: #5581d9;
   max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
   max-height: 100px;
   height: 55%;
-  -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  -webkit-transform: skew(-15deg) rotate(-6deg);
-  -moz-transform: skew(-15deg) rotate(-6deg);
-  -ms-transform: skew(-15deg) rotate(-6deg);
-  -o-transform: skew(-15deg) rotate(-6deg);
-  transform: skew(-15deg) rotate(-6deg)
 }
 #tasks:after {
   left: auto;
