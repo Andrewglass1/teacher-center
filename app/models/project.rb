@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   require 'open-uri'
 
   attr_accessible :city, :cost_to_complete_cents, :dc_id, :dc_url, :description,
-    :expiration_date, :fund_url, :goal_cents, :image_url, :on_track,
+    :expiration_date, :fund_url, :goal_cents, :image_url,
     :percent_funded, :school, :stage, :state, :teacher_name, :title, :start_date
 
   has_many :project_tasks
@@ -26,11 +26,13 @@ class Project < ActiveRecord::Base
   end
 
   def projected_fund_date
-    if Date.today < expiration_date
+    if Date.today < expiration_date && !projected_days_of_funding_needed.infinite?
       Date.parse((start_date + projected_days_of_funding_needed).to_s)
-    else
-      expiration_date
     end
+  end
+
+  def off_track?
+    projected_fund_date > expiration_date if projected_fund_date
   end
 
 private

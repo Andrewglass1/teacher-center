@@ -14,16 +14,22 @@
 <div class="eightcol" id="project-status-bar">
   <div id="countdown">
     <% if @project.expiration_date > Date.today %>
+      <% if @project.off_track? %>
+        <div class="alert alert-danger">Your project is not projected to be fully funded, try completing some tasks</div>
+      <% end %>
       <h2> There are
         <%= distance_of_time_in_words_to_now(@project.expiration_date) %>
         left to fund your project</h2>
+        
     <% else %>
       <h2>Your project ended on <%= @project.expiration_date.strftime("%B %d, %Y" ) %></h2>
     <% end %>
   </div>
+
   <div id="progressbar"></div>
   <div style="float:right;">
-    <h3><%= @project.percent_funded %>% funded</h3>
+    <h3><%= @project.percent_funded %>% funded
+    <%= "(projected #{@project.projected_fund_date.strftime("%m/%d/%y")})" if @project.projected_fund_date %></h3>
   </div>
   <div class="twelvecol" id="tasks">
   <div class = "task_lists">
