@@ -1,9 +1,10 @@
 GIT
   remote: git://github.com/verdi327/donors_choose_gem.git
-  revision: 62bb631fb87fa0421d1d961259cb20ef3d2654dd
+  revision: 9352d1fe295cb24513796a91c2ff2bd88c910aad
   specs:
     donors_choose (0.0.1)
       faraday
+      nokogiri
 
 GEM
   remote: https://rubygems.org/

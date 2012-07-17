@@ -26,7 +26,7 @@ describe ProjectTask do
     fake_client = double
     DonorsChooseApi::Project.stub(:find_by_id).and_return(project_response)
     Nokogiri.stub(:HTML).and_return(dc_page)
-    ProjectTask.any_instance.stub(:bitly_client).and_return(fake_client)
+    UrlShortener.stub(:client).and_return(fake_client)
     fake_client.stub(:shorten).and_return(Hashie::Mash.new(short_url: 'http://bit.ly/li2je4'))
     fake_client.stub(:clicks).and_return(Hashie::Mash.new(user_clicks: 5))
     Project.stub(:get_start_date).and_return(Date.today)
@@ -34,7 +34,7 @@ describe ProjectTask do
 
   let!(:project) { Project.create_by_project_url('816888') }
 
-  context '#create_short_link' do
+  context '#get_short_link' do
     it "creates a bitly url linking to the project's donors choose url after create" do
       project_task = ProjectTask.create(:project_id => project.id)
       project_task.short_url.should include 'bit.ly'
