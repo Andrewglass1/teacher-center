@@ -42,34 +42,48 @@ $mediumblue: #5581d9;
   border-radius: 4px;
   padding: 5px;
 }
+
+#countdown{
+  margin-top: -50px;
+  margin-bottom: 25px;
+}
 .ui-progressbar .ui-progressbar-value {
   background-image: url("status-bar.png");
 }
 
-#tasks{ 
-  margin-top: 55px;
-  min-height: 400px;
+#tasks{
+  margin-top: 25px;
+  height: 565px;
   background-image: url('crumpled-paper.jpg');
-  border-radius: 5px
 }
 
-.task_lists{ 
+.task_lists{
   margin-top: 25px;
   margin-left: 25px;
 }
 
-#new_tasks{ 
-  ul { 
+#new_tasks{
+  margin-left:20px;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed;
+
+  ul {
        list-style-type: none;
+       padding-bottom: 10px;
     }
+
+  li {
+    font-family: "skippy-sharp";
+    font-size: 32px;
+  }
 }
 
 #completed_tasks{
   li {
   text-decoration: line-through;
-  } 
+  }
 
-  ul{ 
+  ul{
     list-style-type: none;
   }
 }

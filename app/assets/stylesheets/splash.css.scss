@@ -39,6 +39,9 @@ $mediumblue: #5581d9;
   font-family: "skippy-sharp";
   font-size: 36px;
   color: $mediumblue;
+  h3, p {
+  color: $darkblue;
+  }
 }
 
 h2 #infoBoxes{ 
@@ -64,27 +67,3 @@ h2 #infoBoxes{
   width: 250px;
 }
 
-.button{ 
- border-top: 1px solid $mediumblue;
- border-left: 1px solid $mediumblue;
- background: $mediumblue;
- background: -webkit-gradient(linear, left top, left bottom, from($mediumblue), to(#486ebb));
- background: -webkit-linear-gradient(top, $mediumblue, #486ebb);
- background: -moz-linear-gradient(top, $mediumblue, #486ebb);
- background: -ms-linear-gradient(top, $mediumblue, #486ebb);
- background: -o-linear-gradient(top, $mediumblue, #486ebb);
- padding: 10px 20px;
- -webkit-border-radius: 20px;
- -moz-border-radius: 20px;
- border-radius: 5px;
- -webkit-box-shadow: rgba(0,0,0,.2) 0 1px .2;
- -moz-box-shadow: rgba(0,0,0,.2) 0 1px .2;
- box-shadow: rgba(0,0,0,.2) 0 1px .2;
- text-shadow: rgba(0,0,0,.4) 0 1px 0;
- color: $orange;
- font-size: 20px;
- font-family: "skippy-sharp", Helvetica, Arial, Sans-Serif;
- text-decoration: none;
- vertical-align: middle;
-
-}
