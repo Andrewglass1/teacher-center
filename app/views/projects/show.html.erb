@@ -1,5 +1,6 @@
-<div class="threecol" id="project_info">
 
+<div class="threecol" id="project_info">
+  <div class="tape"></div> 
   <h2 class="title"><%= @project.title %></h2>
 
   <div id="classroom_image">
@@ -28,12 +29,17 @@
 
   <div id="progressbar"></div>
   <div style="float:right;">
+<<<<<<< HEAD
     <h3><%= @project.percent_funded %>% funded
     <%= "(projected #{@project.projected_fund_date.strftime("%m/%d/%y")})" if @project.projected_fund_date %></h3>
+=======
+    <h3><%=@project.percent_funded %>% complete.</h3>
+>>>>>>> friendly_urls
   </div>
   <div class="twelvecol" id="tasks">
   <div class = "task_lists">
     <div id="new_tasks">
+<<<<<<< HEAD
       <h2> Tasks To Be Completed </h2>
       <% @project.project_tasks.each do |pt| %>
       <ul>
@@ -41,6 +47,16 @@
         <li><%= render :partial => pt.task.medium.downcase, :locals => { :short_url => pt.short_url, :description => pt.task.description, :dc_id => @project.dc_id } %>
       </ul>
       <% end %>
+=======
+      <h2>Tasks To Be Completed </h2>
+      <ul>
+        <% Task.all.each do |t| %>
+          <li id= "<%t.id %>">
+            <%= t.medium %><%= link_to "Do", "#", :class=> "tiny-button" %>
+          </li>
+        <% end %>
+      </ul>
+>>>>>>> friendly_urls
     </div>
     <div id="completed_tasks">
       <h2>Tasks Successfully Completed </h2>
