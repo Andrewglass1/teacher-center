@@ -30,7 +30,7 @@ class Project < ActiveRecord::Base
   end
 
   def projected_fund_date
-    if Date.today < expiration_date && !projected_days_of_funding_needed.infinite?
+    if Date.today < expiration_date && percent_funded < 100 && !projected_days_of_funding_needed.infinite?
       Date.parse((start_date + projected_days_of_funding_needed).to_s)
     end
   end
