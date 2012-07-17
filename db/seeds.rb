@@ -18,9 +18,9 @@ p = Project.create(:dc_id => "812882",
                :stage => "initial", :on_track => true,
                )
 
-t1 = Task.create(medium: "Twitter",           stage: "Phase 1")
-t2 = Task.create(medium: "Facebook",          stage: "Phase 2")
-t3 = Task.create(medium: "Snail Mail!",       stage: "Phase 3")
-t4 = Task.create(medium: "PDF Generation!",   stage: "Phase 3")
+t1 = Task.create(medium: "Twitter"      , stage: "Phase 1", description: "Check out my donors choose project")
+t2 = Task.create(medium: "Facebook"     , stage: "Phase 2", description: "Check out my donors choose project")
+t3 = Task.create(medium: "Mail"         , stage: "Phase 3", description: "Check out my donors choose project")
+t4 = Task.create(medium: "PrintAndShare", stage: "Phase 3", description: "Check out my donors choose project")
 
 p.project_tasks << [ProjectTask.new(task_id: t1.id, completed: true), ProjectTask.new(task_id: t3.id, completed: false)]
