@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def show
-    @project = Project.find_by_id(params[:id])
+    @project = Project.find_by_slug(params[:id])
   end
 
   def create
@@ -12,4 +12,5 @@ class ProjectsController < ApplicationController
       redirect_to root_path, :notice => "Please input a valid project url"
     end
   end
+
 end

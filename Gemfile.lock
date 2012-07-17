@@ -72,6 +72,7 @@ GEM
     faraday (0.8.1)
       multipart-post (~> 1.1)
     ffi (1.0.11)
+    friendly_id (4.0.7)
     growl (1.0.3)
     guard (1.2.3)
       listen (>= 0.4.2)
@@ -225,6 +226,7 @@ DEPENDENCIES
   fabrication
   faker
   faraday
+  friendly_id
   growl
   guard-rspec
   hashie

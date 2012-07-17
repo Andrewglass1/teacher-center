@@ -10,6 +10,9 @@ class Project < ActiveRecord::Base
   after_create :seed_initial_project_tasks
   after_create :prepare_pdf
 
+  extend FriendlyId
+  friendly_id :title, use: :history
+
   def self.create_by_project_url(project_url)
     ProjectApiWrapper.create_by_project_url(project_url)
   end

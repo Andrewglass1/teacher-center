@@ -2,9 +2,44 @@ $darkblue: #32455e;
 $mediumblue: #5581d9;
 
 #project_info{
+  position:relative;
   background-image: url('crumpled-paper.jpg');
   margin-top: -45px;
   margin-left: 25px;
+  padding: 0;
+  border: 1px solid #efefef;
+  margin: 0 30px 30px 0;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+}
+#project_info:after, #project_info:before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 70%;
+  max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
+  max-height: 100px;
+  height: 55%;
+  -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  -webkit-transform: skew(-15deg) rotate(-6deg);
+  -moz-transform: skew(-15deg) rotate(-6deg);
+  -ms-transform: skew(-15deg) rotate(-6deg);
+  -o-transform: skew(-15deg) rotate(-6deg);
+  transform: skew(-15deg) rotate(-6deg)
+}
+#project_info:after {
+  left: auto;
+  right: 10px;
+  -webkit-transform: skew(15deg) rotate(6deg);
+  -moz-transform: skew(15deg) rotate(6deg);
+  -ms-transform: skew(15deg) rotate(6deg);
+  -o-transform: skew(15deg) rotate(6deg);
+  transform: skew(15deg) rotate(6deg);
 }
 
 #classroom_image{
@@ -20,6 +55,14 @@ $mediumblue: #5581d9;
     -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
 
   }
+}
+
+.tape{
+  background-image: url('tape.png');
+  height: 50px;
+  width: 155px;
+  margin-left: 40px;
+  margin-top: -25px;
 }
 
 .title{
@@ -55,6 +98,34 @@ $mediumblue: #5581d9;
   margin-top: 25px;
   height: 565px;
   background-image: url('crumpled-paper.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+  padding: 0;
+  border: 1px solid #efefef;
+  margin: 0 30px 30px 0;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+}
+#tasks:after, #tasks:before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 70%;
+  max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
+  max-height: 100px;
+  height: 55%;
+}
+#tasks:after {
+  left: auto;
+  right: 10px;
+  -webkit-transform: skew(15deg) rotate(6deg);
+  -moz-transform: skew(15deg) rotate(6deg);
+  -ms-transform: skew(15deg) rotate(6deg);
+  -o-transform: skew(15deg) rotate(6deg);
+  transform: skew(15deg) rotate(6deg);
 }
 
 .task_lists{
