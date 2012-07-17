@@ -12,8 +12,9 @@ $mediumblue: #5581d9;
   -webkit-transform: rotate($projectURLRotation);
   -moz-transform: rotate($projectURLRotation);
   text-align: center;
+  line-height: 1.50em;
   color: $darkblue;
-  font-size:2em;
+  font-size:32px;
   padding:5px;
   height: 100px;
   width: 325px;
@@ -24,7 +25,7 @@ $mediumblue: #5581d9;
   background-image: url("curved_arrow.png");
   height: 181px;
   width: 165px;
-  top: -50px;
+  top: -40px;
   left: 280px;
   position: relative;
 }
@@ -37,7 +38,7 @@ $mediumblue: #5581d9;
 #infoBoxes{
   margin-top:50px;
   margin-bottom: 25px;
-  font-family: "skippy-sharp";
+  font-family: "ff-dagny-web-pro";
   font-size: 36px;
   color: $mediumblue;
   h3, p {
@@ -50,20 +51,17 @@ h2 #infoBoxes{
 }
 
 #info-1{ 
-  background-image: $paperScrap;
   height: 250px;
   width: 250px;
   
 } 
 
 #info-2{ 
-  background-image: $paperScrap;
   height: 250px;
   width: 250px;
 }
 
 #info-3{ 
-  background-image: $paperScrap;
   height: 250px;
   width: 250px;
 }
