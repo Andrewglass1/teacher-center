@@ -1,5 +1,6 @@
-<div class="threecol" id="project_info">
 
+<div class="threecol" id="project_info">
+  <div class="tape"></div> 
   <h2 class="title"><%= @project.title %></h2>
 
   <div id="classroom_image">
@@ -20,19 +21,19 @@
   </div>
   <div id="progressbar"></div>
   <div style="float:right;">
-    <h3><%= 100 - @project.percent_funded %>% to completion</h3>
+    <h3><%=@project.percent_funded %>% complete.</h3>
   </div>
   <div class="twelvecol" id="tasks">
   <div class = "task_lists">
     <div id="new_tasks">
       <h2>Tasks To Be Completed </h2>
-      <ol>
+      <ul>
         <% Task.all.each do |t| %>
           <li id= "<%t.id %>">
             <%= t.medium %><%= link_to "Do", "#", :class=> "tiny-button" %>
           </li>
         <% end %>
-      </ol>
+      </ul>
     </div>
     <div id="completed_tasks">
       <h2>Tasks Successfully Completed </h2>
