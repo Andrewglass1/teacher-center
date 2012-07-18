@@ -2,45 +2,16 @@ $darkblue: #32455e;
 $mediumblue: #5581d9;
 
 #project_info{
-  position:relative;
-  background-image: url('crumpled-paper.jpg');
-  margin-top: -45px;
-  margin-left: 25px;
-  padding: 0;
+  position: relative;
+  margin-top: -50px;
+  margin-left: 15px;
+  padding: 10px;
   border: 1px solid #efefef;
-  margin: 0 30px 30px 0;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
 }
-#project_info:after, #project_info:before {
-  content: '';
-  z-index: -1;
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-  width: 70%;
-  max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
-  max-height: 100px;
-  height: 55%;
-  -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  -webkit-transform: skew(-15deg) rotate(-6deg);
-  -moz-transform: skew(-15deg) rotate(-6deg);
-  -ms-transform: skew(-15deg) rotate(-6deg);
-  -o-transform: skew(-15deg) rotate(-6deg);
-  transform: skew(-15deg) rotate(-6deg)
-}
-#project_info:after {
-  left: auto;
-  right: 10px;
-  -webkit-transform: skew(15deg) rotate(6deg);
-  -moz-transform: skew(15deg) rotate(6deg);
-  -ms-transform: skew(15deg) rotate(6deg);
-  -o-transform: skew(15deg) rotate(6deg);
-  transform: skew(15deg) rotate(6deg);
-}
+
 
 #classroom_image{
   margin-top: 15px;
@@ -57,18 +28,9 @@ $mediumblue: #5581d9;
   }
 }
 
-.tape{
-  background-image: url('tape.png');
-  height: 50px;
-  width: 155px;
-  margin-left: 40px;
-  margin-top: -25px;
-}
-
 .title{
   margin-top: 15px;
-  font-family: "skippy-sharp";
-  font-weight: 300;
+  font-weight: 600;
   font-size: 36px;
   text-align: center;
 }
@@ -77,13 +39,10 @@ $mediumblue: #5581d9;
   margin-left: 15px;
   margin-bottom: 15px;
   width: 200px;
-  font-family: "skippy-sharp";
-  font-weight: 600;
+  font-weight: 200;
   font-size: 24px;
   color: $darkblue;
-  border: 3px transparent;
-  border-radius: 4px;
-  padding: 5px;
+  margin-right: -10px;
 }
 
 #countdown{
@@ -97,7 +56,6 @@ $mediumblue: #5581d9;
 #tasks{
   margin-top: 25px;
   height: 565px;
-  background-image: url('crumpled-paper.jpg');
   background-repeat: no-repeat;
   background-size:cover;
   padding: 0;
