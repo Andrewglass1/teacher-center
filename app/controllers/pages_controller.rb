@@ -12,9 +12,10 @@ private
   end
 
   def create_project_if_session
-    if project_url
+    # raise project_url.inspect
+    if project_url && current_user
       @project = current_user.projects.create_by_project_url(project_url)
-      cookies[:project_url] = nil
+      cookies.delete(:project_url)
       if @project
         redirect_to project_path(@project)
       else
