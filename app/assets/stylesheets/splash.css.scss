@@ -2,7 +2,7 @@ $projectURLRotation: -20deg;
 $paperScrap: url('crumpled-paper.jpg');
 $orange: #FFA545;
 $redColor: #d42132;
-$darkblue: #32455e;
+$darkblue: #021C3B;
 $mediumblue: #5581d9;
 
 #projectURL{
@@ -38,30 +38,37 @@ $mediumblue: #5581d9;
 #infoBoxes{
   margin-top:50px;
   margin-bottom: 25px;
-  font-family: "ff-dagny-web-pro";
-  font-size: 36px;
-  color: $mediumblue;
-  h3, p {
+  font-size: 24px;
+  font-family: 'ff-dagny-web-pro';
   color: $darkblue;
+  h3 {
+  color: $darkblue;
+  font-size: 36px;
   }
 }
 
-h2 #infoBoxes{ 
-  color: #021C3B;
+#infoBoxes{ 
+  color: $darkblue;
+  font-weight: 200;
 }
 
 #info-1{ 
+  margin: 10px;
+  padding: 5px 10px;
   height: 250px;
   width: 250px;
-  
 } 
 
 #info-2{ 
+  margin: 10px;
+  padding: 5px 10px;
   height: 250px;
   width: 250px;
 }
 
 #info-3{ 
+  margin: 10px;
+  padding: 5px 10px;
   height: 250px;
   width: 250px;
 }
