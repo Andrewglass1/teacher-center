@@ -65,8 +65,10 @@ class Project < ActiveRecord::Base
     project_tasks.where(:completed => false).find{ |pt| pt.task.medium == medium }
   end
 
-  def completed_tasks(medium)
-    project_tasks.where(:completed => true).select { |pt| pt.task.medium == medium }
+  def completed_tasks(medium = nil)
+    all_completed = project_tasks.where(:completed => true)
+    all_completed.select! { |pt| pt.task.medium == medium } unless medium.nil?
+    all_completed.to_a
   end
 
   private

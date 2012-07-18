@@ -39,14 +39,27 @@
       <% end %>
     </ul>
     <div class="tab-content">
-      <div class="tab-pane active" id="tab_all"> All things</div>
+      <div class="tab-pane active" id="tab_all">
+        <% if @project.completed_tasks %>
+          <% @project.completed_tasks.each do |project_task| %>
+            <div class="completed_task">
+              <div class="Medium"><%= project_task.task.medium %></div>
+              <div class="description"><%= project_task.task.description %></div>
+              <div class="clicks"><%= project_task.clicks %> clicks</div>
+              <div class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y") %></div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
       <% @project.tasks_to_do.each_with_index do |pt, i| %>
         <div class="tab-pane" id="tab<%= i %>">
           <%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt_id => pt.id } %>
           <% @project.completed_tasks(pt.task.medium).each do |project_task| %>
-            <div class="updated"><%= project_task.updated_at %></div>
-            <div class="description"><%= project_task.task.description %></div>
-            <div class="clicks"><%= project_task.clicks %> clicks</div>
+            <div class="completed_task">
+              <div class="description"><%= project_task.task.description %></div>
+              <div class="clicks"><%= project_task.clicks %> clicks</div>
+              <div class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y")  %></div>
+            </div>
           <% end %>
         </div>
       <% end %>

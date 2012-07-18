@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718140540) do
+ActiveRecord::Schema.define(:version => 20120718211521) do
 
   create_table "donation_logs", :force => true do |t|
     t.integer  "project_id"
@@ -36,10 +36,11 @@ ActiveRecord::Schema.define(:version => 20120718140540) do
     t.integer  "task_id"
     t.integer  "project_id"
     t.string   "short_url"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "completed",  :default => false
-    t.integer  "clicks",     :default => 0
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "completed",    :default => false
+    t.integer  "clicks",       :default => 0
+    t.date     "completed_on"
   end
 
   create_table "projects", :force => true do |t|
