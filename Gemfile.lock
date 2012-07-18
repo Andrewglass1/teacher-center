@@ -52,6 +52,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-webkit (0.12.1)
+      capybara (>= 1.0.0, < 1.2)
+      json
     childprocess (0.3.3)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
@@ -73,6 +76,11 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fabrication (2.1.0)
+    factory_girl (3.1.1)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (3.1.0)
+      factory_girl (~> 3.1.0)
+      railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
     faraday (0.8.1)
@@ -230,10 +238,12 @@ DEPENDENCIES
   bitly
   cane
   capybara
+  capybara-webkit
   coffee-rails (~> 3.2.1)
   devise
   donors_choose!
   fabrication
+  factory_girl_rails (~> 3.1.0)
   faker
   faraday
   friendly_id

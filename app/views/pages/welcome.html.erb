@@ -4,9 +4,9 @@
     <p>URL TO GET STARTED!</p>
   </div>
   <div class="arrow"></div>
-  <%= form_tag projects_path, :method=>'post' do %>
+  <%= form_tag projects_path, :method=>'post', id: "new_project" do %>
     <%= text_field_tag "project_url", nil, placeholder: "http://" %>
-    <%= submit_tag 'Submit', :value=> "Get Started!", :id=> "getStarted", :class=> "button"%>
+    <%= submit_tag 'Submit', value: "Get Started!", id: "getStarted", class: "button"%>
   <% end %>
 
   <div class="row">
