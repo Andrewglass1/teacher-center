@@ -16,6 +16,10 @@ class ProjectsController < ApplicationController
 
 private
 
+  def authenticate_user!
+    redirect_to new_user_registration_path, alert: "You must signup before creating a project" unless current_user
+  end
+
   def find_project
     @project = Project.find_by_slug(params[:id])
   end

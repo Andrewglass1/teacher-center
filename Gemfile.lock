@@ -100,6 +100,7 @@ GEM
     heroku-api (0.2.12)
       excon (~> 0.15.3)
     hike (1.2.1)
+    htmlentities (4.3.1)
     httparty (0.8.3)
       multi_json (~> 1.0)
       multi_xml
@@ -247,6 +248,7 @@ DEPENDENCIES
   guard-rspec
   hashie
   heroku
+  htmlentities
   jquery-rails
   jquery-ui-rails
   launchy
