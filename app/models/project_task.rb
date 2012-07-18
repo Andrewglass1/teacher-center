@@ -4,7 +4,8 @@ class ProjectTask < ActiveRecord::Base
   belongs_to :task
   after_create :get_short_link
 
-
+  # Marks a project task as complete
+  # returns [Boolean] returns true when a project task is completed. 
   def complete
     update_attribute(:completed, true)
     Project.find(project_id).project_tasks.create(:task_id => task_id)

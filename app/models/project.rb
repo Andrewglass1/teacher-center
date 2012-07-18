@@ -1,3 +1,4 @@
+# @author Andy Glass, Mike Silvis, Andrew Thal 
 class Project < ActiveRecord::Base
   require 'open-uri'
 
@@ -12,11 +13,16 @@ class Project < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :title, use: :history
-
+  
+  # Creates a project 
+  # @param [String] project_url from the project page at DonorsChoose
+  # @return [Project] returns DonorsChoose project, if no match returns nil
   def self.create_by_project_url(project_url)
     ProjectApiWrapper.create_by_project_url(project_url)
   end
 
+  # Updates attributes of the Project (cost_to_complete & percent_funded)
+  # @return [Boolean] returns true if successful update 
   def update_information
     ProjectApiWrapper.update_information(self)
   end
@@ -29,15 +35,20 @@ class Project < ActiveRecord::Base
     PdfGenerator.pdf_link(dc_id)
   end
 
+  # Projects the amount of time needed to fund a project (with current donation data)
+  # @return [Date] returns date that project will be funded
   def projected_fund_date
     if Date.today < expiration_date && percent_funded < 100 && !projected_days_of_funding_needed.infinite?
       Date.parse((start_date + projected_days_of_funding_needed).to_s)
     end
   end
 
+  # Determines if a project will be funded prior to the expiration date
+  # @return [Boolean] returns true if projected_fund_date falls after expiration_date.
   def off_track?
     projected_fund_date > expiration_date if projected_fund_date
   end
+
 
   def seed_initial_project_tasks
     Task.all.each do |task|
