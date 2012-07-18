@@ -7,6 +7,7 @@ gem 'donors_choose', git: "git://github.com/verdi327/donors_choose_gem.git"
 gem 'hashie'
 gem 'bitly'
 gem 'friendly_id'
+gem 'devise'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'jquery-ui-rails'
@@ -16,6 +17,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails', '~> 3.1.0'
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'guard-rspec'
@@ -23,9 +25,11 @@ group :development, :test do
   gem 'cane'
   gem 'reek'
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'simplecov'
   gem 'fabrication'
   gem 'faker'
+  gem 'launchy'
 end
 
 group :production do

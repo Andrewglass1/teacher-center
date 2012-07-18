@@ -12,6 +12,11 @@ body {
   color:$fontColor;
   font-family:$fontFamily;
 
+  #user{
+    margin-top:-100px;
+    float: right;
+  }
+
   #content-container{
     min-height: 680px;
     background: #FFFFFA;

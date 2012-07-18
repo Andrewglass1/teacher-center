@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+u = User.create(email: "MikeSilvis@gmail.com", password: "hungry")
 p = Project.create(:dc_id => "812882",
                :dc_url => "http://www.donorschoose.org/project/social-studies-alive/812882/?utm_source=api&amp;utm_medium=feed&amp;utm_content=bodylink&amp;utm_campaign=DONORSCHOOSE",
                :goal_cents => 24362, :percent_funded => 4, :cost_to_complete_cents => 23362,
@@ -24,4 +25,4 @@ t3 = Task.create(medium: "Mail"         , stage: "Phase 3", description: "Check 
 t4 = Task.create(medium: "PrintAndShare", stage: "Phase 3", description: "Check out my donors choose project")
 t4 = Task.create(medium: "Email"        , stage: "Phase 3", description: "Check out my donors choose project")
 
-p = Project.create_by_project_url("812882")
+u.projects << [p]

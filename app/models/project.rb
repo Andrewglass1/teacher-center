@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
   attr_accessible :city, :cost_to_complete_cents, :dc_id, :dc_url, :description,
     :expiration_date, :fund_url, :goal_cents, :image_url,
     :percent_funded, :school, :stage, :state, :teacher_name, :title, :start_date
-
+  belongs_to :user
   has_many :project_tasks
   has_many :tasks, :through => :project_tasks
   after_create :seed_initial_project_tasks
