@@ -30,6 +30,7 @@ describe ProjectTask do
     fake_client.stub(:shorten).and_return(Hashie::Mash.new(short_url: 'http://bit.ly/li2je4'))
     fake_client.stub(:clicks).and_return(Hashie::Mash.new(user_clicks: 5))
     Project.stub(:get_start_date).and_return(Date.today)
+    ProjectApiWrapper.stub(:log_donations).and_return(true)
   end
 
   let!(:project) { Project.create_by_project_url('816888') }
