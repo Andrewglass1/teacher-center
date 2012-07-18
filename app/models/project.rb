@@ -30,7 +30,7 @@ class Project < ActiveRecord::Base
   end
 
   def projected_fund_date
-    if Date.today < expiration_date && !projected_days_of_funding_needed.infinite?
+    if Date.today < expiration_date && percent_funded < 100 && !projected_days_of_funding_needed.infinite?
       Date.parse((start_date + projected_days_of_funding_needed).to_s)
     end
   end
@@ -43,6 +43,14 @@ class Project < ActiveRecord::Base
     Task.all.each do |task|
       project_tasks.create(:task_id => task.id)
     end
+  end
+
+  def tasks_to_do
+    project_tasks.where(:completed => false)
+  end
+
+  def tasks_completed
+    project_tasks.where(:completed => true)
   end
 
 private

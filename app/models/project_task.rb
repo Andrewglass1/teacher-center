@@ -5,8 +5,12 @@ class ProjectTask < ActiveRecord::Base
   after_create :get_short_link
 
 
+  def complete
+    update_attribute(:completed, true)
+  end
+
   def get_short_link
-    update_attribute(:short_url, UrlShortener.create_short_link(project.dc_url))
+    update_attribute(:short_url, UrlShortener.create_short_link(project.dc_url+"&id=#{id}"))
   end
 
   def update_clicks
