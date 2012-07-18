@@ -1,11 +1,12 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!, :find_project, :confirm_your_project
+  before_filter :authenticate_user!
+  before_filter :find_project, :confirm_your_project, only: [:show]
 
   def show
   end
 
   def create
-    @project = Project.create_by_project_url(params["project_url"])
+    @project = current_user.projects.create_by_project_url(params["project_url"])
     if @project
       redirect_to project_path(@project)
     else

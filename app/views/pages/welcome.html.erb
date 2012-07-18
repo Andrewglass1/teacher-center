@@ -4,13 +4,8 @@
     <p>URL TO GET STARTED!</p>
   </div>
   <div class="arrow"></div>
-  <% if flash[:notice] %>
-    <div class="alert alert-error">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
   <%= form_tag projects_path, :method=>'post' do %>
-    <%= text_field_tag "project_url" %>
+    <%= text_field_tag "project_url", nil, placeholder: "http://" %>
     <%= submit_tag 'Submit', :value=> "Get Started!", :id=> "getStarted", :class=> "button"%>
   <% end %>
 

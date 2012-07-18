@@ -243,6 +243,7 @@ DEPENDENCIES
   heroku
   jquery-rails
   jquery-ui-rails
+  launchy
   pg
   rails (= 3.2.5)
   reek
