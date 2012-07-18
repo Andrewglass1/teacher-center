@@ -1,12 +1,12 @@
 class ProjectTask < ActiveRecord::Base
-  attr_accessible :clicks, :completed, :project_id, :short_url, :task_id
+  attr_accessible :clicks, :completed, :project_id, :short_url, :task_id, :completed_on
   belongs_to :project
   belongs_to :task
   after_create :get_short_link
 
 
   def complete
-    update_attribute(:completed, true)
+    update_attributes({:completed => true, :completed_on => Date.today})
     Project.find(project_id).project_tasks.create(:task_id => task_id)
   end
 
