@@ -34,21 +34,21 @@ module ProjectApiWrapper
 
     def build_project(response)
       {
-        :city => response.city,
+        :city => html_decoder.decode(response.city),
         :cost_to_complete_cents => dollars_into_cents(response.cost_to_complete),
         :dc_id => response.donors_choose_id,
         :dc_url => response.proposal_url,
-        :description => response.short_description,
+        :description => html_decoder.decode(response.short_description),
         :expiration_date => Date.parse(response.expiration_date),
         :fund_url => response.fund_url,
         :goal_cents => dollars_into_cents(response.total_price),
         :image_url => response.image_url,
         :percent_funded => response.percent_funded,
-        :school => response.school_name,
+        :school => html_decoder.decode(response.school_name),
         :stage => 'initial',
-        :state => response.state,
-        :teacher_name => response.teacher_name,
-        :title => response.title,
+        :state => html_decoder.decode(response.state),
+        :teacher_name => html_decoder.decode(response.teacher_name),
+        :title => html_decoder.decode(response.title),
         :start_date => get_start_date(response.proposal_url)
       }
     end
@@ -66,6 +66,10 @@ module ProjectApiWrapper
     def dollars_into_cents(dollars)
       (BigDecimal.new(dollars.to_s) * 100).to_i
     end
+  private
 
+    def html_decoder
+      HTMLEntities.new
+    end
   end
 end
