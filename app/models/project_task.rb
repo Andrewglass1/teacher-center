@@ -7,6 +7,7 @@ class ProjectTask < ActiveRecord::Base
 
   def complete
     update_attribute(:completed, true)
+    Project.find(project_id).project_tasks.create(:task_id => task_id)
   end
 
   def get_short_link
