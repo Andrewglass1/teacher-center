@@ -7,6 +7,11 @@
   <%= form_tag projects_path, :method=>'post', id: "new_project" do %>
     <%= text_field_tag "project_url", nil, placeholder: "http://" %>
     <%= submit_tag 'Submit', value: "Get Started!", id: "getStarted", class: "button"%>
+    <div id="login_help">
+      <% unless current_user %>
+        or <%= link_to "Login", new_user_session_path %> to get your current project
+      <% end %>
+    </div>
   <% end %>
 
   <div class="row">

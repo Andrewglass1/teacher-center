@@ -61,6 +61,14 @@ class Project < ActiveRecord::Base
     project_tasks.where(:completed => true)
   end
 
+  def title
+    read_attribute(:title).html_safe
+  end
+
+  def description
+    read_attribute(:description).html_safe
+  end
+
   def task_to_do(medium)
     project_tasks.where(:completed => false).find{ |pt| pt.task.medium == medium }
   end

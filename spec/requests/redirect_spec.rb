@@ -35,7 +35,6 @@ describe "When they paste a url and are" do
       fill_in "project_url", with: donors_url
       click_link_or_button "Get Started!"
       PagesController.any_instance.stub(:project_url).and_return(donors_url)
-      click_link "Sign up"
       signup(new_user)
       page.should have_content "There are 14 days left to fund your project"
     end
@@ -44,6 +43,7 @@ describe "When they paste a url and are" do
       fill_in "project_url", with: donors_url
       click_link_or_button "Get Started!"
       PagesController.any_instance.stub(:project_url).and_return(donors_url)
+      click_link "Sign in"
       login(previous_user)
       page.should have_content "There are 14 days left to fund your project"
     end
@@ -56,6 +56,16 @@ describe "When they paste a url and are" do
       fill_in "project_url", with: donors_url
       click_link_or_button "Get Started!"
       page.should have_content "There are 14 days left to fund your project"
+    end
+  end
+  context "a user has an account and is logging back in" do
+    let(:user) { FactoryGirl.create(:user) }
+    let!(:project) { FactoryGirl.create(:project, user_id: user.id)}
+    it "redirects them to their lastest project" do
+      visit root_path
+      click_link "Login"
+      login(user)
+      page.should have_content project.title
     end
   end
 end
