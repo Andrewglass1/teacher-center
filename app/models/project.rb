@@ -48,21 +48,7 @@ class Project < ActiveRecord::Base
   end
 
   def tasks_to_do
-    project_tasks.find(
-      :all,
-      :conditions => ["completed = ?", false],
-      :joins => 'JOIN tasks on tasks.id = project_tasks.task_id',
-      :order => 'tasks.medium ASC',
-    )
-    # project_tasks.where(:completed => false).sort{ |pt| puts pt.task.medium.to_s }
-  end
-
-  def tasks_completed
-    project_tasks.where(:completed => true)
-  end
-
-  def task_to_do(medium)
-    project_tasks.where(:completed => false).find{ |pt| pt.task.medium == medium }
+    project_tasks.where(completed: false).includes(:task).order('tasks.medium ASC')
   end
 
   def completed_tasks(medium = nil)

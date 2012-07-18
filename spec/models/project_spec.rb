@@ -133,7 +133,7 @@ describe Project do
   end
 
   context "tasks" do
-    let(:project) { Project.create_by_project_url('816888') }
+    let!(:project) { Project.create_by_project_url('816888') }
 
     before do
       Project.stub(:get_start_date).and_return(Date.parse('July 1 2012'))
@@ -141,8 +141,15 @@ describe Project do
       ProjectTask.any_instance.stub(:get_short_link).and_return(true)
     end
 
-    let!(:project_task) { project.project_tasks.create() }
-    let!(:completed_project_task) { project.project_tasks.create(:completed => true) }
+    let!(:task) { Task.create({:medium => "Twitter"}) }
+    let!(:project_task) {
+      ProjectTask.create({ :task_id => task.id, :project_id => project.id })
+    }
+
+    let!(:completed_project_task) {
+      ProjectTask.create({ :task_id => task.id, :project_id => project.id, :completed => true })
+    }
+
     context "#tasks_to_do" do
 
       it "returns the project's project tasks that have not been completed" do
@@ -150,9 +157,17 @@ describe Project do
       end
     end
 
-    context "#tasks_completed" do
-      it "returns the project's project tasks that have been completed" do
-        project.tasks_completed.should == [completed_project_task]
+    context "#completed_tasks" do
+      context "when given no parameters" do
+        it "returns the project's project tasks that have been completed" do
+          project.completed_tasks.should == [completed_project_task]
+        end
+      end
+      context "when given a medium" do
+        it "returns only the project's project tasks that have been completed that have that medium" do
+          project.completed_tasks("Twitter").should == [completed_project_task]
+          project.completed_tasks("Facebook").should == []
+        end
       end
     end
   end
