@@ -53,6 +53,14 @@ class Project < ActiveRecord::Base
     project_tasks.where(:completed => true)
   end
 
+  def title
+    read_attribute(:title).html_safe
+  end
+
+  def description
+    read_attribute(:description).html_safe
+  end
+
 private
 
   def percentage_to_completion_date
