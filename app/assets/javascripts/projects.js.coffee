@@ -7,4 +7,8 @@ $ ->
     $.ajax "/api/v1/project_tasks/#{pt_id}",
       format: 'json',
       type: 'put',
-      id: pt_id
+      id: pt_id,
+      success: ->
+        $(event.currentTarget).attr('href', '#')
+        $(event.currentTarget).attr('target', '')
+        $(event.currentTarget).text('Completed!')
