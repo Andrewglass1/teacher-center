@@ -32,26 +32,25 @@
       <%= "(projected #{@project.projected_fund_date.strftime("%m/%d/%y")})" if @project.projected_fund_date %></h3>
   </div>
   <div class="twelvecol" id="tasks">
-    <div class = "task_lists">
-      <div id="new_tasks">
-        <h2> Tasks To Be Completed </h2>
-        <% @project.tasks_to_do.each do |pt| %>
-          <ul>
-          <li><%= pt.task.medium %><%= pt.task.stage %></li>
-          <li><%= render :partial => pt.task.medium.downcase, :locals => { :short_url => pt.short_url, :description => pt.task.description, :dc_id => @project.dc_id } %></li>
-          <%= form_tag project_task_path(pt), :method=>'put' do %>
-            <li><%= submit_tag 'Submit', :value => "Mark Completed", :class => "tiny-button" %></li>
-          <% end %>
-        </ul>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab_all" data-toggle="tab">All</a></li>
+      <% @project.tasks_to_do.each_with_index do |pt, i| %>
+        <li><a href="#tab<%= i %>" data-toggle="tab"><%= pt.task.medium %></a></li>
       <% end %>
-      </div>
-      <div id="completed_tasks">
-        <h2>Tasks Successfully Completed </h2>
-        <ul>
-          <% @project.tasks_completed.each do |pt| %>
-            <li><div class="task-medium"><%= pt.task.medium %></div> <%= pt.clicks %> clicks</li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab_all"> All things</div>
+      <% @project.tasks_to_do.each_with_index do |pt, i| %>
+        <div class="tab-pane" id="tab<%= i %>">
+          <%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id } %>
+          <% @project.completed_tasks(pt.task.medium).each do |project_task| %>
+            <div class="description"><%= project_task.task.description %></div>
+            <div class="clicks"><%= project_task.clicks %> clicks</div>
           <% end %>
-        </ul>
+        </div>
+      <% end %>
+    </div>
+
       </div>
     </div>
   </div>

@@ -25,6 +25,7 @@ describe Project do
   before do
     DonorsChooseApi::Project.stub(:find_by_id).and_return(project_response)
     ProjectApiWrapper.stub(:open_page).and_return(dc_page)
+    ProjectApiWrapper.stub(:log_donations).and_return(true)
   end
 
   context ".create_by_project_url" do
@@ -155,4 +156,5 @@ describe Project do
       end
     end
   end
+
 end

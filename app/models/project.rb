@@ -4,11 +4,13 @@ class Project < ActiveRecord::Base
   attr_accessible :city, :cost_to_complete_cents, :dc_id, :dc_url, :description,
     :expiration_date, :fund_url, :goal_cents, :image_url,
     :percent_funded, :school, :stage, :state, :teacher_name, :title, :start_date
-
+  belongs_to :user
   has_many :project_tasks
   has_many :tasks, :through => :project_tasks
   after_create :seed_initial_project_tasks
   after_create :prepare_pdf
+  has_many :donation_logs
+
 
   extend FriendlyId
   friendly_id :title, use: :history
@@ -46,7 +48,13 @@ class Project < ActiveRecord::Base
   end
 
   def tasks_to_do
-    project_tasks.where(:completed => false)
+    project_tasks.find(
+      :all,
+      :conditions => ["completed = ?", false],
+      :joins => 'JOIN tasks on tasks.id = project_tasks.task_id',
+      :order => 'tasks.medium ASC',
+    )
+    # project_tasks.where(:completed => false).sort{ |pt| puts pt.task.medium.to_s }
   end
 
   def tasks_completed
@@ -61,7 +69,15 @@ class Project < ActiveRecord::Base
     read_attribute(:description).html_safe
   end
 
-private
+  def task_to_do(medium)
+    project_tasks.where(:completed => false).find{ |pt| pt.task.medium == medium }
+  end
+
+  def completed_tasks(medium)
+    project_tasks.where(:completed => true).select { |pt| pt.task.medium == medium }
+  end
+
+  private
 
   def percentage_to_completion_date
     (Date.today - start_date)/length_of_project

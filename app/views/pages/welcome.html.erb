@@ -4,14 +4,14 @@
     <p>URL TO GET STARTED!</p>
   </div>
   <div class="arrow"></div>
-  <% if flash[:notice] %>
-    <div class="alert alert-error">
-      <%= flash[:notice] %>
+  <%= form_tag projects_path, :method=>'post', id: "new_project" do %>
+    <%= text_field_tag "project_url", nil, placeholder: "http://" %>
+    <%= submit_tag 'Submit', value: "Get Started!", id: "getStarted", class: "button"%>
+    <div id="login_help">
+      <% unless current_user %>
+        or <%= link_to "Login", new_user_session_path %> to get your current project
+      <% end %>
     </div>
-  <% end %>
-  <%= form_tag projects_path, :method=>'post' do %>
-    <%= text_field_tag "project_url" %>
-    <%= submit_tag 'Submit', :value => "Get Started!", :id => "getStarted", :class => "button"%>
   <% end %>
 
   <div class="row">

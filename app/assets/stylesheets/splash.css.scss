@@ -2,18 +2,19 @@ $projectURLRotation: -20deg;
 $paperScrap: url('crumpled-paper.jpg');
 $orange: #FFA545;
 $redColor: #d42132;
-$darkblue: #32455e;
+$darkblue: #021C3B;
 $mediumblue: #5581d9;
 
 #projectURL{
-  background-image: $paperScrap;
   position:absolute;
-  margin-top:0px;
+  border: 2px dashed red;
+  margin-top: -25px;
   -webkit-transform: rotate($projectURLRotation);
   -moz-transform: rotate($projectURLRotation);
   text-align: center;
+  line-height: 1.50em;
   color: $darkblue;
-  font-size:2em;
+  font-size:32px;
   padding:5px;
   height: 100px;
   width: 325px;
@@ -24,10 +25,11 @@ $mediumblue: #5581d9;
   background-image: url("curved_arrow.png");
   height: 181px;
   width: 165px;
-  top: -30px;
+  top: -40px;
   left: 280px;
   position: relative;
 }
+
 #getStarted {
   float:right;
   width:240px;
@@ -36,34 +38,42 @@ $mediumblue: #5581d9;
 #infoBoxes{
   margin-top:50px;
   margin-bottom: 25px;
-  font-family: "skippy-sharp";
-  font-size: 36px;
-  color: $mediumblue;
-  h3, p {
+  font-size: 24px;
+  font-family: 'ff-dagny-web-pro';
   color: $darkblue;
+  h3 {
+  color: $darkblue;
+  font-size: 36px;
   }
 }
 
-h2 #infoBoxes{ 
-  color: #021C3B;
+#infoBoxes{
+  color: $darkblue;
+  font-weight: 200;
 }
 
-#info-1{ 
-  background-image: $paperScrap;
-  height: 250px;
-  width: 250px;
-  
-} 
-
-#info-2{ 
-  background-image: $paperScrap;
+#info-1{
+  margin: 10px;
+  padding: 5px 10px;
   height: 250px;
   width: 250px;
 }
 
-#info-3{ 
-  background-image: $paperScrap;
+#info-2{
+  margin: 10px;
+  padding: 5px 10px;
   height: 250px;
   width: 250px;
 }
 
+#info-3{
+  margin: 10px;
+  padding: 5px 10px;
+  height: 250px;
+  width: 250px;
+}
+#login_help {
+  float:right;
+  width:225px;
+  clear:both;
+}

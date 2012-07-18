@@ -9,10 +9,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render "/shared/notice" %>
   <div class="container">
     <div class="row" id="content-container">
       <h1 id="logo">TeacherCenter</h1>
       <div id="content-start">
+        <%= render "/shared/user" %>
         <%= yield %>
       </div>
   </div>
