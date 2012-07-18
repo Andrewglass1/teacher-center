@@ -25,7 +25,6 @@ group :development, :test do
   gem 'cane'
   gem 'reek'
   gem 'capybara'
-  gem 'capybara-webkit'
   gem 'simplecov'
   gem 'fabrication'
   gem 'faker'
