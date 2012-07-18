@@ -5,18 +5,27 @@ module ProjectApiWrapper
 
     def create_by_project_url(project_url)
       if project_match = project_url.match(/(\d{5,6})/)
-        if project = find_by_id(project_match[1])
-          Project.find_or_create_by_dc_id(build_project(project))
+        if project_info = find_by_id(project_match[1])
+          project = Project.find_or_create_by_dc_id(build_project(project_info))
+          log_donations(project_info, project)
+          project
         end
       end
     end
 
     def update_information(project)
-        project_info = find_by_id(project.id)
-        project.update_attributes({
-          :cost_to_complete_cents => dollars_into_cents(project_info.cost_to_complete),
-          :percent_funded => project_info.percent_funded
-        })
+      project_info = find_by_id(project.dc_id)
+      project.update_attributes({
+        :cost_to_complete_cents => dollars_into_cents(project_info.cost_to_complete),
+        :percent_funded => project_info.percent_funded
+      })
+      log_donations(project_info, project)
+    end
+
+    def log_donations(project_info, project)
+      donation_log = project.donation_logs.find_or_create_by_date(Date.today)
+      current_amount_funded = dollars_into_cents(project_info.total_price) - dollars_into_cents(project_info.cost_to_complete)
+      donation_log.update_attribute(:amount_funded_cents, current_amount_funded)
     end
 
     def find_by_id(id)
