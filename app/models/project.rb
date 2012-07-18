@@ -9,6 +9,8 @@ class Project < ActiveRecord::Base
   has_many :tasks, :through => :project_tasks
   after_create :seed_initial_project_tasks
   after_create :prepare_pdf
+  has_many :donation_logs
+
 
   extend FriendlyId
   friendly_id :title, use: :history
