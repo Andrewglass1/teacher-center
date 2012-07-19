@@ -11,5 +11,5 @@
  *= require_self
  *= require ../../../vendor/assets/stylesheets/bootstrap.min
  *= require_tree .
- *= require jquery.ui.all
+ *= require jquery.ui.progressbar
  */
