@@ -51,24 +51,10 @@ class Project < ActiveRecord::Base
     project_tasks.where(completed: false).includes(:task).order('tasks.medium ASC')
   end
 
-  def tasks_completed
-    project_tasks.where(:completed => true)
-  end
-
-  def title
-    read_attribute(:title).html_safe
-  end
-
-  def description
-    read_attribute(:description).html_safe
-  end
-
-  def task_to_do(medium)
-    project_tasks.where(:completed => false).find{ |pt| pt.task.medium == medium }
-  end
-
-  def completed_tasks(medium)
-    project_tasks.where(:completed => true).select { |pt| pt.task.medium == medium }
+  def completed_tasks(medium = nil)
+    all_completed = project_tasks.where(:completed => true)
+    all_completed.select! { |pt| pt.task.medium == medium } unless medium.nil?
+    all_completed.to_a
   end
 
   private
