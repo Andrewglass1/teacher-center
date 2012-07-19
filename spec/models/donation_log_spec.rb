@@ -6,6 +6,10 @@ describe DonationLog do
   let!(:donation_log2) { DonationLog.create(:project_id => 1, :date =>Date.today-2, :amount_funded_cents => 2000) }
   let!(:donation_log3) { DonationLog.create(:project_id => 1, :date =>Date.today-200, :amount_funded_cents => 1000) }
 
+  before do
+    ProjectApiWrapper.unstub(:log_donations)
+  end
+
   context '#donations_today_cents' do
     it "gives the donations (in cents) given in that day for the specified project id" do
       DonationLog.donations_today_cents(1).should == 5000
