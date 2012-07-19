@@ -19,6 +19,10 @@ class Project < ActiveRecord::Base
     ProjectApiWrapper.create_by_project_url(project_url)
   end
 
+  def self.create_in_thread(project_url)
+    Thread.new { Project.create_by_project_url(project_url) }
+  end
+
   def update_information
     ProjectApiWrapper.update_information(self)
   end

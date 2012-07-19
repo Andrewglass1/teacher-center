@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+class Project
+  def self.create_in_thread(project_url)
+    Project.create_by_project_url(project_url)
+  end
+end
+
 describe "When they paste a url and are" do
   let(:previous_user) { FactoryGirl.create(:user) }
   let(:project_response) {
@@ -27,7 +33,9 @@ describe "When they paste a url and are" do
   before do
     DonorsChooseApi::Project.stub(:find_by_id).and_return(project_response)
     ProjectApiWrapper.stub(:open_page).and_return(dc_page)
+    Project.stub(:create_in_thread).and_return(true)
   end
+
   context "not logged in it creates the project after" do
     let(:new_user) { FactoryGirl.build(:user) }
     it "they sign up" do
@@ -36,7 +44,7 @@ describe "When they paste a url and are" do
       click_link_or_button "Get Started!"
       PagesController.any_instance.stub(:project_url).and_return(donors_url)
       signup(new_user)
-      page.should have_content "There are 14 days left to fund your project"
+      page.should have_content "There are 13 days left to fund your project"
     end
     it "they login" do
       visit root_path
@@ -45,7 +53,7 @@ describe "When they paste a url and are" do
       PagesController.any_instance.stub(:project_url).and_return(donors_url)
       click_link "Sign in"
       login(previous_user)
-      page.should have_content "There are 14 days left to fund your project"
+      page.should have_content "There are 13 days left to fund your project"
     end
   end
   context "logged in" do
@@ -55,7 +63,7 @@ describe "When they paste a url and are" do
       visit root_path
       fill_in "project_url", with: donors_url
       click_link_or_button "Get Started!"
-      page.should have_content "There are 14 days left to fund your project"
+      page.should have_content "There are 13 days left to fund your project"
     end
   end
   context "a user has an account and is logging back in" do
@@ -68,4 +76,5 @@ describe "When they paste a url and are" do
       page.should have_content project.title
     end
   end
+
 end
