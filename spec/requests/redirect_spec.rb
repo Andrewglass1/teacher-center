@@ -44,6 +44,7 @@ describe "When they paste a url and are" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:project) { Project.create_by_project_url("809357") }
     it "redirects them to their lastest project" do
+      user.projects << project
       visit root_path
       click_link "Login"
       login(user)
