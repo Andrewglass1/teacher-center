@@ -70,7 +70,7 @@ class Project < ActiveRecord::Base
   end
 
   def dollars_needed
-    (BigDecimal.new(cost_to_completed_cents.to_s) / 100).to_i
+    (BigDecimal.new(cost_to_complete_cents.to_s) / 100).to_i
   end
 
   private
