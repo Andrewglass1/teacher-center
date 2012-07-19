@@ -27,8 +27,7 @@
   </div>
 
   <div id="progressbar"></div>
-  <div style="float:right;">
-    <h3><%= @project.percent_funded %>% funded
+<div id="percent_funded"><h3>Currently: <%= @project.percent_funded %>% funded
       <%= "(projected #{@project.projected_fund_date.strftime("%m/%d/%y")})" if @project.projected_fund_date %></h3>
   </div>
   <div class="twelvecol" id="tasks">
