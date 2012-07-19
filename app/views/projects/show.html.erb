@@ -42,22 +42,37 @@
         <% if @project.completed_tasks %>
           <% @project.completed_tasks.each do |project_task| %>
             <div class="completed_task">
+<<<<<<< Updated upstream
               <div class="Medium"><%= project_task.task.medium %></div>
               <div class="description"><%= project_task.description %></div>
               <div class="clicks"><%= project_task.clicks %> clicks</div>
               <div class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y") %></div>
+=======
+
+              <div class="task_medium"><%= image_tag "#{project_task.task.medium.downcase}.png", :class=>"medium_image" %>&nbsp;<%= project_task.task.medium %> 
+                <div class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y") %></div>
+                 <span class="clicks"><%= project_task.clicks %> clicks</span>
+              </div>
+>>>>>>> Stashed changes
             </div>
           <% end %>
         <% end %>
       </div>
       <% @project.tasks_to_do.each_with_index do |pt, i| %>
         <div class="tab-pane" id="tab<%= i %>">
+<<<<<<< Updated upstream
           <%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt => pt } %>
           <% @project.completed_tasks(pt.task.medium).each do |project_task| %>
             <div class="completed_task">
               <div class="description"><%= project_task.description %></div>
+=======
+          <%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt_id => pt.id, :project => @project} %>
+          <% @project.completed_tasks(pt.task.medium).each do |project_task| %>
+            <div class="completed_task">
+              <div class="task_medium"><%= image_tag "#{project_task.task.medium.downcase}.png", :class=>"medium_image" %>&nbsp;<span class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y")  %></span></div> 
+>>>>>>> Stashed changes
               <div class="clicks"><%= project_task.clicks %> clicks</div>
-              <div class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y")  %></div>
+              <div class=""></div> 
             </div>
           <% end %>
         </div>
