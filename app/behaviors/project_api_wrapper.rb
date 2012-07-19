@@ -10,7 +10,8 @@ module ProjectApiWrapper
     end
 
     def create_by_project_url(project_url)
-      if project_info = find_by_id(extract_id(project_url))
+      id = extract_id(project_url)
+      if (project_info = find_by_id(id)) && id
         project = Project.find_or_create_by_dc_id(build_project(project_info))
         log_donations(project_info, project)
         project

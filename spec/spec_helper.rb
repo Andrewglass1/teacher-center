@@ -24,7 +24,7 @@ RSpec.configure do |config|
     fake_client.stub(:shorten).and_return(Hashie::Mash.new(short_url: 'http://bit.ly/li2je4'))
     fake_client.stub(:clicks).and_return(Hashie::Mash.new(user_clicks: 5))
 
-    dc_page = Nokogiri::HTML(open(Rails.root + 'spec/support/donors_choose.html')) 
+    dc_page = Nokogiri::HTML(open(Rails.root + 'spec/support/donors_choose.html'))
     ProjectApiWrapper.stub(:open_page).and_return(dc_page)
 
     pdf_response = "FIND OUT HOW YOU CAN HELP: http://bit.ly/M BkJ4a it easy for anyone to help student"
@@ -44,6 +44,7 @@ RSpec.configure do |config|
       percent_funded: 80,
       school_name: Faker::Lorem.words(2).join(' '),
       stage: 'initial',
+      cost_to_complete_cents: 10000,
       state: Faker::Lorem.words(1).join(' '),
       teacher_name: Faker::Lorem.words(1).join(' '),
       title: Faker::Lorem.words(1).join(' ')

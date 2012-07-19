@@ -18,10 +18,14 @@
     <% end %>
   </div>
 
-  <div id="percent_funded"><h3>$<%= (@project.cost_to_complete_cents / 100).to_i %> needed</h3></div>
+  <div id="percent_funded">
+    <h3>$<%= (@project.cost_to_complete_cents 1 / 100).to_i %> needed</h3>
+  </div>
   <div id="progressbar"></div>
 
-  <div id="percent_through"><h3><%= "#{(@project.expiration_date - Date.today).to_i} days left" %></h3> </div>
+  <div id="percent_through">
+    <h3><%= "#{(@project.expiration_date - Date.today).to_i} days left" %></h3>
+  </div>
   <div id="progressbar2"></div>
   <div class="twelvecol" id="tasks">
     <ul class="nav nav-tabs">
