@@ -73,11 +73,11 @@ class Project < ActiveRecord::Base
     (BigDecimal.new(cost_to_complete_cents.to_s) / 100).to_i
   end
 
-  private
-
   def percentage_to_completion_date
     (Date.today - start_date)/length_of_project
   end
+
+  private
 
   def length_of_project
     expiration_date - start_date
