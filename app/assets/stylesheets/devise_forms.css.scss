@@ -1,11 +1,45 @@
+$lightGray: #CCC;
+$fontColor: #021C3B;
+$fontFamily: "ff-enzo-web", Helvetica, sans-serif;
+$mediumblue: #5581d9;
+$darkblue: #32455e;
+$orange: #FFA545;
+
 #sign_up_form{ 
-  margin: 10px;
+  margin: 0px 25px 25px 25px;
 }
 
 #sign_in_form{ 
-  margin: 10px;
+  margin: 0px 25px 25px 25px;
 }
 
 .devise-form-button{ 
-  
+ border-top: 1px solid $mediumblue;
+ border-left: 1px solid $mediumblue;
+ background: $mediumblue;
+ background: -webkit-gradient(linear, left top, left bottom, from($mediumblue), to(#486ebb));
+ background: -webkit-linear-gradient(top, $mediumblue, #486ebb);
+ background: -moz-linear-gradient(top, $mediumblue, #486ebb);
+ background: -ms-linear-gradient(top, $mediumblue, #486ebb);
+ background: -o-linear-gradient(top, $mediumblue, #486ebb);
+ padding: 10px 10px;
+ -webkit-border-radius: 20px;
+ -moz-border-radius: 20px;
+ border-radius: 5px;
+ -webkit-box-shadow: rgba(0,0,0,.2) 0 1px .2;
+ -moz-box-shadow: rgba(0,0,0,.2) 0 1px .2;
+ box-shadow: rgba(0,0,0,.2) 0 1px .2;
+ text-shadow: rgba(0,0,0,.4) 0 1px 0;
+ color: #FFFFFA;
+ font-family: "ff-enzo-web", Helvetica, Arial, Sans-Serif;
+ text-decoration: none;
+ vertical-align: middle;
+}
+
+#reset_form{ 
+  margin: 0px 25px 25px 25px;
+}
+
+.form_title h2{ 
+  padding-bottom: 10px;
 }
