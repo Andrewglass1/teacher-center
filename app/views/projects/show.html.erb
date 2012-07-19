@@ -43,7 +43,7 @@
           <% @project.completed_tasks.each do |project_task| %>
             <div class="completed_task">
               <div class="Medium"><%= project_task.task.medium %></div>
-              <div class="description"><%= project_task.task.description %></div>
+              <div class="description"><%= project_task.description %></div>
               <div class="clicks"><%= project_task.clicks %> clicks</div>
               <div class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y") %></div>
             </div>
@@ -52,10 +52,10 @@
       </div>
       <% @project.tasks_to_do.each_with_index do |pt, i| %>
         <div class="tab-pane" id="tab<%= i %>">
-          <%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt_id => pt.id } %>
+          <%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt => pt } %>
           <% @project.completed_tasks(pt.task.medium).each do |project_task| %>
             <div class="completed_task">
-              <div class="description"><%= project_task.task.description %></div>
+              <div class="description"><%= project_task.description %></div>
               <div class="clicks"><%= project_task.clicks %> clicks</div>
               <div class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y")  %></div>
             </div>

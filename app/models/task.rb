@@ -1,3 +1,3 @@
 class Task < ActiveRecord::Base
-  attr_accessible :stage, :medium, :description
+  attr_accessible :stage, :medium
 end

@@ -57,6 +57,10 @@ class Project < ActiveRecord::Base
     all_completed.to_a
   end
 
+  def near_end?
+    percentage_to_completion_date >= 80
+  end
+
   private
 
   def percentage_to_completion_date
