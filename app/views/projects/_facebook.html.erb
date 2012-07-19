@@ -1,1 +1,3 @@
-<a href="http://www.facebook.com/sharer.php?u=url&t=body" class="tiny-button doer" pt_id="<%= pt_id %>" target="_blank">Do</a>
+<div>
+  <%= link_to "Post on Facebook", "http://www.facebook.com/sharer.php?u=url&t=#{pt.description} #{pt.short_url}", :class =>"task-button doer", :id=>"#{pt.id}", :target =>"_blank" %>
+</div>

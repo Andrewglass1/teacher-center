@@ -1,32 +1,6 @@
 require 'spec_helper'
 
 describe Project do
-  let(:project_response) {
-    Hashie::Mash.new(
-    city: "blah",
-    expiration_date: Date.parse("August 2 2012").to_s,
-    cost_to_complete: 20,
-    donors_choose_id: rand(1000),
-    proposal_url: Faker::Internet.domain_name,
-    short_description: Faker::Lorem.words(5).join(' '),
-    fund_url: Faker::Internet.domain_name,
-    total_price: 100,
-    image_url: Faker::Internet.domain_name,
-    on_track: true,
-    percent_funded: 80,
-    school_name: Faker::Lorem.words(2).join(' '),
-    stage: 'initial',
-    state: Faker::Lorem.words(1).join(' '),
-    teacher_name: Faker::Lorem.words(1).join(' '),
-    title: Faker::Lorem.words(1).join(' ')
-  )}
-  let!(:dc_page) { Nokogiri::HTML(open(Rails.root + 'spec/support/donors_choose.html')) }
-
-  before do
-    DonorsChooseApi::Project.stub(:find_by_id).and_return(project_response)
-    ProjectApiWrapper.stub(:open_page).and_return(dc_page)
-    ProjectApiWrapper.stub(:log_donations).and_return(true)
-  end
 
   context ".create_by_project_url" do
     before { Project.stub(:get_start_date).and_return(Date.today) }
@@ -36,7 +10,7 @@ describe Project do
       let(:completed_valid_url){ 'http://www.donorschoose.org/donors/proposal.html?id=88850'}
       it "creates a project" do
         expect { Project.create_by_project_url(valid_url) }.to change{Project.count}.by(1)
-        project_response.donors_choose_id += 1
+        @project_response.donors_choose_id += 1
         expect { Project.create_by_project_url(completed_valid_url) }.to change{Project.count}.by(1)
       end
 
@@ -98,16 +72,16 @@ describe Project do
     end
     let!(:project) { Project.create_by_project_url('816888') }
     it "updates the cost to complete and percent funded for a project, but not any other attributes" do
-      original_project_response         = project_response.clone
-      project_response.percent_funded   = 90
-      project_response.cost_to_complete = 10
-      project_response.title            = 'new title'
+      original_project_response         = @project_response.clone
+      @project_response.percent_funded   = 90
+      @project_response.cost_to_complete = 10
+      @project_response.title            = 'new title'
 
       project.update_information
       project = Project.last
 
-      project.percent_funded.should         == project_response.percent_funded
-      project.cost_to_complete_cents.should == project_response.cost_to_complete * 100
+      project.percent_funded.should         == @project_response.percent_funded
+      project.cost_to_complete_cents.should == @project_response.cost_to_complete * 100
       project.title.should                  == original_project_response.title
     end
   end

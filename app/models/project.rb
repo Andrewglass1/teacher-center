@@ -56,16 +56,21 @@ class Project < ActiveRecord::Base
   end
 
   def completed_tasks(medium = nil)
-    all_completed = project_tasks.where(:completed => true)
+    all_completed = project_tasks.where(:completed => true).order('updated_at DESC')
     all_completed.select! { |pt| pt.task.medium == medium } unless medium.nil?
     all_completed.to_a
   end
 
-  private
+  def near_end?
+    percentage_to_completion_date >= 80
+  end
 
   def percentage_to_completion_date
     (Date.today - start_date)/length_of_project
   end
+
+  private
+
 
   def length_of_project
     expiration_date - start_date

@@ -46,12 +46,17 @@ $mediumblue: #5581d9;
 }
 
 #countdown{
-  margin-top: -50px;
+  margin-top: -80px;
   margin-bottom: 25px;
 }
 .ui-progressbar .ui-progressbar-value {
   background-image: url("status-bar.png");
 }
+
+#progressbar, #progressbar2 {
+  margin-bottom: 25px;
+}
+
 
 #tasks{
   margin-top: 25px;
@@ -119,4 +124,8 @@ $mediumblue: #5581d9;
   ul{
     list-style-type: none;
   }
+}
+
+#percent_funded, #percent_through {
+  font-size: 24px;
 }

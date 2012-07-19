@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
+//= require jquery.ui.progressbar
 //= require ../../../vendor/assets/javascripts/bootstrap.min
 //= require_tree .

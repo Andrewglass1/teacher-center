@@ -8,6 +8,7 @@ end
 
 describe "When they paste a url and are" do
   let(:previous_user) { FactoryGirl.create(:user) }
+<<<<<<< HEAD
   let(:project_response) {
     Hashie::Mash.new(
     city: "blah",
@@ -34,6 +35,8 @@ describe "When they paste a url and are" do
     ProjectApiWrapper.stub(:open_page).and_return(dc_page)
     Project.stub(:create_in_thread).and_return(true)
   end
+=======
+>>>>>>> 8bb7dba005010f0058dfc143748924bf136064a9
 
   context "not logged in it creates the project after" do
     let(:new_user) { FactoryGirl.build(:user) }
