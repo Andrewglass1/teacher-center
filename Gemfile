@@ -9,6 +9,7 @@ gem 'bitly'
 gem 'friendly_id'
 gem 'htmlentities'
 gem 'devise'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
