@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   after_create :seed_initial_project_tasks
   after_create :prepare_pdf
   has_many :donation_logs
-
+  validates_uniqueness_of :dc_id
 
   extend FriendlyId
   friendly_id :title, use: :history

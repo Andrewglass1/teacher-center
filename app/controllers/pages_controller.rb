@@ -12,14 +12,13 @@ private
   end
 
   def create_project_if_session
-    # raise project_url.inspect
     if project_url && current_user
-      @project = current_user.projects.create_by_project_url(project_url)
-      cookies.delete(:project_url)
-      if @project
-        redirect_to project_path(@project)
+      dc_id = ProjectApiWrapper.extract_id(project_url)
+      project = Project.find_by_dc_id(dc_id)
+      if project.user_id
+        project.update_attribute(:user_id, current_user.id)
       else
-        redirect_to root_path, :notice => "Please input a valid project url"
+        redirect_to root_path, notice: "Someone else already has that project"
       end
     end
   end

@@ -1,14 +1,13 @@
 require 'spec_helper'
 
 describe "When they paste a url and are" do
-  let(:donors_url) { "809357"}
   let(:previous_user) { FactoryGirl.create(:user) }
   let(:project_response) {
     Hashie::Mash.new(
     city: "blah",
     expiration_date: Date.parse("August 2 2012").to_s,
     cost_to_complete: 20,
-    donors_choose_id: rand(1000),
+    donors_choose_id: rand(10000..999999),
     proposal_url: Faker::Internet.domain_name,
     short_description: Faker::Lorem.words(5).join(' '),
     fund_url: Faker::Internet.domain_name,
@@ -22,6 +21,7 @@ describe "When they paste a url and are" do
     teacher_name: Faker::Lorem.words(1).join(' '),
     title: Faker::Lorem.words(1).join(' ')
   )}
+  let(:donors_url) { project_response.donors_choose_id.to_s }
   let!(:dc_page) { Nokogiri::HTML(open(Rails.root + 'spec/support/donors_choose.html')) }
 
   before do
