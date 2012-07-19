@@ -17,10 +17,9 @@ class ProjectsController < ApplicationController
 private
 
   def create_project_for_guest(params)
-    # Thread.new do
-      # @project = Project.create_by_project_url(params[:project_url])
-    # end
-    @project = Project.create_by_project_url(params[:project_url])
+    Thread.new do
+      @project = Project.create_by_project_url(params[:project_url])
+    end
     cookies[:project_url] = params[:project_url]
     redirect_to new_user_registration_path, alert: "You must signup before creating a project"
   end
