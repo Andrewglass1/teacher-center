@@ -65,12 +65,19 @@ class Project < ActiveRecord::Base
     percentage_to_completion_date >= 80
   end
 
-  def percentage_to_completion_date
-    (Date.today - start_date)/length_of_project
+  def days_to_end
+    (expiration_date - Date.today).to_i
+  end
+
+  def dollars_needed
+    (BigDecimal.new(cost_to_completed_cents.to_s) / 100).to_i
   end
 
   private
 
+  def percentage_to_completion_date
+    (Date.today - start_date)/length_of_project
+  end
 
   def length_of_project
     expiration_date - start_date
