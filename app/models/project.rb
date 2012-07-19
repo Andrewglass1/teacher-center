@@ -52,7 +52,7 @@ class Project < ActiveRecord::Base
   end
 
   def completed_tasks(medium = nil)
-    all_completed = project_tasks.where(:completed => true)
+    all_completed = project_tasks.where(:completed => true).order('updated_at DESC')
     all_completed.select! { |pt| pt.task.medium == medium } unless medium.nil?
     all_completed.to_a
   end
