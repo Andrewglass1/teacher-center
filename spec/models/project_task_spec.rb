@@ -21,6 +21,17 @@ describe ProjectTask do
     title: Faker::Lorem.words(1).join(' ')
   )}
   let!(:dc_page) { Nokogiri::HTML(open(Rails.root + 'spec/support/donors_choose.html')) }
+  let(:pdf_response) {
+    "My students need twenty-five copies of Shades of Gray, five copies of Number \nthe Stars, and five copies of Bull Run.
+     What did your social studies instruction \nlook like in school? Do you remember lectures? How about those black and wh
+     ite \nvideos? I want to make social studies interactive and fun all while...\nFIND OUT HOW YOU CAN HELP:http://bit.ly/M
+     BkJ4a\nThis project is made possible by DonorsChoose, an online charity that \nmakes it easy for anyone to help student
+     s in need.\nHelp Ms. Lockett's students Social Studies ALIVE!!!http://bit.ly/MBkJ4aHelp Ms. Lockett's students Social S
+     tudies ALIVE!!!http://bit.ly/MBkJ4aHelp Ms. Lockett's students Social Studies ALIVE!!!http://bit.ly/MBkJ4aHelp Ms. Lock
+     ett's students Social Studies ALIVE!!!http://bit.ly/MBkJ4aHelp Ms. Lockett's students Social Studies ALIVE!!!http://bit
+     .ly/MBkJ4aHelp Ms. Lockett's students Social Studies ALIVE!!!http://bit.ly/MBkJ4aHelp Ms. Lockett's students Social Stu
+     dies ALIVE!!!http://bit.ly/MBkJ4a"
+  }
 
   before do
     fake_client = double
@@ -31,20 +42,21 @@ describe ProjectTask do
     fake_client.stub(:clicks).and_return(Hashie::Mash.new(user_clicks: 5))
     Project.stub(:get_start_date).and_return(Date.today)
     ProjectApiWrapper.stub(:log_donations).and_return(true)
+    PdfGenerator.stub(:pdf_reader).and_return(pdf_response)
   end
 
   let!(:project) { Project.create_by_project_url('816888') }
+  let(:task) {Task.create(medium: "Twitter")}
+  let!(:project_task) { ProjectTask.create({project_id: project.id, task_id: task.id})}
 
   context '#get_short_link' do
     it "creates a bitly url linking to the project's donors choose url after create" do
-      project_task = ProjectTask.create(:project_id => project.id)
       project_task.short_url.should include 'bit.ly'
     end
   end
 
   context '#update_clicks' do
     it "updates the clicks on a project task's short url" do
-      project_task = ProjectTask.create(:project_id => project.id)
       project_task.update_clicks
       project_task.clicks.should == 5
     end
