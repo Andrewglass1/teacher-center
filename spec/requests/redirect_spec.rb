@@ -29,7 +29,6 @@ describe "When they paste a url and are" do
   )}
   let(:donors_url) { project_response.donors_choose_id.to_s }
   let!(:dc_page) { Nokogiri::HTML(open(Rails.root + 'spec/support/donors_choose.html')) }
-
   before do
     DonorsChooseApi::Project.stub(:find_by_id).and_return(project_response)
     ProjectApiWrapper.stub(:open_page).and_return(dc_page)
