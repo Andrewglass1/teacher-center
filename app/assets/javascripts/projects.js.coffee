@@ -12,3 +12,6 @@ $ ->
         $(event.currentTarget).attr('href', '#')
         $(event.currentTarget).attr('target', '')
         $(event.currentTarget).text('Completed!')
+        
+  $('.letter-gen').click () ->
+    $('#letterModal').modal('hide')

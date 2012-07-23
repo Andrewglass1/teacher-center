@@ -1,3 +1,24 @@
 <div>
-  <%= link_to "Generate a Letter", "#", :class =>"task-button doer", :id=>"#{pt.id}", :target =>"_blank" %>
+  <%= link_to "Generate a Letter", "#", :class =>"task-button doer", :id=>"#{pt.id}", :href =>"#letterModal", :"data-toggle" => "modal" %>
 </div>
+
+<div class="modal hide" id="letterModal">
+  <div class="modal-header">
+    <h3>Create your letter</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag letter_path, :method=>'post', id: "letter_form", :target =>'_blank' do %>
+        <p><%= text_area_tag "salutation", "Dear Foo", :size => "20x1"  %></p>
+        <p><%= text_area_tag "copy", "This is the Copy for the letter", :size => "85x10" %></p>
+        <p><%= text_area_tag "closing", "Sincerely,", :size => "20x1" %></p>
+        <p><%= text_area_tag "signed", "Your Name", :size => "20x1"  %></p>
+        <p><%= hidden_field_tag "image", pt.project.image_url %></p>
+        <p><%= hidden_field_tag "short_url", pt.short_url %></p>
+  </div>
+  <div class="modal-footer">
+      <%= submit_tag 'Submit', value: "Create a Letter!", :class =>"task-button doer letter-gen", :id=>"#{pt.id}" %>
+      <% end %>
+  </div>
+</div>
+
+

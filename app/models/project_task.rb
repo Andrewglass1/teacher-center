@@ -3,7 +3,7 @@ class ProjectTask < ActiveRecord::Base
     :completed_on, :description
   belongs_to :project
   belongs_to :task
-  after_create :get_short_link
+  # after_create :get_short_link
 
 
   def complete
