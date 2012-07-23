@@ -11,22 +11,19 @@ $mediumblue: #5581d9;
 #project_info{
   position: relative;
   margin-top: 25px;
-  margin-left: 65px;
   margin-bottom: 25px;
+  margin-left: 40px;
   /*border: 1px solid #efefef;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;*/
 }
 
-#classroom_image{
-  margin-top: 15px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-
+#hero_item{
+  margin: 50px;
   img{
-    height: 200px;
-    width: 200px;
+    height: 250px;
+    width: 250px;
     border-radius: 5px;
     border: 3px solid $darkblue;
     -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
