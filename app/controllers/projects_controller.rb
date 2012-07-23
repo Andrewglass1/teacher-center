@@ -1,23 +1,25 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:show]
   before_filter :find_project, :confirm_your_project, only: [:show]
 
   def show
   end
 
   def create
-    @project = current_user.projects.create_by_project_url(params["project_url"])
-    if @project
+    if current_user
+      @project = current_user.projects.create_by_project_url(params[:project_url])
       redirect_to project_path(@project)
     else
-      redirect_to root_path, :notice => "Please input a valid project url"
+      create_project_for_guest(params)
     end
   end
 
 private
 
-  def authenticate_user!
-    redirect_to new_user_registration_path, alert: "You must signup before creating a project" unless current_user
+  def create_project_for_guest(params)
+    Project.create_in_thread(params[:project_url])
+    cookies[:project_url] = params[:project_url]
+    redirect_to new_user_registration_path, alert: "You must signup before creating a project"
   end
 
   def find_project
@@ -25,7 +27,9 @@ private
   end
 
   def confirm_your_project
-    redirect_to root_path, notice: "That is not your project" unless @project.user == current_user
+    unless @project.user == current_user
+      redirect_to root_path, notice: "That is not your project"
+    end
   end
 
 end

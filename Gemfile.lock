@@ -9,6 +9,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    Ascii85 (1.0.1)
     actionmailer (3.2.5)
       actionpack (= 3.2.5)
       mail (~> 2.4.4)
@@ -136,6 +137,9 @@ GEM
       faraday (~> 0.7)
       multi_json (~> 1.0)
     orm_adapter (0.4.0)
+    pdf-reader (1.1.1)
+      Ascii85 (~> 1.0.0)
+      ruby-rc4
     pg (0.14.0)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -190,6 +194,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.11.0)
+    ruby-rc4 (0.1.5)
     ruby2ruby (1.2.5)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
@@ -254,6 +259,7 @@ DEPENDENCIES
   jquery-ui-rails
   launchy
   newrelic_rpm
+  pdf-reader
   pg
   rails (= 3.2.5)
   reek

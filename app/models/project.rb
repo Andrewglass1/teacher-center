@@ -3,20 +3,24 @@ class Project < ActiveRecord::Base
 
   attr_accessible :city, :cost_to_complete_cents, :dc_id, :dc_url, :description,
     :expiration_date, :fund_url, :goal_cents, :image_url,
-    :percent_funded, :school, :stage, :state, :teacher_name, :title, :start_date
+    :percent_funded, :school, :stage, :state, :teacher_name, :title, :start_date, :user_id
   belongs_to :user
   has_many :project_tasks
   has_many :tasks, :through => :project_tasks
   after_create :seed_initial_project_tasks
   after_create :prepare_pdf
   has_many :donation_logs
-
+  validates_uniqueness_of :dc_id
 
   extend FriendlyId
   friendly_id :title, use: :history
 
   def self.create_by_project_url(project_url)
     ProjectApiWrapper.create_by_project_url(project_url)
+  end
+
+  def self.create_in_thread(project_url)
+    Thread.new { Project.create_by_project_url(project_url) }
   end
 
   def update_information
@@ -61,12 +65,19 @@ class Project < ActiveRecord::Base
     percentage_to_completion_date >= 80
   end
 
+  def days_to_end
+    (expiration_date - Date.today).to_i
+  end
+
+  def dollars_needed
+    (BigDecimal.new(cost_to_complete_cents.to_s) / 100).to_i
+  end
+
   def percentage_to_completion_date
     (Date.today - start_date)/length_of_project
   end
 
   private
-
 
   def length_of_project
     expiration_date - start_date
