@@ -7,7 +7,11 @@ class ProjectTask < ActiveRecord::Base
 
 
   def complete
-    update_attributes({:completed => true, :completed_on => Date.today, :description => description})
+    update_attributes({
+      :completed => true,
+      :completed_on => Date.today,
+      :description => description
+    })
     project.project_tasks.create(:task_id => task_id)
   end
 
@@ -15,7 +19,8 @@ class ProjectTask < ActiveRecord::Base
     if task.medium == "PrintAndShare"
       # update_attribute(:short_url, PdfGenerator.pdf_short_link(project.dc_id))
     else
-      update_attribute(:short_url, UrlShortener.create_short_link(project.dc_url+"&id=#{id}"))
+      update_attribute(
+        :short_url, UrlShortener.create_short_link(project.dc_url+"&id=#{id}"))
     end
   end
 
@@ -27,9 +32,11 @@ class ProjectTask < ActiveRecord::Base
     if completed
       read_attribute(:description)
     elsif project.near_end?
-        "My donors choose project is almost ending, help us raise the last $#{BigDecimal.new(project.cost_to_complete_cents / 100, 2)}!"
+      "My donors choose project is almost ending, help us raise the last " +
+        "$#{BigDecimal.new(project.cost_to_complete_cents / 100, 2)}!"
     elsif project.off_track?
-      "I need your help to fully fund my project on donorschoose.org, the kids will appreciate your support!"
+      "I need your help to fully fund my project on donorschoose.org, the " +
+        "kids will appreciate your support!"
     else
       "Check out my project on donorschoose.org."
     end
