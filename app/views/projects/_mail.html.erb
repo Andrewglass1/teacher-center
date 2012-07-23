@@ -8,8 +8,8 @@
   </div>
   <div class="modal-body">
     <%= form_tag letter_path, :method=>'post', id: "letter_form", :target =>'_blank' do %>
-        <p><%= text_area_tag "salutation", "Dear Foo", :size => "20x1"  %></p>
-        <p><%= text_area_tag "copy", "This is the Copy for the letter", :size => "85x10" %></p>
+        <p><%= text_area_tag "salutation", "Dear Foo,", :size => "20x1"  %></p>
+        <p><%= text_area_tag "copy", "This is the Copy for the letter \r\n\r\n\r\n This is the second line", :size => "85x10" %></p>
         <p><%= text_area_tag "closing", "Sincerely,", :size => "20x1" %></p>
         <p><%= text_area_tag "signed", "Your Name", :size => "20x1"  %></p>
         <p><%= hidden_field_tag "image", pt.project.image_url %></p>
