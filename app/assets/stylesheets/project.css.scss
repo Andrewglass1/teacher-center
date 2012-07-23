@@ -1,61 +1,42 @@
 $darkblue: #32455e;
 $mediumblue: #5581d9;
 
+#project_title{ 
+  margin-top: -50px;
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
 #project_info{
   position: relative;
-  margin-top: -75px;
-  margin-left: 15px;
-  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  margin-left: 40px;
   /*border: 1px solid #efefef;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;*/
 }
-
-#classroom_image{
-  margin-top: 15px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-
-  img{
-    height: 200px;
-    width: 200px;
-    border-radius: 5px;
-    border: 3px solid $darkblue;
-    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
-
-  }
+.percentage{ 
+  font-size: 54px;
+  font-weight: 600;
 }
 
-.title{
-  margin-top: 15px;
+.days_left{ 
+  font-size: 54px;
   font-weight: 600;
-  font-size: 24px;
+}
+
+#hero_item{
+  margin: 50px;
+  height: 250px;
+  width: 250px;
+  border-radius: 5px;
+  border: 3px solid $darkblue;
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
   text-align: center;
 }
-
-#project-description{
-  margin-left: 15px;
-  margin-bottom: 15px;
-  width: 200px;
-  font-weight: 200;
-  font-size: 24px;
-  color: $darkblue;
-  margin-right: -10px;
-}
-
-#countdown{
-  margin-top: -80px;
-  margin-bottom: 25px;
-}
-.ui-progressbar .ui-progressbar-value {
-  background-image: url("status-bar.png");
-}
-
-#progressbar, #progressbar2 {
-  margin-bottom: 25px;
-}
-
 
 #tasks{
   margin-top: 25px;
