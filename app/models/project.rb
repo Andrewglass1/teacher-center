@@ -8,7 +8,6 @@ class Project < ActiveRecord::Base
   has_many :project_tasks
   has_many :tasks, :through => :project_tasks
   after_create :seed_initial_project_tasks
-  after_create :prepare_pdf
   has_many :donation_logs
   validates_uniqueness_of :dc_id
 
@@ -25,10 +24,6 @@ class Project < ActiveRecord::Base
 
   def update_information
     ProjectApiWrapper.update_information(self)
-  end
-
-  def prepare_pdf
-    PdfGenerator.prepare_pdf(dc_id)
   end
 
   def pdf_link
