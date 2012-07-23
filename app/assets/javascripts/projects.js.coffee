@@ -12,6 +12,11 @@ $ ->
         $(event.currentTarget).attr('href', '#')
         $(event.currentTarget).attr('target', '')
         $(event.currentTarget).text('Completed!')
-        
+        $(event.currentTarget).unbind("click")
+
+
   $('.letter-gen').click () ->
     $('#letterModal').modal('hide')
+    $('#mail-doer').attr('href', '#')
+    $('#mail-doer').attr('target', '')
+    $('#mail-doer').text('Completed!')
