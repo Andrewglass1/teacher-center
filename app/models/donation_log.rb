@@ -13,4 +13,9 @@ class DonationLog < ActiveRecord::Base
                                   :project_id => project_id).all
     donations.sum(&:amount_funded_cents)
   end
+
+  def amount_funded
+    (BigDecimal.new(amount_funded_cents) / 100).to_i
+  end
+
 end

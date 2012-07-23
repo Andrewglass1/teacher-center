@@ -11,6 +11,7 @@ gem 'htmlentities'
 gem 'devise'
 gem 'newrelic_rpm'
 gem 'pdf-reader'
+gem 'lazy_high_charts'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

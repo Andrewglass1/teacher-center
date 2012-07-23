@@ -57,14 +57,7 @@ background: -webkit-linear-gradient(top, #fffcfc 0%,#efefef 100%);
  text-shadow: rgba(0,0,0,.4) 0 1px 0;
  color: #FFFFFA;
  font-size: 20px;
- height: 100px;
+ display: inline-block;
  font-family: "ff-enzo-web", Helvetica, Arial, Sans-Serif;
  text-decoration: none;
- vertical-align: middle;
-
-}
-
-.tab-pane div {
-  padding: 15px;
-  height: 60px;
 }
