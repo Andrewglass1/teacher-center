@@ -1,14 +1,18 @@
 <div class="threecol" id="project_info">
 
-  <h2 class="title"><%= @project.title %></h2>
-
   <div id="classroom_image">
     <%=image_tag @project.image_url %>
   </div>
 
-  <div id="project-description">
-    <%= @project.description %>
-  </div>
+  <h2 class="title"><%= @project.title %></h2>
+
+  <div id="tracking">
+    <% if @project.off_track? %> 
+      <h2>Off Track</h2> 
+    <% else %> 
+      <span class="checkmark"><%=image_tag "okay.png" %>On Track</span>
+    <% end %> 
+  </div> 
 </div>
 
 <div class="eightcol" id="project-status-bar">
