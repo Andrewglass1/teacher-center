@@ -2,8 +2,8 @@ class Project < ActiveRecord::Base
   require 'open-uri'
 
   attr_accessible :city, :cost_to_complete_cents, :dc_id, :dc_url, :description,
-    :expiration_date, :fund_url, :goal_cents, :image_url,
-    :percent_funded, :school, :stage, :state, :teacher_name, :title, :start_date, :user_id
+    :expiration_date, :fund_url, :goal_cents, :image_url, :percent_funded,
+    :school, :stage, :state, :teacher_name, :title, :start_date, :user_id
   belongs_to :user
   has_many :project_tasks
   has_many :tasks, :through => :project_tasks
@@ -36,7 +36,7 @@ class Project < ActiveRecord::Base
   end
 
   def projected_fund_date
-    if Date.today < expiration_date && percent_funded < 100 && !projected_days_of_funding_needed.infinite?
+    if not_expired && not_funded && !projected_days_of_funding_needed.infinite?
       Date.parse((start_date + projected_days_of_funding_needed).to_s)
     end
   end
@@ -52,13 +52,18 @@ class Project < ActiveRecord::Base
   end
 
   def tasks_to_do
-    project_tasks.where(completed: false).includes(:task).order('tasks.medium ASC')
+    project_tasks.where(
+      completed: false).includes(:task).order('tasks.medium ASC')
   end
 
   def completed_tasks(medium = nil)
-    all_completed = project_tasks.where(:completed => true).order('updated_at DESC')
-    all_completed.select! { |pt| pt.task.medium == medium } unless medium.nil?
-    all_completed.to_a
+    all_completed = project_tasks.includes(:task).where(:completed => true)
+    completed_tasks = if medium.nil?
+                        all_completed
+                      else
+                        all_completed.where(:tasks => { :medium => medium })
+                      end
+    completed_tasks.order('project_tasks.updated_at DESC').to_a
   end
 
   def near_end?
@@ -85,5 +90,14 @@ class Project < ActiveRecord::Base
 
   def projected_days_of_funding_needed
     percentage_to_completion_date/(percent_funded.to_f/100) * length_of_project
+  end
+
+  def not_expired
+    Date.today < expiration_date
+
+  end
+
+  def not_funded
+    percent_funded < 100
   end
 end

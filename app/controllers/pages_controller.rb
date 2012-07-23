@@ -14,7 +14,8 @@ private
       else
         cookies[:project_url] = nil
         project.update_attributes(user_id: current_user.id)
-        redirect_to project_path(project), notice: "Project created successfully"
+        redirect_to project_path(project),
+          notice: "Project created successfully"
       end
     end
   end
@@ -24,7 +25,7 @@ private
   end
 
   def project
-    @project ||= Project.find_by_dc_id(ProjectApiWrapper.extract_id(project_url))
+    @project ||= Project.find_by_dc_id(ProjectApiWrapper.id_for(project_url))
   end
 
 end
