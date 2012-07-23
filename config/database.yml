@@ -1,13 +1,14 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: kintouch_development
+  database: teacher_center_dev
   pool: 5
   timeout: 5000
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: teacher_center_test
   pool: 5
   timeout: 5000
 
