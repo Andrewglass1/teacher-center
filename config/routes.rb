@@ -9,4 +9,5 @@ Teachercenter::Application.routes.draw do
 
   resources :projects
   root :to => "pages#welcome"
+  match '/letter' => 'project_tasks#letter'
 end

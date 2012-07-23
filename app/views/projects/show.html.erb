@@ -27,17 +27,25 @@
 <div class="eightcol" id="project-status-bar">
   <div id="countdown">
     <% if @project.off_track? %>
-      <div class="alert alert-danger">Your project is not projected to be fully funded, try completing some tasks</div>
+      <div class="alert alert-danger">Your project is at risk of not being funded. Try using our sharing tools below.</div>
     <% end %>
   </div>
 
   <div id="percent_funded">
-    <h3>$<%= @project.dollars_needed %> needed</h3>
+    <% if @project.dollars_needed == 0 %>
+      <h3>Fully Funded!</h3>
+    <% else %>
+      <h3>$<%= @project.dollars_needed %> needed</h3>
+    <% end %>
   </div>
   <div id="progressbar"></div>
 
   <div id="percent_through">
-    <h3><%= "#{@project.days_to_end} days left" %></h3>
+    <% if @project.days_to_end > 0 %>
+      <h3><%= "#{@project.days_to_end} days left" %></h3>
+    <% else %>
+      <h3> 0 days left</h3>
+    <% end %>
   </div>
   <div id="progressbar2"></div>
   <div class="twelvecol" id="tasks">
