@@ -1,21 +1,22 @@
-<div class="row twelvecol" id="project_title">
+<!-- <div class="row twelvecol" id="project_title">
   <h2><%= @project.title %></h2>
-</div> 
+</div>  -->
 
 <div class="row twelvecol" id="project_info">
   <div class="threecol" id="hero_item">
     <div id="hero-item-1">
-      <%=image_tag @project.image_url %>
+      <span class="percentage"><%= @project.percent_funded %>% <br />
+      Funded</span> 
     </div>
   </div>
   <div class="threecol" id="hero_item">
     <div id="hero-item-2">
-      <%=image_tag @project.image_url %>
+      <span class="days_left"><%= @project.days_to_end %><br /> Days Left</span>
     </div> 
   </div>
   <div class="threecol" id="hero_item">
     <div id="hero-item-3">
-      <%=image_tag @project.image_url %>
+      
     </div> 
   </div>
 </div>
