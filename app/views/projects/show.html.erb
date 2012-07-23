@@ -7,86 +7,50 @@
   <h2 class="title"><%= @project.title %></h2>
   <div class="project_stats">
     <div id="tracking">
-      <% if @project.off_track? %> 
-        <span class="off_track"><%=image_tag "bad.png"%><span id="tracking_text">Off Track</span></span> 
-      <% else %> 
+      <% if @project.off_track? %>
+        <span class="off_track"><%=image_tag "bad.png"%><span id="tracking_text">Off Track</span></span>
+    <% else %>
         <span class="checkmark"><%=image_tag "okay.png" %><span id="tracking_text">On Track</span></span>
-      <% end %> 
-    </div> 
-    <div id="expiration"> 
+    <% end %>
+    </div>
+    <div id="expiration">
       <span class="exp_info">Expiration Date:<h4><%= @project.expiration_date%></h4></span>
-    </div> 
-    <div id="projected_fund"> 
+    </div>
+    <div id="projected_fund">
       <span class="date">Projected Fund Date:<h4><%= @project.projected_fund_date %></h4></span>
-    </div> 
-    <div id="percent_funded"> 
-      <span class="funds"><h3>$<%= @project.dollars_funded %> received.</h3>
-    </div> 
+    </div>
+    <div id="percent_funded">
+      <span class="funds"><h3>$<%= @project.dollars_funded %> received.</h3></span>
     </div>
   </div>
+</div>
 
 <div class="eightcol" id="project-status-bar">
   <div id="countdown">
     <% if @project.off_track? %>
       <div class="alert alert-danger">Your project is at risk of not being funded. Try using our sharing tools below.</div>
-    <% end %>
+  <% end %>
   </div>
 
   <div id="percent_funded">
     <% if @project.dollars_needed == 0 %>
       <h3>Fully Funded!</h3>
-    <% else %>
+  <% else %>
       <h3>$<%= @project.dollars_needed %> needed</h3>
-    <% end %>
+  <% end %>
   </div>
   <div id="progressbar"></div>
 
   <div id="percent_through">
     <% if @project.days_to_end > 0 %>
       <h3><%= "#{@project.days_to_end} days left" %></h3>
-    <% else %>
+  <% else %>
       <h3> 0 days left</h3>
-    <% end %>
+  <% end %>
   </div>
   <div id="progressbar2"></div>
-  <div class="twelvecol" id="tasks">
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab_all" data-toggle="tab">All</a></li>
-      <% @project.tasks_to_do.each_with_index do |pt, i| %>
-        <li><a href="#tab<%= i %>" data-toggle="tab"><%= pt.task.medium %></a></li>
-    <% end %>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab_all">
-        <% if @project.completed_tasks %>
-          <% @project.completed_tasks.each do |project_task| %>
-          <div class="completed_task">
-          <div class="task_medium"><%= image_tag "#{project_task.task.medium.downcase}.png", :class=>"medium_image" %>&nbsp;<%= project_task.task.medium %>
-          <div class="description"><%= project_task.description %></div>
-            <div class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y") %></div>
-            <span class="clicks"><%= project_task.clicks %> clicks</span>
-          </div>
-        </div>
-      <% end %>
-      <% end %>
-      </div>
-      <% @project.tasks_to_do.each_with_index do |pt, i| %>
-        <div class="tab-pane" id="tab<%= i %>">
-        <%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt => pt } %>
-        <% @project.completed_tasks(pt.task.medium).each do |project_task| %>
-          <div class="completed_task">
-          <div class="task_medium"><%= image_tag "#{project_task.task.medium.downcase}.png", :class=>"medium_image" %>&nbsp;<span class="updated">completed on <%= project_task.completed_on.strftime("%m/%d/%y")  %></span></div>
-          <div class="description"><%= project_task.description %></div>
-          <div class="clicks"><%= project_task.clicks %> clicks</div>
-          <div class=""></div>
-        </div>
-      <% end %>
-      </div>
-    <% end %>
-    </div>
-
-  </div>
-</div>
+  <div class="twelvecol">
+    <%= high_chart("donation_chart", @donations_chart) %>
   </div>
 </div>
 
@@ -94,9 +58,9 @@
 jQuery(function() {
   $("#progressbar").progressbar({
     value: <%= @project.percent_funded %>
-  });
-  $("#progressbar2").progressbar({
-    value: <%= @project.percentage_to_completion_date * 100  %>
+});
+$("#progressbar2").progressbar({
+  value: <%= @project.percentage_to_completion_date * 100  %>
   });
 });
 </script>

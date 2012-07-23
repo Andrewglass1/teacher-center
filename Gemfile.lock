@@ -116,6 +116,8 @@ GEM
     json (1.7.3)
     launchy (2.1.0)
       addressable (~> 2.2.6)
+    lazy_high_charts (1.1.7)
+      bundler (~> 1.0)
     libwebsocket (0.1.4)
       addressable
     listen (0.4.7)
@@ -258,6 +260,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   launchy
+  lazy_high_charts
   newrelic_rpm
   pdf-reader
   pg
