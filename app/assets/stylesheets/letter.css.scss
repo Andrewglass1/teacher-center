@@ -1,0 +1,27 @@
+$fontColor: #021C3B;
+$fontFamily: "ff-enzo-web", Helvetica, sans-serif;
+
+
+
+.letter-copy {
+  font-size: 25px;
+  color: $fontColor;
+  font-family: $fontFamily;
+}
+
+.letter {
+  padding: 25px;
+}
+
+.salutation {
+  font-size: 30px;
+  color: $fontColor;
+  font-family: $fontFamily;
+}
+
+.closing {
+  text-align: center;
+  font-size: 30px;
+  color: $fontColor;
+  font-family: $fontFamily;
+}

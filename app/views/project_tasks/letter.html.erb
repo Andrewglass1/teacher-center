@@ -1,7 +1,11 @@
-<h3><%= params["salutation"] %></h3>
-<p><%= params["copy"] %></p>
-<p><%= params["short_url"] %></p>
-<h3><%= params["closing"] %></h3>
-<h3><%= params["signed"] %></h3>
+<%= stylesheet_link_tag "letter" %>
+
+<div class="letter">
+<p class="salutation"><%= params["salutation"] %></p>
+<pre><p class="letter-copy"><%= params["copy"] %></p></pre>
+<p class="letter-copy">You can visit my project via this link: <%= params["short_url"] %></p>
+<p class="closing"><%= params["closing"] %></p>
+<p class="closing"><%= params["signed"] %></p>
 
 <%= image_tag params["image"] %>
+</div>
