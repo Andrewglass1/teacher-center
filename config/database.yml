@@ -1,16 +1,16 @@
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: teacher_center_dev
-  pool: 5
-  timeout: 5000
+# development:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: teacher_center_dev
+#   pool: 5
+#   timeout: 5000
 
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: teacher_center_test
-  pool: 5
-  timeout: 5000
+# test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: teacher_center_test
+#   pool: 5
+#   timeout: 5000
 
 production:
   adapter: sqlite3
@@ -18,14 +18,14 @@ production:
   pool: 5
   timeout: 5000
 
-# development:
-#   adapter: sqlite3
-#   database: db/development.sqlite3
-#   pool: 5
-#   timeout: 5000
+development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+  pool: 5
+  timeout: 5000
 
-# test:
-#   adapter: sqlite3
-#   database: db/test.sqlite3
-#   pool: 5
-#   timeout: 5000
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000

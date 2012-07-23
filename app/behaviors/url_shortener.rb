@@ -9,6 +9,7 @@ module UrlShortener
       client.clicks(short_url).user_clicks
     end
 
+
     def client
       Bitly.use_api_version_3
       Bitly.new(BITLY_USERNAME, BITLY_API_KEY)

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719173701) do
+ActiveRecord::Schema.define(:version => 20120723213024) do
+
+  create_table "click_logs", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "daily_clicks"
+    t.integer  "total_clicks_to_date"
+    t.date     "date"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
 
   create_table "donation_logs", :force => true do |t|
     t.integer  "project_id"

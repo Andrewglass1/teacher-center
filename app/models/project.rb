@@ -9,7 +9,9 @@ class Project < ActiveRecord::Base
   has_many :tasks, :through => :project_tasks
   after_create :seed_initial_project_tasks
   has_many :donation_logs
+  has_many :click_logs
   validates_uniqueness_of :dc_id
+
 
   extend FriendlyId
   friendly_id :title, use: :history
@@ -24,6 +26,19 @@ class Project < ActiveRecord::Base
 
   def update_information
     ProjectApiWrapper.update_information(self)
+  end
+
+  def log_project_clicks
+    todays_click_log       = click_logs.find_or_create_by_date(Date.today)
+    current_total_clicks   = project_tasks.sum(&:clicks)
+    todays_clicks          = current_total_clicks - click_total_yesterday
+    todays_click_log.update_attributes(:daily_clicks => todays_clicks,
+                                       :total_clicks_to_date => current_total_clicks)
+  end
+
+  def click_total_yesterday
+    yesterdays_click_log   = click_logs.find_by_date(Date.today-1) || nil
+    yesterdays_click_log ? yesterdays_click_log.total_clicks_to_date : 0
   end
 
   def pdf_link
