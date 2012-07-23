@@ -1,54 +1,12 @@
-<div class="threecol" id="project_info">
-
-  <div id="classroom_image">
-    <%=image_tag @project.image_url %>
-  </div>
-
-  <h2 class="title"><%= @project.title %></h2>
-  <div class="project_stats">
-    <div id="tracking">
-      <% if @project.off_track? %> 
-        <span class="off_track"><%=image_tag "bad.png"%><span id="tracking_text">Off Track</span></span> 
-      <% else %> 
-        <span class="checkmark"><%=image_tag "okay.png" %><span id="tracking_text">On Track</span></span>
-      <% end %> 
-    </div> 
-    <div id="expiration"> 
-      <span class="exp_info">Expiration Date:<h4><%= @project.expiration_date%></h4></span>
-    </div> 
-    <div id="projected_fund"> 
-      <span class="date">Projected Fund Date:<h4><%= @project.projected_fund_date %></h4></span>
-    </div> 
-    <div id="percent_funded"> 
-      <span class="funds"><h3>$<%= @project.dollars_funded %> received.</h3>
-    </div> 
+<div class="row twelvecol" id="project_info">
+  <div class="threecol" id="proj_info">
+    <div id="classroom_image">
+      <%=image_tag @project.image_url %>
     </div>
+    <h2 class="title"><%= @project.title %></h2>
   </div>
+</div>
 
-<div class="eightcol" id="project-status-bar">
-  <div id="countdown">
-    <% if @project.off_track? %>
-      <div class="alert alert-danger">Your project is at risk of not being funded. Try using our sharing tools below.</div>
-    <% end %>
-  </div>
-
-  <div id="percent_funded">
-    <% if @project.dollars_needed == 0 %>
-      <h3>Fully Funded!</h3>
-    <% else %>
-      <h3>$<%= @project.dollars_needed %> needed</h3>
-    <% end %>
-  </div>
-  <div id="progressbar"></div>
-
-  <div id="percent_through">
-    <% if @project.days_to_end > 0 %>
-      <h3><%= "#{@project.days_to_end} days left" %></h3>
-    <% else %>
-      <h3> 0 days left</h3>
-    <% end %>
-  </div>
-  <div id="progressbar2"></div>
   <div class="twelvecol" id="tasks">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab_all" data-toggle="tab">All</a></li>

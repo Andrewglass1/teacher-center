@@ -3,48 +3,23 @@ $mediumblue: #5581d9;
 
 #project_info{
   position: relative;
-  margin-top: -50px;
+  margin-top: -75px;
   margin-left: 15px;
   padding: 10px;
-  border: 1px solid #efefef;
+  /*border: 1px solid #efefef;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;*/
 }
 
-.project_stats{ 
-  margin: 10px;
-}
-
-#tracking{ 
-  padding-bottom: 10px;
-}
-
-.off_track{ 
-  font-size: 24px;
-}
-
-#tracking_text{ 
-  padding-left: 5px;
-}
-
-#expiration{ 
-  padding-bottom: 10px;
-  font-size: 24px;
-}
-
-#projected_fund{ 
-  padding-bottom: 10px;
-  font-size: 24px;
-}
 #classroom_image{
   margin-top: 15px;
   margin-left: 15px;
   margin-bottom: 15px;
 
   img{
-    height: 210px;
-    width: 210px;
+    height: 200px;
+    width: 200px;
     border-radius: 5px;
     border: 3px solid $darkblue;
     -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
@@ -52,15 +27,10 @@ $mediumblue: #5581d9;
   }
 }
 
-.checkmark{ 
-  margin: 25px 10px 10px 10px;
-  font-size: 24px;
-}
-
 .title{
   margin-top: 15px;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 24px;
   text-align: center;
 }
 
@@ -94,7 +64,7 @@ $mediumblue: #5581d9;
   background-size:cover;
   padding: 0;
   border: 1px solid #efefef;
-  margin: 0 30px 30px 0;
+  margin: 0 30px 0px 0;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
