@@ -82,6 +82,10 @@ class Project < ActiveRecord::Base
     (Date.today - start_date)/length_of_project
   end
 
+  def dollars_funded 
+    (BigDecimal.new(goal_cents - cost_to_complete_cents) / 100).to_i
+  end 
+
   private
 
   def length_of_project

@@ -17,7 +17,7 @@ class ProjectTask < ActiveRecord::Base
 
   def get_short_link
     if task.medium == "PrintAndShare"
-      update_attribute(:short_url, PdfGenerator.pdf_short_link(project.dc_id))
+      # update_attribute(:short_url, PdfGenerator.pdf_short_link(project.dc_id))
     else
       update_attribute(
         :short_url, UrlShortener.create_short_link(project.dc_url+"&id=#{id}"))
