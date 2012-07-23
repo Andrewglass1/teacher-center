@@ -20,6 +20,7 @@ body {
   #content-container{
     min-height: 680px;
     background: #FFFFFA;
+    background-image: url('noise.png');
     border-radius: 5px;
     margin-top: 80px;
     padding-bottom: 25px;
@@ -41,7 +42,8 @@ body {
     position: absolute;
     margin-left: -20px;
     margin-top: -20px;
-    padding-right: 5px; 
+    padding-right: 10px; 
+    padding-left: 10px;
     font-size: 3em;
     z-index: 5;
   }
