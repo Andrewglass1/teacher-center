@@ -8,17 +8,20 @@
 </div>
 
 <div class="twelvecol">
-  <%= high_chart("donations-chart", @donations_chart) %>
-
+  <div id="charts">
+    <div class="fivecol">
+      <%= high_chart("donations-chart", @donations_chart) %>
+    </div>
+    <div class="fivecol">
+      <%= high_chart("clicks-chart", @clicks_chart) %>
+    </div>
+  </div>
 </div>
 
-<script>
-jQuery(function() {
-  $("#progressbar").progressbar({
-    value: <%= @project.percent_funded %>
-});
-$("#progressbar2").progressbar({
-  value: <%= @project.percentage_to_completion_date * 100  %>
-  });
-});
-</script>
+<div class="twelvecol">
+  <div id="links">
+    <% @project.tasks_to_do.each_with_index do |pt, i| %>
+      <div class="link"><%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt => pt } %></div>
+  <% end %>
+  </div>
+</div>

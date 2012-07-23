@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!, :find_project, :confirm_your_project, 
+  before_filter :authenticate_user!, :find_project, :confirm_your_project,
     :create_charts, only: [:show]
 
   def show
@@ -36,10 +36,32 @@ class ProjectsController < ApplicationController
 
   def create_charts
     @donations_chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.options[:chart][:defaultSeriesType] = "line"
-      f.series(:name=>'John', :data=>[3, 20, 3, 5, 4, 10, 12 ,3, 5,6,7,7,80,9,9])
-      f.series(:name=>'Jane', :data=> [1, 3, 4, 3, 3, 5, 4,-46,7,8,8,9,9,0,0,9] )
-      f.xAxis(:categories => @project.donation_logs.map(&:date))
+      f.chart(:defaultSeriesType => 'line')
+      f.title(:text => 'Donations')
+      f.series(:name=>'Goal', :data=> Array.new(@project.donation_logs.size, @project.goal_dollars))
+      f.series(:name=>'Donations', :data => @project.donation_logs.map(&:amount_funded))
+      f.xAxis(
+        :categories => @project.donation_logs.map(&:date)
+      )
+      f.yAxis(
+        :min => 0,
+        :max => @project.goal_dollars,
+        :title => { :text => 'Amount Funded ($)' }
+      )
+
+      @clicks_chart = LazyHighCharts::HighChart.new('graph') do |f|
+        f.chart(:defaultSeriesType => 'line')
+        f.title(:text => 'Clicks')
+        f.series(:name=>'Clicks', :data => @project.donation_logs.map(&:amount_funded))
+        f.xAxis(
+          :categories => @project.donation_logs.map(&:date)
+        )
+        f.yAxis(
+          :min => 0,
+          :max => @project.goal_dollars,
+          :title => { :text => 'Clicks' }
+        )
+      end
     end
   end
 

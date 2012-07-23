@@ -133,3 +133,15 @@ $mediumblue: #5581d9;
   display: none;
 }
 
+#charts {
+  margin-left: 50px;
+  display: block;
+}
+
+#links {
+  text-align: center;
+  .link {
+    display: inline-block;
+    margin: 10px;
+  }
+}
