@@ -7,7 +7,8 @@ class ProjectsController < ApplicationController
 
   def create
     if current_user
-      @project = current_user.projects.create_by_project_url(params[:project_url])
+      @project = current_user.projects.create_by_project_url(
+        params[:project_url])
       redirect_to project_path(@project)
     else
       create_project_for_guest(params)
@@ -19,7 +20,8 @@ private
   def create_project_for_guest(params)
     Project.create_in_thread(params[:project_url])
     cookies[:project_url] = params[:project_url]
-    redirect_to new_user_registration_path, alert: "You must signup before creating a project"
+    redirect_to new_user_registration_path,
+      alert: "You must signup before creating a project"
   end
 
   def find_project
