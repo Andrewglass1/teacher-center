@@ -116,7 +116,7 @@ class Project < ActiveRecord::Base
       f.series(:name => 'Goal',
                :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, goal_dollars] })
       f.series(:name => 'On Track',
-               :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, goal_dollars * percentage_to_completion_date(log.date) ] })
+               :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, (goal_dollars * percentage_to_completion_date(log.date)).round ] })
       f.series(:name =>'Total Donations',
                :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, log.amount_funded] })
       f.yAxis(:min => 0,
@@ -134,8 +134,9 @@ class Project < ActiveRecord::Base
     LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => 'Tasks')
       f.series(:name => 'All',
-               :data => completed_tasks.map { |task| [DateTime.parse(task.completed_on.to_s).to_i * 1000, task.clicks] },
+               :data => completed_tasks.sort_by(&:completed_on).map { |task| [DateTime.parse(task.completed_on.to_s).to_i * 1000, task.clicks] },
                :type => 'line')
+
       completed_tasks.map(&:task).map(&:medium).uniq.each do |medium|
         f.series(:name => medium,
                  :data => completed_tasks(medium).map { |task| [DateTime.parse(task.completed_on.to_s).to_i * 1000, task.clicks] },
