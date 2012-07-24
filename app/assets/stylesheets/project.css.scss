@@ -1,11 +1,15 @@
 $darkblue: #32455e;
 $mediumblue: #5581d9;
+$fontColor: #021C3B;
+
 
 #project_title{ 
   margin-top: -50px;
   text-align: center;
-  font-size: 32px;
   margin-bottom: 15px;
+  font-size: 32px;
+  font-weight: 600;
+  font-family: "ff-dagny-web-pro";
 }
 
 #project_info{
@@ -13,11 +17,8 @@ $mediumblue: #5581d9;
   margin-top: 15px;
   margin-bottom: 25px;
   margin-left: 40px;
-  /*border: 1px solid #efefef;
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;*/
 }
+
 .percentage{ 
   font-size: 54px;
   font-weight: 600;
@@ -35,6 +36,7 @@ $mediumblue: #5581d9;
   border-radius: 5px;
   border: 3px solid $darkblue;
   -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
   text-align: center;
 }
 
@@ -133,4 +135,11 @@ $mediumblue: #5581d9;
     display: inline-block;
     margin: 10px;
   }
+}
+
+#donations_chart{ 
+  margin: 15px;
+}
+#clicks_chart{
+  margin: 15px 15px 15px 75px;
 }
