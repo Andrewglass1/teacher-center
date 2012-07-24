@@ -1,9 +1,10 @@
 $lightGray: #CCC;
-$fontColor: #021C3B;
 $fontFamily: "ff-enzo-web", Helvetica, sans-serif;
 $mediumblue: #5581d9;
 $darkblue: #32455e;
 $orange: #FFA545;
+$fontColor: #021C3B;
+
 
 
 
@@ -21,7 +22,7 @@ body {
     min-height: 680px;
     background: #FFFFFA;
     border-radius: 5px;
-    margin-top: 80px;
+    margin-top: 50px;
     padding-bottom: 25px;
 
   }
@@ -34,6 +35,7 @@ body {
 
   #logo{
     background: $mediumblue;
+    background-image: url('noise.png');
     -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
     -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.3);
     -webkit-border-radius: 3px;
@@ -131,4 +133,20 @@ input {
   font-family: "ff-enzo-web", Helvetica, Arial, Sans-Serif;
   text-decoration: none;
   vertical-align: middle;
+}
+
+.alert-notice{ 
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 18px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: rgba(163, 240, 108, 0.25);
+  color: #3D9200;
+}
+
+.alert-alert{ 
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 18px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 73, 64, 0.25);
+  color: #A60800; 
 }

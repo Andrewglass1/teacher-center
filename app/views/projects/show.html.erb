@@ -1,5 +1,5 @@
 <div class="row twelvecol" id="project_title">
-  <h2><%= @project.title %></h2>
+  <h2 class="stitched"><%= @project.title %></h2>
 </div>
 
 <div class="row twelvecol" id="project_info">
@@ -7,16 +7,20 @@
     <div id="hero-item-1">
       <span class="percentage"><%= @project.percent_funded %>% <br />
         Funded</span>
+        <div class="hero-text"><%= number_to_currency(@project.dollars_funded, :precision =>0) %> of <%= number_to_currency(@project.goal_dollars, :precision =>0) %></div>
     </div>
   </div>
   <div class="threecol" id="hero_item">
     <div id="hero-item-2">
-      <span class="days_left"><%= @project.days_to_end %><br /> Days Left</span>
+      <span class="days_left"><%= days_left(@project) %></span>
+      <div class="expiration-text"><%= project_expiration_date(@project) %></div>
     </div>
   </div>
   <div class="threecol" id="hero_item">
     <div id="hero-item-3">
-
+      <span class="status_image"><%= image_tag status_image(@project) %></span>
+      <div class="status_text"><%= status_text(@project) %></div>
+      <div class="projected-fund"><%= @project.projected_fund_date.strftime("Projected to be Funded on: %n %B %d, %Y") if @project.projected_fund_date %></div>
     </div>
   </div>
 </div>
@@ -29,13 +33,11 @@
   </div>
 </div>
 
-<div class="twelvecol">
-  <div id="charts">
-    <div class="fivecol">
-      <%= high_chart("donations-chart", @donations_chart) %>
-    </div>
-    <div class="fivecol">
-      <%= high_chart("clicks-chart", @clicks_chart) %>
-    </div>
+<div class="twelvecol row" id="charts">
+  <div class="fivecol chart">
+    <%= high_chart("donations-chart", @donations_chart) %>
+  </div>
+  <div class="fivecol chart">
+    <%= high_chart("clicks-chart", @clicks_chart) %>
   </div>
 </div>
