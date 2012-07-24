@@ -48,4 +48,11 @@ class ProjectTask < ActiveRecord::Base
       "Check out my project on donorschoose.org."
     end
   end
+
+  def letter_copy
+    "I'm writing to ask your help in supporting a DonorsChoose.org project for my classroom
+    \r\n\Thanks for taking the time to visit my project online.
+    \r\n\You can view it by logging on to #{short_url}
+    \r\n\Thanks for all your support."
+  end
 end
