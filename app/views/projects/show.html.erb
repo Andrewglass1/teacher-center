@@ -20,7 +20,7 @@
     <div id="hero-item-3">
       <span class="status_image"><%= image_tag status_image(@project) %></span>
       <div class="status_text"><%= status_text(@project) %></div>
-      <div class="projected-fund"><%= @project.projected_fund_date.strftime("Projected to be funded on %B %d, %Y") if @project.projected_fund_date %></div>
+      <div class="projected-fund"><%= @project.projected_fund_date.strftime("Projected to be Funded on: %n %B %d, %Y") if @project.projected_fund_date %></div>
     </div>
   </div>
 </div>
