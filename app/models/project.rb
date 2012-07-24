@@ -97,11 +97,11 @@ class Project < ActiveRecord::Base
   end
 
   def dollars_funded
-    (BigDecimal.new(goal_cents - cost_to_complete_cents) / 100).to_i
+    (BigDecimal.new((goal_cents - cost_to_complete_cents).to_s) / 100).to_i
   end
 
   def goal_dollars
-    (BigDecimal.new(goal_cents) / 100).to_i
+    (BigDecimal.new(goal_cents.to_s) / 100).to_i
   end
 
   def donation_chart
