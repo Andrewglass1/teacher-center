@@ -52,5 +52,6 @@ RSpec.configure do |config|
     DonorsChooseApi::Project.stub(:find_by_id).and_return(@project_response)
 
     ProjectApiWrapper.stub(:log_donations).and_return(true)
+    LazyHighCharts.stub(:HighChart).and_return(true)
   end
 end

@@ -100,6 +100,55 @@ class Project < ActiveRecord::Base
     (BigDecimal.new(goal_cents) / 100).to_i
   end
 
+  def donation_chart
+    LazyHighCharts::HighChart.new('graph') do |f|
+      f.chart(:defaultSeriesType => 'line')
+      f.title(:text => 'Donations')
+      f.series(
+        :name=>'Goal',
+        :data => Array.new(donation_logs.size, goal_dollars)
+      )
+      f.series(
+        :name =>'Donations',
+        :data => donation_logs.map(&:amount_funded)
+      )
+      f.xAxis(
+        :categories => donation_logs.map(&:date)
+      )
+      f.yAxis(
+        :min => 0,
+        :max => goal_dollars,
+        :title => { :text => 'Amount Funded ($)' }
+      )
+    end
+  end
+
+  def clicks_chart
+    LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(:text => 'Tasks')
+      f.series(
+        :name => 'All',
+        :data => completed_tasks.map(&:clicks).inject(&:+),
+        :type => 'line'
+      )
+      completed_tasks.map(&:task).map(&:medium).uniq.each do |medium|
+        f.series(
+          :name => medium,
+          :data => completed_tasks(medium).map(&:clicks),
+          :type => 'scatter'
+        )
+      end
+      f.xAxis(
+        :categories => completed_tasks.map(&:completed_on)
+      )
+      f.yAxis(
+        :min => 0,
+        :max => goal_dollars,
+        :title => { :text => 'Clicks' }
+      )
+    end
+  end
+
   private
 
   def length_of_project
