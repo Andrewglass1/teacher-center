@@ -20,12 +20,12 @@ $fontColor: #021C3B;
 }
 
 .percentage{ 
-  font-size: 54px;
+  font-size: 64px;
   font-weight: 600;
 }
 
 .days_left{ 
-  font-size: 54px;
+  font-size: 60px;
   font-weight: 600;
 }
 
@@ -37,8 +37,28 @@ $fontColor: #021C3B;
   border: 3px solid $darkblue;
   -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
   box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+  text-shadow: rgba(0,0,0,.5) 0 2px 0;
   text-align: center;
+  .hero-text {
+    text-shadow: none;
+    font-size: 20px;
+    margin-top: 65px
+
+  }
+  .expiration-text{ 
+    text-shadow: none;
+    font-size: 20px;
+    margin-top: 70px;
+  }
+  .status_text{ 
+
+  margin-top: 45px;
+  font-size: 20px;
+  text-shadow: none;
+  }
 }
+
+
 
 #tasks{
   margin-top: 25px;
@@ -142,4 +162,8 @@ $fontColor: #021C3B;
 }
 #clicks_chart{
   margin: 15px 15px 15px 75px;
+}
+
+.status_image img{ 
+  height: 150px;
 }
