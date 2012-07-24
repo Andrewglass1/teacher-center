@@ -2,21 +2,36 @@ $darkblue: #32455e;
 $mediumblue: #5581d9;
 $fontColor: #021C3B;
 
-
+#project_image img{
+  float: left;
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  border: 3px solid $darkblue;
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+}
+#project_text{ 
+  float: left;
+}
 #project_title{ 
-  margin-top: -50px;
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 600;
   font-family: "ff-dagny-web-pro";
 }
 
-#project_info{
+#project_descrip{ 
+  font-size: 24px;
+}
+
+#proj_inf{
   position: relative;
-  margin-top: 15px;
-  margin-bottom: 25px;
-  margin-left: 40px;
+  height: 225px;
+  margin: -50px 0 25px 75px;
+}
+
+#project_info{ 
+  margin: 15px 0px 15px 50px;
 }
 
 .percentage{ 
@@ -34,8 +49,8 @@ $fontColor: #021C3B;
   height: 250px;
   width: 250px;
   border-radius: 5px;
-  border: 3px solid $darkblue;
-  -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+/*  border: 3px solid $darkblue;
+*/  -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
   box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
   text-shadow: rgba(0,0,0,.5) 0 2px 0;
   text-align: center;
@@ -161,6 +176,7 @@ $fontColor: #021C3B;
   .link {
     display: inline-block;
     margin: 10px;
+    padding-bottom: 10px;
   }
 }
 
@@ -177,4 +193,7 @@ $fontColor: #021C3B;
 
 .task-instruct{
   text-align: center;
+  font-size: 24px;
+  font-family: "ff-dagny-web-pro";
+  font-weight: 600;
 }
