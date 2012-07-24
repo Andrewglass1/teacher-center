@@ -7,16 +7,20 @@
     <div id="hero-item-1">
       <span class="percentage"><%= @project.percent_funded %>% <br />
         Funded</span>
+        <div class="hero-text"><%= number_to_currency(@project.dollars_funded, :precision =>0) %> of <%= number_to_currency(@project.goal_dollars, :precision =>0) %></div>
     </div>
   </div>
   <div class="threecol" id="hero_item">
     <div id="hero-item-2">
       <span class="days_left"><%= @project.days_to_end %><br /> Days Left</span>
+      <div class="expiration-text"><%= @project.expiration_date.strftime("Expires on %B %d") %></div>
     </div>
   </div>
   <div class="threecol" id="hero_item">
     <div id="hero-item-3">
-
+      <span class="status_image"><%= image_tag status_image(@project) %></span>
+      <div class="status_text"><%= status_text(@project) %></div>
+      <div class="projected-fund"><%= @project.projected_fund_date.strftime("Projected to be funded on %B %d, %Y") if @project.projected_fund_date %></div>
     </div>
   </div>
 </div>
