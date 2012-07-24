@@ -80,6 +80,10 @@ class Project < ActiveRecord::Base
     percentage_to_completion_date >= 80
   end
 
+  def completed?
+    days_to_end < 0
+  end
+
   def days_to_end
     (expiration_date - Date.today).to_i
   end

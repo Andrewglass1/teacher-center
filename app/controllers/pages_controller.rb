@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :create_project_if_session
+  before_filter :create_project_if_session, :redirect_to_project
 
   def welcome
 
@@ -17,6 +17,13 @@ private
         redirect_to project_path(project),
           notice: "Project created successfully"
       end
+    end
+  end
+
+  def redirect_to_project
+    last_project = current_user.projects.last
+    if current_user && project_url.empty? && !last_project.completed?
+      redirect_to project_path(current_user.projects.last)
     end
   end
 
