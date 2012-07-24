@@ -48,13 +48,20 @@ $fontColor: #021C3B;
   .expiration-text{ 
     text-shadow: none;
     font-size: 20px;
-    margin-top: 70px;
+    margin-top: 85px;
   }
   .status_text{ 
 
-  margin-top: 25px;
+  margin-top: 15px;
   font-size: 20px;
   text-shadow: none;
+  }
+
+  .projected-fund{ 
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 18px;
+    text-shadow: none;
   }
 }
 
