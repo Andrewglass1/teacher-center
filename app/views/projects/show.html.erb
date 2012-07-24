@@ -12,8 +12,8 @@
   </div>
   <div class="threecol" id="hero_item">
     <div id="hero-item-2">
-      <span class="days_left"><%= @project.days_to_end %><br /> Days Left</span>
-      <div class="expiration-text"><%= @project.expiration_date.strftime("Expires on %B %d") %></div>
+      <span class="days_left"><%= days_left(@project) %></span>
+      <div class="expiration-text"><%= project_expiration_date(@project) %></div>
     </div>
   </div>
   <div class="threecol" id="hero_item">
