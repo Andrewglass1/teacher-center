@@ -97,8 +97,8 @@ class Project < ActiveRecord::Base
     (BigDecimal.new(cost_to_complete_cents.to_s) / 100).to_i
   end
 
-  def percentage_to_completion_date
-    (Date.today - start_date)/length_of_project
+  def percentage_to_completion_date(date = Date.today)
+    (date - start_date)/length_of_project
   end
 
   def dollars_funded
@@ -113,14 +113,20 @@ class Project < ActiveRecord::Base
     LazyHighCharts::HighChart.new('graph') do |f|
       f.chart(:defaultSeriesType => 'line')
       f.title(:text => 'Donations')
-      f.series(:name =>'Donations',
+      f.series(:name => 'Goal',
+               :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, goal_dollars] })
+      f.series(:name => 'On Track',
+               :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, goal_dollars * percentage_to_completion_date(log.date) ] })
+      f.series(:name =>'Total Donations',
                :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, log.amount_funded] })
       f.yAxis(:min => 0,
               :max => goal_dollars,
               :title => { :text => 'Amount Funded ($)' })
-      f.xAxis(:type => 'datetime', 
-             :min => DateTime.parse(start_date.to_s).to_i * 1000,
-             :max => DateTime.parse(expiration_date.to_s).to_i * 1000)
+      f.xAxis(:type => 'datetime',
+              :min => DateTime.parse(start_date.to_s).to_i * 1000,
+              :max => DateTime.parse(expiration_date.to_s).to_i * 1000)
+      f.tooltip(:valuePrefix => '$',
+                :xDateFormat => '%b %e')
     end
   end
 
@@ -128,15 +134,19 @@ class Project < ActiveRecord::Base
     LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => 'Tasks')
       f.series(:name => 'All',
-               :data => completed_tasks.map(&:clicks).inject(&:+),
+               :data => completed_tasks.map { |task| [DateTime.parse(task.completed_on.to_s).to_i * 1000, task.clicks] },
                :type => 'line')
       completed_tasks.map(&:task).map(&:medium).uniq.each do |medium|
         f.series(:name => medium,
-                 :data => completed_tasks(medium).map { |task| [task.completed_on.to_s, task.clicks] },
+                 :data => completed_tasks(medium).map { |task| [DateTime.parse(task.completed_on.to_s).to_i * 1000, task.clicks] },
                  :type => 'scatter')
       end
       f.yAxis(:title => { :text => 'Clicks' },
-              :type => 'datetime')
+              :min => 0,
+              :minRange => 5)
+      f.xAxis(:type => 'datetime')
+      f.tooltip(:valueSuffix => ' clicks',
+                :xDateFormat => '%b %e')
     end
   end
 
