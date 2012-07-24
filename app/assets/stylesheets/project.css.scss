@@ -116,7 +116,7 @@ $fontColor: #021C3B;
 }
 
 #charts {
-  margin-left: 50px;
+  margin-left: 25px;
   display: block;
 }
 
@@ -126,4 +126,11 @@ $fontColor: #021C3B;
     display: inline-block;
     margin: 10px;
   }
+}
+
+#donations_chart{ 
+  margin: 15px;
+}
+#clicks_chart{
+  margin: 15px 15px 15px 75px;
 }
