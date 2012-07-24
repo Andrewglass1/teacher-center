@@ -1,7 +1,7 @@
 module ProjectsHelper
 
   def status_image(project)
-    unless !project.off_track? 
+    if project.off_track? == false || project.completed?
       "checkmark.png"
     else
       "warning.png"
@@ -9,13 +9,15 @@ module ProjectsHelper
   end
 
   def status_text(project)
-    unless !project.off_track? 
-      "On Track to Fund"
-    else
+    if project.completed?
+      "Project Fully Funded"
+    elsif project.off_track? || project.off_track? ==nil
       "Off Track to Fund"
-    end 
+    else
+      "On Track to Fund"
+    end
   end
-
+    
   def days_left(project)
     if project.days_to_end > 0
       "#{project.days_to_end}<br />Days Left".html_safe
