@@ -1,10 +1,10 @@
-<%= stylesheet_link_tag "letter" %>
+<%= stylesheet_link_tag "letter", media: "print" %>
+<%= stylesheet_link_tag "/letter_norm" %>
 
 <div class="letter">
-<p class="salutation"><%= params["salutation"] %></p>
-<pre><p class="letter-copy"><%= params["copy"] %></p></pre>
-<p class="closing"><%= params["closing"] %></p>
-<p class="closing"><%= params["signed"] %></p>
+  <p><%= params["salutation"] %></p>
+  <p class="letter-copy"><%= params["copy"].html_safe %></p>
+  <p><%= params["closing"] %></p>
+  <p><%= params["signed"] %></p>
 
-<%= image_tag params["image"] %>
 </div>
