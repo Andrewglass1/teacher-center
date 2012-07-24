@@ -29,13 +29,11 @@
   </div>
 </div>
 
-<div class="twelvecol">
-  <div id="charts">
-    <div class="fivecol" id="donations_chart">
-      <%= high_chart("donations-chart", @donations_chart) %>
-    </div>
-    <div class="fivecol" id="clicks_chart">
-      <%= high_chart("clicks-chart", @clicks_chart) %>
-    </div>
+<div class="twelvecol row" id="charts">
+  <div class="fivecol chart">
+    <%= high_chart("donations-chart", @donations_chart) %>
+  </div>
+  <div class="fivecol chart">
+    <%= high_chart("clicks-chart", @clicks_chart) %>
   </div>
 </div>

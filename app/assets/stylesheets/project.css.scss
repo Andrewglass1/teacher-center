@@ -117,8 +117,16 @@ $fontColor: #021C3B;
 }
 
 #charts {
-  margin-left: 25px;
   display: block;
+  padding-left: 95px;
+  padding-top: 20px;
+  .chart {
+    border-radius: 5px;
+    border: 3px solid $darkblue;
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+  }
 }
 
 #links {
