@@ -22,6 +22,14 @@
 </div>
 
 <div class="twelvecol">
+  <div id="links">
+    <% @project.tasks_to_do.each_with_index do |pt, i| %>
+      <div class="link"><%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt => pt } %></div>
+  <% end %>
+  </div>
+</div>
+
+<div class="twelvecol">
   <div id="charts">
     <div class="fivecol">
       <%= high_chart("donations-chart", @donations_chart) %>
@@ -29,13 +37,5 @@
     <div class="fivecol">
       <%= high_chart("clicks-chart", @clicks_chart) %>
     </div>
-  </div>
-</div>
-
-<div class="twelvecol">
-  <div id="links">
-    <% @project.tasks_to_do.each_with_index do |pt, i| %>
-      <div class="link"><%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt => pt } %></div>
-  <% end %>
   </div>
 </div>
