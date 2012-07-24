@@ -21,14 +21,18 @@ private
   end
 
   def redirect_to_project
-    last_project = current_user.projects.last
-    if current_user && project_url.empty? && !last_project.completed?
-      redirect_to project_path(current_user.projects.last)
+    if current_user && project_url.empty? && last_project && !last_project.completed?
+      redirect_to project_path(last_project)
     end
   end
 
+
   def project_url
     cookies[:project_url] || ""
+  end
+
+  def last_project
+    @last_project ||= current_user.projects.last
   end
 
   def project
