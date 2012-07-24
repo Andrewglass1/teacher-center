@@ -112,7 +112,7 @@ class Project < ActiveRecord::Base
   def donation_chart
     LazyHighCharts::HighChart.new('graph') do |f|
       f.chart(:defaultSeriesType => 'line',
-             :zoomType => 'xy')
+              :zoomType => 'xy')
       f.title(:text => 'Donations')
       f.series(:name => 'Goal',
                :data => donation_logs.map { |log| [highcharts_date(log.date), goal_dollars] })
@@ -128,6 +128,7 @@ class Project < ActiveRecord::Base
               :max => highcharts_date(expiration_date))
       f.tooltip(:valuePrefix => '$',
                 :xDateFormat => '%b %e')
+      f.legend(layout: 'horizontal')
     end
   end
 
@@ -142,7 +143,7 @@ class Project < ActiveRecord::Base
       completed_tasks.map(&:task).map(&:medium).uniq.each do |medium|
         f.series(:name => medium,
                  :data => completed_tasks(medium).map { |task| [highcharts_date(task.completed_on), task.clicks] },
-                 :dateTimeLabelFormats => { :day => '%b %e'},
+                 :dateFormat => '%b %e',
                  :type => 'scatter')
       end
       f.yAxis(:title => { :text => 'Clicks' },
@@ -151,6 +152,7 @@ class Project < ActiveRecord::Base
       f.xAxis(:type => 'datetime')
       f.tooltip(:valueSuffix => ' clicks',
                 :xDateFormat => '%b %e')
+      f.legend(layout: 'horizontal')
     end
   end
 
