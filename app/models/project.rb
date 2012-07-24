@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   has_many :project_tasks
   has_many :tasks, :through => :project_tasks
   after_create :seed_initial_project_tasks
+  after_create :seed_initial_donation_log
   has_many :donation_logs
   has_many :click_logs
   validates_uniqueness_of :dc_id
@@ -34,6 +35,10 @@ class Project < ActiveRecord::Base
     todays_clicks          = current_total_clicks - click_total_yesterday
     todays_click_log.update_attributes(:daily_clicks => todays_clicks,
                                        :total_clicks_to_date => current_total_clicks)
+  end
+
+  def seed_initial_donation_log
+    donation_logs.create(:amount_funded_cents => 0,:date => start_date)
   end
 
   def click_total_yesterday

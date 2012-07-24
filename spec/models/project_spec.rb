@@ -195,4 +195,12 @@ describe Project do
     end
   end
 
+  context ".seed_initial_project_log" do
+    let!(:project) { Project.create_by_project_url('816888') }
+    it "initializes with a project log for the start date with 0 funded" do
+      project.donation_logs.first.date.should == project.start_date
+      project.donation_logs.first.amount_funded_cents.should == 0
+    end
+  end
+
 end
