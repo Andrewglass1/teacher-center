@@ -18,7 +18,7 @@ describe "When they paste a url and are" do
       click_link_or_button "Get Started!"
       PagesController.any_instance.stub(:project).and_return(Project.last)
       signup(new_user)
-      page.should have_content "days left"
+      page.should have_content "Days Left"
     end
     it "they login" do
       visit root_path
@@ -27,7 +27,7 @@ describe "When they paste a url and are" do
       click_link "Sign in"
       PagesController.any_instance.stub(:project).and_return(Project.last)
       login(previous_user)
-      page.should have_content "days left"
+      page.should have_content "Days Left"
     end
   end
   context "logged in" do
@@ -37,7 +37,7 @@ describe "When they paste a url and are" do
       visit root_path
       fill_in "project_url", with: donors_url
       click_link_or_button "Get Started!"
-      page.should have_content "days left"
+      page.should have_content "Days Left"
     end
   end
   context "a user has an account and is logging back in" do

@@ -15,7 +15,7 @@ class DonationLog < ActiveRecord::Base
   end
 
   def amount_funded
-    (BigDecimal.new(amount_funded_cents) / 100).to_i
+    (BigDecimal.new(amount_funded_cents.to_s) / 100).to_i
   end
 
 end
