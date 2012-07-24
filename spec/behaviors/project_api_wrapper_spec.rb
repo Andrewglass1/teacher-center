@@ -36,7 +36,7 @@ describe ProjectApiWrapper do
         ProjectApiWrapper.unstub(:log_donations)
         ProjectApiWrapper.log_donations(@project_response, project)
         expect { ProjectApiWrapper.log_donations(project_response2, project) }.to change{project.donation_logs.count}.by(0)
-        project.donation_logs.first.amount_funded_cents.should == 9000
+        project.donation_logs.last.amount_funded_cents.should == 9000
       end
     end
 
