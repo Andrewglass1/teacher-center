@@ -78,7 +78,7 @@ class Project < ActiveRecord::Base
                       else
                         all_completed.where(:tasks => { :medium => medium })
                       end
-    completed_tasks.order('project_tasks.updated_at DESC')
+    completed_tasks.order('project_tasks.completed_on ASC')
   end
 
   def near_end?
@@ -135,24 +135,27 @@ class Project < ActiveRecord::Base
   def clicks_chart
     LazyHighCharts::HighChart.new('graph') do |f|
       f.chart(:zoomType => 'x')
-      f.title(:text => 'Tasks')
-      f.series(:name => 'All',
-               :data => sorted_completed_dates.map { |date| [highcharts_date(date), all_clicks(date)] },
-               :type => 'areaspline')
+      f.plotOptions(
+        :line => {
+          :lineWidth => 0
+        })
+        f.title(:text => 'Tasks')
+        f.series(:name => 'All',
+                 :data => sorted_completed_dates.map { |date| [highcharts_date(date), all_clicks(date)] },
+                 :type => 'areaspline')
 
-      completed_tasks.map(&:task).map(&:medium).uniq.each do |medium|
-        f.series(:name => medium,
-                 :data => completed_tasks(medium).map { |task| [highcharts_date(task.completed_on), task.clicks] },
-                 :dateFormat => '%b %e',
-                 :type => 'scatter')
-      end
-      f.yAxis(:title => { :text => 'Clicks' },
-              :min => 0,
-              :minRange => 5)
-      f.xAxis(:type => 'datetime')
-      f.tooltip(:valueSuffix => ' clicks',
-                :xDateFormat => '%b %e')
-      f.legend(layout: 'horizontal')
+        completed_tasks.map(&:task).map(&:medium).uniq.each do |medium|
+          f.series(:name => medium,
+                   :data => completed_tasks(medium).map { |task| [highcharts_date(task.completed_on), task.clicks] },
+                   :type => 'line')
+        end
+        f.yAxis(:title => { :text => 'Clicks' },
+                :min => 0,
+                :minRange => 5)
+        f.xAxis(:type => 'datetime')
+        f.tooltip(:valueSuffix => ' clicks',
+                  :xDateFormat => '%b %e')
+        f.legend(layout: 'horizontal')
     end
   end
 
