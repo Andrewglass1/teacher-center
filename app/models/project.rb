@@ -138,7 +138,7 @@ class Project < ActiveRecord::Base
       f.title(:text => 'Tasks')
       f.series(:name => 'All',
                :data => sorted_completed_dates.map { |date| [highcharts_date(date), all_clicks(date)] },
-               :type => 'area')
+               :type => 'areaspline')
 
       completed_tasks.map(&:task).map(&:medium).uniq.each do |medium|
         f.series(:name => medium,
