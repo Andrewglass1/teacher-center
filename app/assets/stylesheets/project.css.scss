@@ -1,11 +1,15 @@
 $darkblue: #32455e;
 $mediumblue: #5581d9;
+$fontColor: #021C3B;
+
 
 #project_title{ 
   margin-top: -50px;
   text-align: center;
-  font-size: 32px;
   margin-bottom: 15px;
+  font-size: 32px;
+  font-weight: 600;
+  font-family: "ff-dagny-web-pro";
 }
 
 #project_info{
