@@ -78,7 +78,7 @@ class Project < ActiveRecord::Base
                       else
                         all_completed.where(:tasks => { :medium => medium })
                       end
-    completed_tasks.order('project_tasks.updated_at DESC').to_a
+    completed_tasks.order('project_tasks.updated_at DESC')
   end
 
   def near_end?
@@ -111,20 +111,21 @@ class Project < ActiveRecord::Base
 
   def donation_chart
     LazyHighCharts::HighChart.new('graph') do |f|
-      f.chart(:defaultSeriesType => 'line')
+      f.chart(:defaultSeriesType => 'line',
+             :zoomType => 'xy')
       f.title(:text => 'Donations')
       f.series(:name => 'Goal',
-               :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, goal_dollars] })
+               :data => donation_logs.map { |log| [highcharts_date(log.date), goal_dollars] })
       f.series(:name => 'On Track',
-               :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, (goal_dollars * percentage_to_completion_date(log.date)).round ] })
+               :data => donation_logs.map { |log| [highcharts_date(log.date), on_track_estimate(log.date)] })
       f.series(:name =>'Total Donations',
-               :data => donation_logs.map { |log| [DateTime.parse(log.date.to_s).to_i * 1000, log.amount_funded] })
+               :data => donation_logs.map { |log| [highcharts_date(log.date), log.amount_funded] })
       f.yAxis(:min => 0,
-              :max => goal_dollars,
+              :max => goal_dollars + 500,
               :title => { :text => 'Amount Funded ($)' })
       f.xAxis(:type => 'datetime',
-              :min => DateTime.parse(start_date.to_s).to_i * 1000,
-              :max => DateTime.parse(expiration_date.to_s).to_i * 1000)
+              :min => highcharts_date(start_date),
+              :max => highcharts_date(expiration_date))
       f.tooltip(:valuePrefix => '$',
                 :xDateFormat => '%b %e')
     end
@@ -132,14 +133,16 @@ class Project < ActiveRecord::Base
 
   def clicks_chart
     LazyHighCharts::HighChart.new('graph') do |f|
+      f.chart(:zoomType => 'x')
       f.title(:text => 'Tasks')
       f.series(:name => 'All',
-               :data => completed_tasks.sort_by(&:completed_on).map { |task| [DateTime.parse(task.completed_on.to_s).to_i * 1000, task.clicks] },
-               :type => 'line')
+               :data => sorted_completed_dates.map { |date| [highcharts_date(date), all_clicks(date)] },
+               :type => 'area')
 
       completed_tasks.map(&:task).map(&:medium).uniq.each do |medium|
         f.series(:name => medium,
-                 :data => completed_tasks(medium).map { |task| [DateTime.parse(task.completed_on.to_s).to_i * 1000, task.clicks] },
+                 :data => completed_tasks(medium).map { |task| [highcharts_date(task.completed_on), task.clicks] },
+                 :dateTimeLabelFormats => { :day => '%b %e'},
                  :type => 'scatter')
       end
       f.yAxis(:title => { :text => 'Clicks' },
@@ -153,6 +156,21 @@ class Project < ActiveRecord::Base
 
   private
 
+  def highcharts_date(date)
+    DateTime.parse(date.to_s).to_i * 1000
+  end
+
+  def sorted_completed_dates
+    completed_tasks.pluck(:completed_on).uniq.sort
+  end
+
+  def all_clicks(date)
+    completed_tasks.where(:completed_on => date).map(&:clicks).inject(:+)
+  end
+
+  def on_track_estimate(date)
+    (goal_dollars * percentage_to_completion_date(date)).round
+  end
   def length_of_project
     expiration_date - start_date
   end
