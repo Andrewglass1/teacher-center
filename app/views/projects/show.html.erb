@@ -5,7 +5,16 @@
   </div>
   <div id="project_image"><%=image_tag @project.image_url %></div>
 </div>
-
+<hr>
+<div class="twelvecol">
+  <h3 class="task-instruct">Tasks to Complete:</h3>
+  <div id="links">
+    <% @project.tasks_to_do.each_with_index do |pt, i| %>
+      <div class="link"><%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt => pt } %></div>
+  <% end %>
+  </div>
+</div>
+<hr>
 <div class="row twelvecol" id="project_info">
   <div class="threecol" id="hero_item">
     <div id="hero-item-1">
@@ -29,13 +38,6 @@
   </div>
 </div>
 
-<div class="twelvecol">
-  <div id="links">
-    <% @project.tasks_to_do.each_with_index do |pt, i| %>
-      <div class="link"><%= render :partial => pt.task.medium.downcase , :locals => { :dc_id => @project.dc_id, :pt => pt } %></div>
-  <% end %>
-  </div>
-</div>
 
 <div class="twelvecol row" id="charts">
   <div class="fivecol chart">

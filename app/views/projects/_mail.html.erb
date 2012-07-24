@@ -6,11 +6,12 @@
   <div class="modal-header">
     <h3>Customize the text below to generate your letter</h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" style="text-align:left;">
     <%= form_tag letter_path, :method=>'post', id: "letter_form", :target =>'_blank' do %>
         <p><%= text_area_tag "salutation", "Dear Friend,", :size => "20x1"  %></p>
         <p><%= text_area_tag "copy", "#{pt.letter_copy}", :size => "65x10" %></p>
         <p><%= text_area_tag "closing", "Best,", :size => "20x1" %></p>
+        <br><br>
         <p><%= text_area_tag "signed", "Your Name", :size => "20x1"  %></p>
         <p><%= hidden_field_tag "image", pt.project.image_url %></p>
         <p><%= hidden_field_tag "short_url", pt.short_url %></p>

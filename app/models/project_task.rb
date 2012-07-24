@@ -50,9 +50,13 @@ class ProjectTask < ActiveRecord::Base
   end
 
   def letter_copy
-    "I'm writing to ask your help in supporting a DonorsChoose.org project for my classroom
-    \r\n\Thanks for taking the time to visit my project online.
-    \r\n\You can view it by logging on to #{short_url}
-    \r\n\Thanks for all your support."
+    "  I'm writing to you seeking your support for you to help me make my classroom a better place. I'm using a tool called DonorsChoose.org to accomplish this goal. DonorsChoose is a website that allows teachers like myself to request funding to do amazing things such as, take my students on field trips, buy new more relative books for the classroom, and so much more!" +
+    "\n\n My Specific Project is about:" +
+    "\n\n #{project.description}" +
+    if project.off_track?
+      "\n\n The goal for my project is to raise $#{project.goal_dollars} however i still need $#{project.dollars_needed}.\n\n To donate please visit my page at #{short_url}"
+    else
+      "\n\n I'm currently behind my goal of raising $#{project.goal_dollars} and still need $#{project.dollars_needed}. \n\n To donate please visit my page at #{short_url}"
+    end
   end
 end
