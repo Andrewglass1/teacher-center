@@ -10,7 +10,7 @@ $ ->
 
   $('.popuplarge').click () ->
     url = $(this).attr('href')
-    window.open(url,"TeacherCenter Task","height=600,width=800,menubar=false")
+    window.open(url,"TeacherCenter Task","height=700,width=850,menubar=false")
     return false
 
   $('.doer').click (event) ->
