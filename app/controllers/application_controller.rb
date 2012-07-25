@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def after_sign_in_path_for(resource)
-    if (request.referer == sign_in_url)
-      current_user.projects.last ? project_path(current_user.projects.last) : super
-    elsif (request.referer == sign_up_url)
+  def after_sign_in_path_for(user)
+    if (request.referer == sign_in_url) && current_user.projects.any?
+      project_path(current_user.projects.last)
+    elsif (request.referer == sign_in_url) || (request.referer == sign_up_url)
       super
     else
-      request.referer || stored_location_for(resource) || root_path
+      request.referer || stored_location_for(user) || root_path
     end
   end
 
