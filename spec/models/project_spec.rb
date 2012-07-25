@@ -146,55 +146,6 @@ describe Project do
     end
   end
 
- context "#log_project_clicks" do
-    let!(:project) { Project.create_by_project_url('816888') }
-
-    before do
-      Project.stub(:get_start_date).and_return(Date.parse('July 1 2012'))
-      Date.stub(:today).and_return(Date.parse('July 12 2012'))
-      ProjectTask.any_instance.stub(:get_short_link).and_return(true)
-    end
-
-    let!(:task) { Task.create({:medium => "Twitter"}) }
-    let!(:project_task) {
-      ProjectTask.create({ :task_id => task.id, :project_id => project.id, :clicks =>3 })
-    }
-    let!(:project_task2) {
-      ProjectTask.create({ :task_id => task.id, :project_id => project.id, :clicks =>5 })
-    }
-    let!(:click_log) { ClickLog.create({:date => Date.today-1, :project_id => project.id, :total_clicks_to_date =>5}) }
-
-    
-    context "there is no log for the current day yet" do
-      it "creates a new click log when there is not one for that day" do
-        expect { project.log_project_clicks }.to change{ClickLog.count}.by(1)
-      end
-
-      it "creates a new click log with todays date" do
-        project.log_project_clicks
-        project.click_logs.last.date.should == Date.today
-      end
-
-      it "creates a click log with the correct number of total clicks logged" do
-        project.log_project_clicks
-        project.click_logs.last.total_clicks_to_date.should == 8
-      end
-
-      it "creates a click log that correctly calculates todays number of clicks based on yesterdays log" do
-        project.log_project_clicks
-        project.click_logs.last.daily_clicks.should == 3
-      end
-    end
-
-    context "there is a log for the current day" do
-      let!(:click_log) { ClickLog.create({:date => Date.today, :project_id => project.id}) }
-
-      it "does not create a new click log" do
-        expect { project.log_project_clicks }.to change{ClickLog.count}.by(0)
-      end
-    end
-  end
-
   context ".seed_initial_project_log" do
     let!(:project) { Project.create_by_project_url('816888') }
     it "initializes with a project log for the start date with 0 funded" do
