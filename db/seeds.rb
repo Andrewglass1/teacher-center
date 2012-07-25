@@ -13,12 +13,13 @@ start_date = Date.today - 60
 expiration_date = Date.today + 120
 
 #sample data
-user = User.create(email: "donor@livingsocial.com",password: "hungry")
+user = User.create(email: "donor@livingsocial.com", password: "hungry")
+# project = Project.create_by_project_url('http://www.donorschoose.org/project/help-my-students-get-comfortable-with-re/795593/')
 project = Project.create(
         :user_id => user.id,
         :city => "Washington",
         :cost_to_complete_cents => 150000,
-        :dc_id => 795593,
+        :dc_id => 593,
         :dc_url => "http://www.donorschoose.org/project/help-my-students-get-comfortable-with-re/795593/",
         :description => " I don't tend to get lost in a book when I'm sitting upright at a desk. Neither do my students. They like to feel cozy and alone. I have noticed that they are most involved in ...",
         :expiration_date => expiration_date,
