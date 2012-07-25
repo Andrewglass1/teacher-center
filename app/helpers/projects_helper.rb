@@ -33,4 +33,8 @@ module ProjectsHelper
       ""
     end
   end
+  
+  def display_fund_date(project)
+    project.projected_fund_date.strftime("Projected to be Funded on: %n %B %d, %Y")
+  end
 end
