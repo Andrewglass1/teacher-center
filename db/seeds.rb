@@ -25,7 +25,7 @@ project = Project.create(
         :expiration_date => expiration_date,
         :goal_cents => 200000,
         :image_url => "http://www.donorschoose.org/images/user/uploads/small/u1025292_sm.jpg?timestamp=1336438786252",
-        :percent_funded => 75,
+        :percent_funded => 25,
         :school => "Jefferson Davis Middle School",
         :stage => "initial",
         :state => "D.C.",
