@@ -99,7 +99,7 @@ class Project < ActiveRecord::Base
   def donation_chart
     LazyHighCharts::HighChart.new('graph') do |f|
       f.chart(:defaultSeriesType => 'line',
-              :zoomType => 'xy')
+              :zoomType => 'x')
       f.title(:text => 'Donations')
       f.series(:name => 'Goal',
                :data => donation_logs.map { |log| [highcharts_date(log.date), goal_dollars] })

@@ -45,9 +45,12 @@ until date == Date.today
   date += 1
 end
 
+project.update_attributes({:cost_to_complete_cents => project.goal_cents - funded, :percent_funded  => ((funded.to_f/project.goal_cents.to_f)*100).to_i})
+
 task_ids =  [t1.id,t2.id,t3.id,t4.id,t5.id]
 15.times do
-  project.project_tasks.create(task_id: task_ids.sample, clicks: 2 + rand(18), completed: true, completed_on: start_date + rand((expiration_date - start_date)/10) * 10 )
+  project.project_tasks.create(task_id: task_ids.sample, clicks: 2 + rand(18), completed: true, completed_on: start_date + rand((Date.today - start_date)/5) * 5 )
+  ProjectTask.last.update_attribute(:short_url, nil)
 end
 
 

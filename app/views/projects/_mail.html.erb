@@ -12,7 +12,7 @@
         <p><%= text_area_tag "copy", "#{pt.letter_copy}", :size => "65x10" %></p>
         <p><%= text_area_tag "closing", "Best,", :size => "20x1" %></p>
         <br><br>
-        <p><%= text_area_tag "signed", "Your Name", :size => "20x1"  %></p>
+        <p><%= text_area_tag "signed", pt.project.teacher_name, :size => "20x1"  %></p>
         <p><%= hidden_field_tag "image", pt.project.image_url %></p>
         <p><%= hidden_field_tag "short_url", pt.short_url %></p>
   </div>
