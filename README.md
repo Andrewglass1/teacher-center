@@ -19,3 +19,9 @@ password: hungry
   - rake db:setup
   - rake db:test:prepare
   - rake db:seed
+
+## To Run Locally
+  - `rails server`
+
+## To Run the Test Suite
+  - `bundle exec rspec`
