@@ -1,6 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teachercenter Letter</title>
 <%= stylesheet_link_tag "letter", media: "print" %>
 <%= stylesheet_link_tag "/letter_norm" %>
-
+</head>
+<body>
 <div class="letter">
   <p><%= params["salutation"] %></p>
   <p class="letter-copy"><%= params["copy"].html_safe %></p>
@@ -8,3 +13,5 @@
   <p><%= params["signed"] %></p>
 
 </div>
+</body>
+</html>
