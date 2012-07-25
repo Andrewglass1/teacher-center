@@ -12,7 +12,10 @@ password: hungry
 
 ## Necessary Setup
   - Postgres running locally
-  - Set environment variables for `bitly_username` and `bitly_api_key` with any bitly account.
-  - rake db:create
-  - rake db:migrate & rake db:test:preapre
+    - install: `brew install postgresql`
+    - start server: `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
+  - Set environment variables for `bitly_username` and `bitly_api_key` with any bitly account, you do not need to register the application, any account will work. You can find the api key in the advanced settings on bit.ly under 'legacy api key'.
+    - in `~/.bash_profile`, put `export bitly_username=YOURUSERNAME`, and `export bitly_api_key=YOURAPIKEY`, then source your bash profile in all relevant terminal windows `source ~/.bash_profile`
+  - rake db:setup
+  - rake db:test:prepare
   - rake db:seed
