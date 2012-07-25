@@ -4,5 +4,4 @@ class Api::V1::ProjectTasksController < ApplicationController
   def update
     respond_with ProjectTask.find(params[:id]).complete.to_json
   end
-
 end

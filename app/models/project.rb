@@ -29,21 +29,8 @@ class Project < ActiveRecord::Base
     ProjectApiWrapper.update_information(self)
   end
 
-  def log_project_clicks
-    todays_click_log       = click_logs.find_or_create_by_date(Date.today)
-    current_total_clicks   = project_tasks.sum(&:clicks)
-    todays_clicks          = current_total_clicks - click_total_yesterday
-    todays_click_log.update_attributes(:daily_clicks => todays_clicks,
-                                       :total_clicks_to_date => current_total_clicks)
-  end
-
   def seed_initial_donation_log
     donation_logs.create(:amount_funded_cents => 0,:date => start_date)
-  end
-
-  def click_total_yesterday
-    yesterdays_click_log   = click_logs.find_by_date(Date.today-1) || nil
-    yesterdays_click_log ? yesterdays_click_log.total_clicks_to_date : 0
   end
 
   def pdf_link
