@@ -10,13 +10,13 @@ describe DonationLog do
     ProjectApiWrapper.unstub(:log_donations)
   end
 
-  context '#donations_today_cents' do
+  context '.donations_today_cents' do
     it "gives the donations (in cents) given in that day for the specified project id" do
       DonationLog.donations_today_cents(1).should == 5000
     end
   end
 
-  context "#donations_over_days_cents" do
+  context ".donations_over_days_cents" do
     context "the project has donation logs over multiple days" do
       it "provides the sum of donations from the specified project over the specified date range" do
         DonationLog.donations_over_days_cents(1,3).should == 7000
@@ -24,5 +24,10 @@ describe DonationLog do
     end
   end
 
+  context "#amount_funded" do
+    it "returns the logged donation amount in integer dollars" do
+      donation_log.amount_funded.should == 50
+    end
+  end
 
 end
