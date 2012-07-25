@@ -14,8 +14,13 @@ password: hungry
   - Postgres running locally
     - install: `brew install postgresql`
     - start server: `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
-  - Set environment variables for `bitly_username` and `bitly_api_key` with any bitly account, you do not need to register the application, any account will work. You can find the api key in the advanced settings on bit.ly under 'legacy api key'.
-    - in `~/.bash_profile`, put `export bitly_username=YOURUSERNAME`, and `export bitly_api_key=YOURAPIKEY`, then source your bash profile in all relevant terminal windows `source ~/.bash_profile`
+  - Set environment variables
+    - open `~/.bash_profile`
+      - `export bitly_username=YOURUSERNAME`, any bitly account will work
+      - `export bitly_api_key=YOURAPIKEY`, find it here: http://bitly.com/a/your_api_key
+      - `export new_relic_key=YOURKEY` (this step is not necessary to get things working, you will simply see an error in the console without it)
+        - create a new relic account, then go to https://rpm.newrelic.com/accounts, click on your account, download the yaml file. Your key is the license key in the yaml file.
+    - source your bash profile in all relevant terminal windows `source ~/.bash_profile`
   - rake db:setup
   - rake db:test:prepare
   - rake db:seed
