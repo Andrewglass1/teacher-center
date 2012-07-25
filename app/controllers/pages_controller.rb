@@ -19,7 +19,7 @@ class PagesController < ApplicationController
   end
 
   def create_project
-    cookies[:project_url] = nil
+    cookies.delete :project_url
     project.update_attributes(user_id: current_user.id)
     redirect_to project_path(project),
       notice: "Project created successfully"
@@ -31,9 +31,8 @@ class PagesController < ApplicationController
     end
   end
 
-
   def project_url
-    cookies[:project_url] || ""
+    cookies[:project_url].to_s
   end
 
   def last_project

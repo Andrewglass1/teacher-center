@@ -11,13 +11,13 @@ class ProjectsController < ApplicationController
         params[:project_url])
         redirect_to project_path(@project)
     else
-      create_project_for_guest(params)
+      create_project_for_guest
     end
   end
 
   private
 
-  def create_project_for_guest(params)
+  def create_project_for_guest
     Project.create_in_thread(params[:project_url])
     cookies[:project_url] = params[:project_url]
     redirect_to new_user_registration_path,
