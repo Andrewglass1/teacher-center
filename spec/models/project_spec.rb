@@ -203,4 +203,17 @@ describe Project do
     end
   end
 
+  context ".near_end?" do
+    it "returns true if the project is more than 80 percent complete" do
+      project = Project.new
+      project.should_receive(:percentage_to_completion_date).and_return(81)
+      project.near_end?.should be true
+    end
+
+    it "returns false if the project is more than 80 percent complete" do
+      project = Project.new
+      project.should_receive(:percentage_to_completion_date).and_return(50)
+      project.near_end?.should be false
+    end
+  end
 end
