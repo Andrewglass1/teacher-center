@@ -18,8 +18,7 @@ password: hungry
     - open `~/.bash_profile`
       - `export bitly_username=YOURUSERNAME`, any bitly account will work
       - `export bitly_api_key=YOURAPIKEY`, find it here: http://bitly.com/a/your_api_key
-      - `export new_relic_key=YOURKEY` (this step is not necessary to get things working, you will simply see an error in the console without it)
-        - create a new relic account, then go to https://rpm.newrelic.com/accounts, click on your account, download the yaml file. Your key is the license key in the yaml file.
+      - `export new_relic_key=YOURKEY`, create a new relic account, then go to https://rpm.newrelic.com/accounts, click on your account, download the yaml file. Your key is the license key in the yaml file. (this step is not necessary to get things working, you will simply see an error in the console without it)
     - source your bash profile in all relevant terminal windows `source ~/.bash_profile`
   - rake db:setup
   - rake db:test:prepare
