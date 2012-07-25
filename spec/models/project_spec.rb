@@ -203,31 +203,49 @@ describe Project do
     end
   end
 
-  context "#near_end?" do
-    it "returns true if the project is more than 80 percent complete" do
-      project = Project.new
-      project.should_receive(:percentage_to_completion_date).and_return(81)
-      project.near_end?.should be true
-    end
-
-    it "returns false if the project is more than 80 percent complete" do
-      project = Project.new
-      project.should_receive(:percentage_to_completion_date).and_return(50)
-      project.near_end?.should be false
-    end
-  end
-
-  context "#days_to_end" do
+  context "helper" do
     let(:project) { Project.new }
 
-    it "should return 0 for a project ending today" do
-      project.should_receive(:expiration_date).and_return(Date.today)
-      project.days_to_end.should == 0
+    context "#near_end?" do
+      it "returns true if the project is more than 80 percent complete" do
+        project.should_receive(:percentage_to_completion_date).and_return(81)
+        project.near_end?.should be true
+      end
+
+      it "returns false if the project is more than 80 percent complete" do
+        project.should_receive(:percentage_to_completion_date).and_return(50)
+        project.near_end?.should be false
+      end
     end
 
-    it "should return 5 for a project ending in 5 days" do
-      project.should_receive(:expiration_date).and_return(Date.today + 5)
-      project.days_to_end.should == 5
+    context "#days_to_end" do
+
+      it "should return 0 for a project ending today" do
+        project.should_receive(:expiration_date).and_return(Date.today)
+        project.days_to_end.should == 0
+      end
+
+      it "should return 5 for a project ending in 5 days" do
+        project.should_receive(:expiration_date).and_return(Date.today + 5)
+        project.days_to_end.should == 5
+      end
+    end
+
+    context "Project#dollars_needed" do
+      it "returns 0 if a project needs 0 cents to complete" do
+        project.should_receive(:cost_to_complete_cents).and_return(0)
+        project.dollars_needed.should == 0
+      end
+
+      it "returns 42 if a project needs 4200 cents to complete" do
+        project.should_receive(:cost_to_complete_cents).and_return(4200)
+        project.dollars_needed.should == 42
+      end
+
+      it "returns 5 if a project needs 500 cents to complete" do
+        project.should_receive(:cost_to_complete_cents).and_return(500)
+        project.dollars_needed.should == 5
+      end
     end
   end
 end
