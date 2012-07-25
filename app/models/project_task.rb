@@ -50,13 +50,38 @@ class ProjectTask < ActiveRecord::Base
   end
 
   def letter_copy
-    "  I'm writing to you seeking your support for you to help me make my classroom a better place. I'm using a tool called DonorsChoose.org to accomplish this goal. DonorsChoose is a website that allows teachers like myself to request funding to do amazing things such as, take my students on field trips, buy new more relative books for the classroom, and so much more!" +
-    "\n\n My Specific Project is about:" +
-    "\n\n #{project.description}" +
+    opening_copy + "\n #{project.description}".gsub(/^ +/, '') +
     if project.off_track?
-      "\n\n The goal for my project is to raise $#{project.goal_dollars} however i still need $#{project.dollars_needed}.\n\n To donate please visit my page at #{short_url}"
+      off_track_copy
     else
-      "\n\n I'm currently behind my goal of raising $#{project.goal_dollars} and still need $#{project.dollars_needed}. \n\n To donate please visit my page at #{short_url}"
+      on_track_copy
     end
   end
+
+  def opening_copy
+    <<-END.gsub(/^ {6}/, '')
+      I'm writing to you seeking your support for you to help me make my classroom a better place.
+      I'm using a tool called DonorsChoose.org to accomplish this goal.
+      DonorsChoose is a website that allows teachers like myself to request funding to do amazing things such as, take my students on field trips,
+      buy new more relative books for the classroom, and so much more!
+
+      My Specific Project is about:
+    END
+  end
+
+  def off_track_copy
+    <<-END.gsub(/^ {6}/, '')
+      The goal for my project is to raise $#{project.goal_dollars} however i still need $#{project.dollars_needed}.
+      To donate please visit my page at #{short_url}
+    END
+  end
+
+  def on_track_copy
+    <<-END.gsub(/^ {6}/, '')
+      I'm currently behind my goal of raising $#{project.goal_dollars} and still need $#{project.dollars_needed}.
+      To donate please visit my page at #{short_url}
+    END
+  end
+
+
 end
