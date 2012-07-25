@@ -203,4 +203,69 @@ describe Project do
     end
   end
 
+  context "helper" do
+    let(:project) { Project.new }
+
+    context "#near_end?" do
+      it "returns true if the project is more than 80 percent complete" do
+        project.stub(:percentage_to_completion_date).and_return(81)
+        project.near_end?.should be true
+      end
+
+      it "returns false if the project is more than 80 percent complete" do
+        project.stub(:percentage_to_completion_date).and_return(50)
+        project.near_end?.should be false
+      end
+    end
+
+    context "#days_to_end" do
+
+      it "should return 0 for a project ending today" do
+        project.stub(:expiration_date).and_return(Date.today)
+        project.days_to_end.should == 0
+      end
+
+      it "should return 5 for a project ending in 5 days" do
+        project.stub(:expiration_date).and_return(Date.today + 5)
+        project.days_to_end.should == 5
+      end
+    end
+
+    context "#dollars_needed" do
+      it "returns 0 if a project needs 0 cents to complete" do
+        project.stub(:cost_to_complete_cents).and_return(0)
+        project.dollars_needed.should == 0
+      end
+
+      it "returns 42 if a project needs 4200 cents to complete" do
+        project.stub(:cost_to_complete_cents).and_return(4200)
+        project.dollars_needed.should == 42
+      end
+
+      it "returns 5 if a project needs 500 cents to complete" do
+        project.stub(:cost_to_complete_cents).and_return(500)
+        project.dollars_needed.should == 5
+      end
+    end
+
+    context "#percentage_to_completion_date" do
+      it "should return 50% for a 4 day project that started 5 days ago" do
+        project.stub(:length_of_project).and_return(4)
+        project.stub(:start_date).and_return(Date.today - 2)
+        project.percentage_to_completion_date.should == 0.5
+      end
+
+      it "should return 25% for a 4 day project that started yesterday" do
+        project.stub(:length_of_project).and_return(4)
+        project.stub(:start_date).and_return(Date.today - 1)
+        project.percentage_to_completion_date.should == 0.25
+      end
+
+      it "should return 0% for a 4 day project that started today" do
+        project.stub(:length_of_project).and_return(4)
+        project.stub(:start_date).and_return(Date.today)
+        project.percentage_to_completion_date.should == 0
+      end
+    end
+  end
 end
