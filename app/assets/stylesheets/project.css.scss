@@ -11,16 +11,14 @@ $fontColor: #021C3B;
   -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
   box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
 }
-#project_text{ 
-  float: left;
-}
-#project_title{ 
+
+#project_title{
   font-size: 40px;
   font-weight: 600;
   font-family: "ff-dagny-web-pro";
 }
 
-#project_descrip{ 
+#project_descrip{
   font-size: 24px;
 }
 
@@ -30,16 +28,16 @@ $fontColor: #021C3B;
   margin: -50px 0 25px 75px;
 }
 
-#project_info{ 
+#project_info{
   margin: 15px 0px 15px 50px;
 }
 
-.percentage{ 
+.percentage{
   font-size: 64px;
   font-weight: 600;
 }
 
-.days_left{ 
+.days_left{
   font-size: 54px;
   font-weight: 600;
 }
@@ -60,19 +58,19 @@ $fontColor: #021C3B;
     margin-top: 65px
 
   }
-  .expiration-text{ 
+  .expiration-text{
     text-shadow: none;
     font-size: 20px;
     margin-top: 85px;
   }
-  .status_text{ 
+  .status_text{
 
   margin-top: 15px;
   font-size: 20px;
   text-shadow: none;
   }
 
-  .projected-fund{ 
+  .projected-fund{
     margin-top: 5px;
     padding-bottom: 5px;
     font-size: 18px;
@@ -180,14 +178,14 @@ $fontColor: #021C3B;
   }
 }
 
-#donations_chart{ 
+#donations_chart{
   margin: 15px;
 }
 #clicks_chart{
   margin: 15px 15px 15px 75px;
 }
 
-.status_image img{ 
+.status_image img{
   height: 150px;
 }
 

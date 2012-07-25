@@ -43,37 +43,43 @@ body {
     position: absolute;
     margin-left: -20px;
     margin-top: -20px;
-    padding-right: 10px; 
-    padding-left: 10px;
+    padding: 0 10px;
     font-size: 3em;
     z-index: 5;
   }
-  #logo:after{  
-    content: ' ';  
-    position: absolute;  
-    width: 0;  
-    height: 0;  
-    left: 0px;  
-    top: 100%;  
-    border-width: 5px 10px;  
-    border-style: solid;  
-    border-color: $darkblue $darkblue transparent transparent;  
-  } 
+  @media only screen and (max-width: 1023px) {
+    #logo {
+      padding: 10px;
+    }
+  }
+  @media only screen and (min-width: 1023px) {
+    #logo:after{
+      content: ' ';
+      position: absolute;
+      width: 0;
+      height: 0;
+      left: 0px;
+      top: 100%;
+      border-width: 5px 10px;
+      border-style: solid;
+      border-color: $darkblue $darkblue transparent transparent;
+    }
 
-  #logo:before  
-  {  
-      content: ' ';  
-      position: absolute;  
-      width: 2px;  
-      height: 0;  
-      left: -30px;  
-      top: 27px;  
-      border-width: 20px 24px;  
-      border-style: solid; 
-      border-collapse: collapse;
-      border-color: $mediumblue $mediumblue $mediumblue transparent;  
-      z-index: -5;
-  }  
+    #logo:before
+    {
+        content: ' ';
+        position: absolute;
+        width: 2px;
+        height: 0;
+        left: -30px;
+        top: 27px;
+        border-width: 20px 24px;
+        border-style: solid;
+        border-collapse: collapse;
+        border-color: $mediumblue $mediumblue $mediumblue transparent;
+        z-index: -5;
+    }
+  }
 }
 .center {
   width:80%;
@@ -86,7 +92,7 @@ input {
   width:100%;
 }
 
-.button{ 
+.button{
  border-top: 1px solid $mediumblue;
  border-left: 1px solid $mediumblue;
  background: $mediumblue;
@@ -111,7 +117,7 @@ input {
 
 }
 
-.tiny-button{ 
+.tiny-button{
   border-top: 1px solid $mediumblue;
   border-left: 1px solid $mediumblue;
   background: $mediumblue;
@@ -135,7 +141,7 @@ input {
   vertical-align: middle;
 }
 
-.alert-notice{ 
+.alert-notice{
   padding: 8px 35px 8px 14px;
   margin-bottom: 18px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -143,10 +149,10 @@ input {
   color: #3D9200;
 }
 
-.alert-alert{ 
+.alert-alert{
   padding: 8px 35px 8px 14px;
   margin-bottom: 18px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   background-color: rgba(255, 73, 64, 0.25);
-  color: #A60800; 
+  color: #A60800;
 }
