@@ -203,7 +203,7 @@ describe Project do
     end
   end
 
-  context ".near_end?" do
+  context "#near_end?" do
     it "returns true if the project is more than 80 percent complete" do
       project = Project.new
       project.should_receive(:percentage_to_completion_date).and_return(81)
@@ -214,6 +214,20 @@ describe Project do
       project = Project.new
       project.should_receive(:percentage_to_completion_date).and_return(50)
       project.near_end?.should be false
+    end
+  end
+
+  context "#days_to_end" do
+    let(:project) { Project.new }
+
+    it "should return 0 for a project ending today" do
+      project.should_receive(:expiration_date).and_return(Date.today)
+      project.days_to_end.should == 0
+    end
+
+    it "should return 5 for a project ending in 5 days" do
+      project.should_receive(:expiration_date).and_return(Date.today + 5)
+      project.days_to_end.should == 5
     end
   end
 end
