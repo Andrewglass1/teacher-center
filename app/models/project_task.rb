@@ -40,7 +40,7 @@ class ProjectTask < ActiveRecord::Base
       read_attribute(:description)
     elsif project.near_end?
       "My donors choose project is almost ending, help us raise the last " +
-        "$#{BigDecimal.new(project.cost_to_complete_cents / 100, 2)}!"
+        "$#{project.dollars_needed}"
     elsif project.off_track?
       "I need your help to fully fund my project on donorschoose.org, the " +
         "kids will appreciate your support!"
