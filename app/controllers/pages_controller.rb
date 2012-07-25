@@ -2,10 +2,9 @@ class PagesController < ApplicationController
   before_filter :create_project_if_session, :redirect_to_project
 
   def welcome
-
   end
 
-private
+  private
 
   def create_project_if_session
     if user_with_project_url && project.user_id
@@ -44,5 +43,4 @@ private
   def project
     @project ||= Project.find_by_dc_id(ProjectApiWrapper.id_for(project_url))
   end
-
 end

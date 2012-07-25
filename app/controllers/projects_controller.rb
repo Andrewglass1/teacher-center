@@ -38,5 +38,4 @@ class ProjectsController < ApplicationController
     @donations_chart = @project.donation_chart
     @clicks_chart = @project.clicks_chart
   end
-
 end
