@@ -218,5 +218,47 @@ describe Project do
         project.percentage_to_completion_date.should == 0
       end
     end
+
+    context "#on_track_estimate" do
+      it "returns the amount of funding in dollars that the project should have by the date passed in" do
+        project = Project.create_by_project_url('816888')
+        project.on_track_estimate(Date.parse('July 6 2012')).should == 27
+      end
+    end
+
+    context "#sorted_completed_dates" do
+      it "returns a sorted list of dates of all completed tasks" do
+        project = Project.create_by_project_url('816888')
+        ProjectTask.any_instance.stub(:get_short_link).and_return(true)
+        dates = [Date.parse('July 5 2012'),
+                 Date.parse('June 20 2012'),
+                 Date.parse('July 17 2012')]
+        3.times do |i|
+          ProjectTask.create({
+            :project_id => project.id,
+            :completed => true,
+            :completed_on => dates[i]})
+        end
+        project.sorted_completed_dates.should == dates.sort
+      end
+    end
+
+    context "#all_clicks" do
+      it "returns a the total amount of clicks across all completed tasks on the date passed in" do
+        project = Project.create_by_project_url('816888')
+        ProjectTask.any_instance.stub(:get_short_link).and_return(true)
+        dates = [Date.parse('July 17 2012'),
+                 Date.parse('June 20 2012'),
+                 Date.parse('July 17 2012')]
+        3.times do |i|
+          ProjectTask.create({
+            :project_id => project.id,
+            :completed => true,
+            :completed_on => dates[i],
+            :clicks => (i+1) * 2 })
+        end
+        project.all_clicks('July 17 2012').should == 8
+      end
+    end
   end
 end

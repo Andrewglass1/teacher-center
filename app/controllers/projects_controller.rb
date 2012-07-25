@@ -35,7 +35,8 @@ class ProjectsController < ApplicationController
   end
 
   def create_charts
-    @donations_chart = @project.donation_chart
-    @clicks_chart = @project.clicks_chart
+    chart_creator = ChartCreator.new(@project)
+    @donations_chart = chart_creator.donations_chart
+    @clicks_chart = chart_creator.clicks_chart
   end
 end
